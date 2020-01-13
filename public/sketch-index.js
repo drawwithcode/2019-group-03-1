@@ -36,7 +36,7 @@ function draw() {
   push();
   fill(255);
   textSize(20);
-  textLeading(10);
+  textLeading(20);
   textFont("VT323");
   textAlign(LEFT,CENTER);
   translate(windowWidth/2-(windowWidth-160)/2,0);
