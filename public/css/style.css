@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P|VT323&display=swap');
+
+@font-face {
+  font-family: PressStart2P;
+  src: url(../font/PressStart2P-Regular.ttf);
+}
+
+body {
+  overflow-x: hidden;
+  position: relative;
+  padding: 0px;
+  margin: 0px;
+}
