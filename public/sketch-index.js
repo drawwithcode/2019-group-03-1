@@ -39,8 +39,8 @@ function draw() {
   textLeading(24);
   textFont("VT323");
   textAlign(LEFT,CENTER);
-  translate(windowWidth/2-(windowWidth-170)/2,0);
-  text(intro, 0, -24, windowWidth-170, windowHeight);
+  translate(windowWidth/2-(windowWidth-175)/2,0);
+  text(intro, 0, -24, windowWidth-175, windowHeight);
   pop();
 
   //BUTTON
