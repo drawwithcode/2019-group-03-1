@@ -38,3 +38,7 @@ function backgroundImage(img) {
   image(img, 0, 0, img.width * scale, img.height * scale)
   pop();
 }
+
+function touchMoved() {
+  return false;
+}

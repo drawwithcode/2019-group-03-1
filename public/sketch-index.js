@@ -12,14 +12,13 @@ function setup() {
 }
 
 function draw() {
-  var intro = "Take part in the race to conquer the throne!\n\nDraw the sword from the rock and defeat your rivals to become king for a day!";
+  var intro = "Take part in the race to conquer the throne!\n\nDraw the sword from the rock and defeat your rivals to become King of Mi Ami 2020 for a day!";
 
   //BACKGROUND
   backgroundImage(bg);
 
   //BOX
   box.resize(0, window.innerHeight - 48);
-  //box.resize(window.innerWidth - 48, 0);
   image(box, windowWidth / 2, windowHeight / 2);
 
   //TITLE
