@@ -28,14 +28,15 @@ function draw() {
   textSize(20);
   textFont("PressStart2P");
   textAlign(CENTER,CENTER);
-  translate(windowWidth/2,windowHeight/5);
+  translate(windowWidth/2,windowHeight/6);
   text("WELLCOME", 0, 0);
   pop();
 
   //TEXT
   push();
   fill(255);
-  textSize(24);
+  textSize(20);
+  textLeading(10);
   textFont("VT323");
   textAlign(LEFT,CENTER);
   translate(windowWidth/2-(windowWidth-160)/2,0);
@@ -58,6 +59,10 @@ function backgroundImage(img) {
   translate(width / 2, height / 2);
   imageMode(CENTER);
   let scale = Math.max(width / img.width, height / img.height);
-  image(img, 0, 0, img.width * scale, img.height * scale)
+  image(img, 0, 0, img.width * scale, img.height * scale);
   pop();
+}
+
+function touchMoved() {
+  return false;
 }
