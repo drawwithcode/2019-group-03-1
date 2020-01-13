@@ -28,7 +28,7 @@ function draw() {
   textSize(20);
   textFont("PressStart2P");
   textAlign(CENTER,CENTER);
-  translate(windowWidth/2,windowHeight/6);
+  translate(windowWidth/2,windowHeight/5);
   text("WELLCOME", 0, 0);
   pop();
 
@@ -39,8 +39,8 @@ function draw() {
   textLeading(24);
   textFont("VT323");
   textAlign(LEFT,CENTER);
-  translate(windowWidth/2-(windowWidth-175)/2,0);
-  text(intro, 0, -24, windowWidth-175, windowHeight);
+  translate(windowWidth/2-(windowWidth-180)/2,0);
+  text(intro, 0, -24, windowWidth-180, windowHeight);
   pop();
 
   //BUTTON
