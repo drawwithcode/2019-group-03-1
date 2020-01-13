@@ -36,11 +36,11 @@ function draw() {
   push();
   fill(255);
   textSize(20);
-  textLeading(20);
+  textLeading(24);
   textFont("VT323");
   textAlign(LEFT,CENTER);
-  translate(windowWidth/2-(windowWidth-160)/2,0);
-  text(intro, 0, -24, windowWidth-160, windowHeight);
+  translate(windowWidth/2-(windowWidth-170)/2,0);
+  text(intro, 0, -24, windowWidth-170, windowHeight);
   pop();
 
   //BUTTON
