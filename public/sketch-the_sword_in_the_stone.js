@@ -1,7 +1,9 @@
-var bg, bgImg, spada, spadaImg, rocciaBottom, rocciaBottomImg, rocciaTop, rocciaTopImg;
+var bg, spada, rocciaBottom, rocciaTop;
+var bgImg, spadaImg, rocciaBottomImg, rocciaTopImg;
 var pix;
 var stelline = [];
-var stellina;
+var stellina1, stellina2, stellina3;
+var hammer;
 
 function preload() {
   bgImg = loadImage("assets/the-sword-in-the-stone/spada_roccia-background.png");
@@ -26,36 +28,34 @@ function setup() {
   var options = {
     preventDefault: true
   };
-
-  var hammer = new Hammer(document.body, options);
-  hammer.get('swipe').set({
+  hammer = new Hammer(document.body, options);
+  hammer.get("swipe").set({
     direction: Hammer.DIRECTION_ALL
   });
 
   hammer.on("swipeup", swiped);
-
 }
 
 function draw() {
-
   clear();
   translate(-width / 2, -height / 2);
+  //BACKGROUND IMAGE
   bg = image(bgImg, 0, 0, width, width * 1.78);
+  //TOP AREA OF THE ROCK IMAGE
   rocciaTop = image(rocciaTopImg, pix * 12, pix * 45, pix * 30, pix * 30 * 1.14);
-
+  //DISPLAYS THE SWORD
   spada.display();
-
+  //BOTTOM AREA OF THE ROCK
   rocciaBottom = image(rocciaBottomImg, pix * 12, pix * 45, pix * 30, pix * 30 * 1.14);
-
+  //DISPLAYS ALL THE STARS
   for (var i = 0; i < stelline.length; i++) {
     stelline[i].display();
     stelline[i].animate();
   }
-
 }
 
+//STAR OBJECT
 function Stellina(_x, _y, _opacity) {
-
   this.x = pix * _x;
   this.y = pix * _y;
   this.opacity = _opacity;
@@ -67,7 +67,7 @@ function Stellina(_x, _y, _opacity) {
     if (this.opacity <= 0) {
       this.opacity = 120;
     }
-  }
+  };
 
   this.display = function() {
     push();
@@ -80,24 +80,24 @@ function Stellina(_x, _y, _opacity) {
     fill(255, 255, 255, this.opacity);
     rect(this.x, this.y, pix, pix * 5);
     pop();
-  }
+  };
 }
 
+//SWORD OBJECT
 function Spada(_x, _y) {
-
   this.x = pix * _x;
   this.y = pix * _y;
 
   this.display = function() {
     image(spadaImg, this.x, this.y, pix * 19, pix * 19 * 2.3);
-  }
+  };
 
   this.lift = function() {
     this.y -= pix * 1;
-  }
-
+  };
 }
 
+//HANDLES THE USER'S SWIPE
 function swiped() {
   spada.lift();
-};
+}
