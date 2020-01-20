@@ -12,7 +12,7 @@ function setup() {
 }
 
 function draw() {
-  var intro = "From one drag to another you will have 1 minute of long waiting.\n\nOther folks are also trying: make sure to be the first one to extract the sword to be the winner and conqueror of the Reign!";
+  var instructions = "From one drag to another you will have 1 minute of long waiting.\n\nOther folks are also trying: make sure to be the first one to extract the sword to be the winner and conqueror of the Reign!";
 
   //BACKGROUND
   backgroundImage(bg);
@@ -46,7 +46,7 @@ function draw() {
   textFont("VT323");
   textAlign(LEFT,CENTER);
   translate(windowWidth/2-(windowWidth-180)/2,0);
-  text(intro, 0, -24, windowWidth-180, windowHeight);
+  text(instructions, 0, -24, windowWidth-180, windowHeight);
   pop();
 }
 

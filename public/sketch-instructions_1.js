@@ -12,7 +12,7 @@ function setup() {
 }
 
 function draw() {
-  var intro = "If you are far from the sword you can follow the map of the Kingdom to the magic spot.\n\nWhen you are near enough to try your chance of winning, you can move the sword by dragging it. ";
+  var instructions = "If you are far from the sword you can follow the map of the Kingdom to the magic spot.\n\nWhen you are near enough to try your chance of winning, you can move the sword by dragging it. ";
 
   //BACKGROUND
   backgroundImage(bg);
@@ -46,7 +46,7 @@ function draw() {
   textFont("VT323");
   textAlign(LEFT,CENTER);
   translate(windowWidth/2-(windowWidth-180)/2,0);
-  text(intro, 0, -24, windowWidth-180, windowHeight);
+  text(instructions, 0, -24, windowWidth-180, windowHeight);
   pop();
 }
 
