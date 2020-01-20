@@ -12,7 +12,7 @@ function setup() {
 }
 
 function draw() {
-  var intro = "If you are far from the sword you can follow the map of the Kingdom to the magic spot.\n\nWhen you are near enough to try your chance of winning, you can move the sword by dragging it. ";
+  var intro = "From one drag to another you will have 1 minute of long waiting.\n\nOther folks are also trying: make sure to be the first one to extract the sword to be the winner and conqueror of the Reign!";
 
   //BACKGROUND
   backgroundImage(bg);
@@ -34,6 +34,7 @@ function draw() {
   textFont("PressStart2P");
   textAlign(CENTER,CENTER);
   translate(windowWidth/2,windowHeight/5);
+  textLeading(28);
   text("HOW TO\nBE KING", 0, 0);
   pop();
 
@@ -50,7 +51,7 @@ function draw() {
 }
 
 function changePage() {
-  window.open("instructions2.html", "_self");
+  window.open("map.html", "_self");
 }
 
 function backgroundImage(img) {

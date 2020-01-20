@@ -28,6 +28,7 @@ function draw() {
   textFont("PressStart2P");
   textAlign(CENTER,CENTER);
   translate(windowWidth/2,windowHeight/5);
+  textLeading(28);
   text("WELCOME TO\nMI AMI", 0, 0);
   pop();
 
@@ -50,7 +51,7 @@ function draw() {
 }
 
 function changePage() {
-  window.open("instructions.html", "_self");
+  window.open("instructions_1.html", "_self");
 }
 
 function backgroundImage(img) {

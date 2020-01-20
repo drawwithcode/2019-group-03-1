@@ -28,15 +28,14 @@ function setup() {
 
   //PRESS START
   buttonDom = createImg("assets/img/index-button.svg");
-  buttonDom.position(windowWidth / 2 - 112, windowHeight / 2 + 20 + 110);
-  buttonDom.size(224,124);
+  buttonDom.position(windowWidth / 2 - 112, windowHeight / 2 + 20 + windowHeight / 6);
+  buttonDom.size(224, 124);
   buttonDom.addClass("welcome-link");
   buttonDom.mousePressed(changePage);
 
   linkDom = createA("welcome.html", "PRESS START", "_self");
-  linkDom.position(windowWidth / 2 - 88, windowHeight / 2 + 74 + 110);
+  linkDom.position(windowWidth / 2 - 88, windowHeight / 2 + 74 + windowHeight / 6);
   linkDom.addClass("welcome-link");
-
 }
 
 function draw() {
