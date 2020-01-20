@@ -12,6 +12,8 @@ function setup() {
 }
 
 function draw() {
+  var intro = "If you are far from the sword you can follow the map of the Kingdom to the magic spot.\n\nWhen you are near enough to try your chance of winning, you can move the sword by dragging it. ";
+
   //BACKGROUND
   backgroundImage(bg);
 
@@ -24,10 +26,31 @@ function draw() {
   buttonDom.position((windowWidth - box.width) / 2 + 60, (windowHeight + box.height) / 2.5);
   buttonDom.style("width", box.width - 120 + "px");
   buttonDom.mousePressed(changePage);
+
+  //TITLE
+  push();
+  fill(255);
+  textSize(20);
+  textFont("PressStart2P");
+  textAlign(CENTER,CENTER);
+  translate(windowWidth/2,windowHeight/5);
+  text("HOW TO\nBE KING", 0, 0);
+  pop();
+
+  //TEXT
+  push();
+  fill(255);
+  textSize(20);
+  textLeading(24);
+  textFont("VT323");
+  textAlign(LEFT,CENTER);
+  translate(windowWidth/2-(windowWidth-180)/2,0);
+  text(intro, 0, -24, windowWidth-180, windowHeight);
+  pop();
 }
 
 function changePage() {
-  window.open("map.html", "_self");
+  window.open("instructions2.html", "_self");
 }
 
 function backgroundImage(img) {
