@@ -22,7 +22,7 @@ function draw() {
   image(box, windowWidth / 2, windowHeight / 2);
 
   //BUTTON
-  buttonDom = createImg("assets/img/instructions-button.svg");
+  buttonDom = createImg("assets/img/continue-button.svg");
   buttonDom.position((windowWidth - box.width) / 2 + 60, (windowHeight + box.height) / 2.5);
   buttonDom.style("width", box.width - 120 + "px");
   buttonDom.mousePressed(changePage);
