@@ -5,6 +5,11 @@ var stelline = [];
 var stellina1, stellina2, stellina3;
 var hammer;
 
+let userPosition;
+
+var latMiAmi = 45.4637478;
+var lonMiAmi = 9.2858445;
+
 function preload() {
   bgImg = loadImage("assets/the-sword-in-the-stone/spada_roccia-background.png");
   spadaImg = loadImage("assets/the-sword-in-the-stone/spada.png");
@@ -13,10 +18,13 @@ function preload() {
 }
 
 function setup() {
+  userPosition = getCurrentPosition();
+
   createCanvas(windowWidth, windowHeight, WEBGL);
   rectMode(CENTER);
   angleMode(DEGREES);
   frameRate(5);
+
   pix = round(width / 51);
 
   stellina1 = new Stellina(15, 35, 120);
@@ -39,6 +47,13 @@ function setup() {
 function draw() {
   clear();
   translate(-width / 2, -height / 2);
+
+  //Constantly update position
+  navigator.geolocation.getCurrentPosition(changePos);
+
+  //Distance between the user and the sword in meters
+  var userswordDistance = calcGeoDistance(userPosition.latitude, userPosition.longitude, latMiAmi, lonMiAmi, "km")*1000;
+
   //BACKGROUND IMAGE
   bg = image(bgImg, 0, 0, width, width * 1.78);
   //TOP AREA OF THE ROCK IMAGE
@@ -51,6 +66,11 @@ function draw() {
   for (var i = 0; i < stelline.length; i++) {
     stelline[i].display();
     stelline[i].animate();
+  }
+
+  //User out of the area
+  if(userswordDistance>50){
+
   }
 }
 
@@ -101,4 +121,10 @@ function Spada(_x, _y) {
 function swiped() {
   spada.lift();
   socket.emit('swordPull');
+}
+
+//Position update function
+function changePos(position) {
+  userPosition.latitude = position.coords.latitude;
+  userPosition.longitude = position.coords.longitude;
 }
