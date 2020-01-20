@@ -1,10 +1,13 @@
 //SETTING UP THE SERVER AND THE SOCKET
 var express = require("express");
 var app = express();
+var http = require('http').createServer(app);
 var port = process.env.PORT || 3000;
 var server = app.listen(port);
-var socket = require("socket.io");
-var io = socket(server);
+var io = require("socket.io")(server);
+
+//ENABLES THE APP TO ACCESS THE "PUBLIC" FOLDER
+app.use(express.static("public"));
 //SETTING UP THE GOOGLE API AND PROVIDING CREDENTIALS TO ACCESS THE DATA
 var { google } = require("googleapis");
 var credentials = require("./spreadsheet-credentials.json");
@@ -35,13 +38,25 @@ function getPullsCount() {
     (err, result) => {
       pulls = [[Number(result.data.values[0][0])]];
       console.log(pulls);
-      updatePulls();
     }
   );
 }
+
+//CALLS THE newConnection FUNCTION FOR EACH NEW CONNECTION
+io.on("connection", newConnection);
+
+function newConnection(socket) {
+  //socket code here
+  console.log("a new connection");
+  getPullsCount();
+}
+
+io.on("swordPull", function(socket){console.log('a new pull');});
+
 //UPDATES THE DATABASE WITH THE NEW PULLS COUNT
-function updatePulls() {
+function updatePulls(socket) {
   updatedPulls = [[1 + pulls[0][0]]];
+  pulls = updatedPulls;
   updater = { values: updatedPulls };
   sheets.spreadsheets.values.update({
     spreadsheetId,
@@ -50,16 +65,3 @@ function updatePulls() {
     resource: updater
   });
 }
-
-//ENABLES THE APP TO ACCESS THE "PUBLIC" FOLDER
-app.use(express.static("public"));
-
-//CALLS THE newConnection FUNCTION FOR EACH NEW CONNECTION
-io.on("connection", newConnection);
-
-function newConnection(socket) {
-  //socket code here
-  console.log("a new connection");
-}
-
-getPullsCount();

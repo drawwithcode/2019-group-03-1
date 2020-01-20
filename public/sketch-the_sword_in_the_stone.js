@@ -1,4 +1,3 @@
-var socket = io();
 var bg, spada, rocciaBottom, rocciaTop;
 var bgImg, spadaImg, rocciaBottomImg, rocciaTopImg;
 var pix;
@@ -101,4 +100,5 @@ function Spada(_x, _y) {
 //HANDLES THE USER'S SWIPE
 function swiped() {
   spada.lift();
+  socket.emit('swordPull');
 }

@@ -1,4 +1,3 @@
-var socket = io();
 var bg, box, button, buttonDom;
 
 function preload() {
