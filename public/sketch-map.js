@@ -1,4 +1,4 @@
-const mappa = new Mappa('Mapbox', "pk.eyJ1IjoiZ2lvdmFubmljb3ZyZSIsImEiOiJjazJ2MWpobHYwMGR4M2JucWxvMmYybnBhIn0.YBqPhOlRb-R9TlQYdkEmqQ");
+const mappa = new Mappa("Mapbox", "pk.eyJ1IjoiZ2lvdmFubmljb3ZyZSIsImEiOiJjazJ2MWpobHYwMGR4M2JucWxvMmYybnBhIn0.YBqPhOlRb-R9TlQYdkEmqQ");
 
 var zoomLevel = 16;
 let pixelMap;
@@ -6,8 +6,8 @@ let userPosition;
 
 let canvas;
 
-var latRossa = 45.5054758;
-var lonRossa = 9.163077;
+var latMiAmi = 45.4637478;
+var lonMiAmi = 9.2858445;
 
 const options = {
   lat: 0,
@@ -19,8 +19,9 @@ const options = {
 
 function preload() {
   userPosition = getCurrentPosition();
-  markerUser = loadImage('assets/img/marker-user.png');
-  markerSword = loadImage('assets/img/marker-sword.png');
+  markerUser = loadImage("assets/img/marker-user.png");
+  markerSword = loadImage("assets/img/marker-sword.png");
+  box = loadImage("assets/img/map-box.svg");
 }
 
 function setup() {
@@ -34,12 +35,21 @@ function setup() {
 }
 
 function draw() {
+
   clear();
 
-  var userswordDistance = calcGeoDistance(userPosition.latitude, userPosition.longitude, latRossa, lonRossa, "km");
+  //Constantly update position
+  navigator.geolocation.getCurrentPosition(changePos);
+
+  //Distance between the user and the sword in meters
+  var userswordDistance = calcGeoDistance(userPosition.latitude, userPosition.longitude, latMiAmi, lonMiAmi, "km")*1000;
 
   var pointUser = pixelMap.latLngToPixel(userPosition.latitude, userPosition.longitude);
-  var pointSword = pixelMap.latLngToPixel(latRossa, lonRossa);
+  var pointSword = pixelMap.latLngToPixel(latMiAmi, lonMiAmi);
+
+  if(userswordDistance<50){
+    window.location.href = "the_sword_in_the_stone.html";
+  }
 
   //Line
   strokeWeight(4);
@@ -49,17 +59,25 @@ function draw() {
   fill(255,0,0);
 
   //Marker Sword
-  ellipse(pointSword.x, pointSword.y, 12);
   image(markerSword, pointSword.x-markerSword.width/2, pointSword.y-markerSword.height/1.5);
 
   //Marker User
-  ellipse(pointUser.x, pointUser.y, 12);
   image(markerUser, pointUser.x-markerUser.width/2, pointUser.y-markerUser.height/2);
 
   noStroke();
 
-  //Distance
+  //Distance box and text
+  box.resize(window.innerWidth - 32, 0);
+  image(box,16,windowHeight-box.height-24);
+  textFont("VT323");
   textSize(20);
-  textAlign(RIGHT);
-  //text("There are " + Math.round(userswordDistance) + " km between you and the Sword", windowWidth-48, windowHeight-48);
+  fill("white");
+  textAlign(LEFT);
+  text("There are " + Math.round(userswordDistance) + " meters between you and the Sword", 64, windowHeight-box.height-24+box.height/3, windowWidth-120, 50);
+}
+
+//Position update function
+function changePos(position) {
+  userPosition.latitude = position.coords.latitude;
+  userPosition.longitude = position.coords.longitude;
 }

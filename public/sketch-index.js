@@ -1,65 +1,76 @@
-var bg, box, button, buttonDom;
+var logo, linkDom;
+var pix;
+var stelline = [];
+var stellina;
 
 function preload() {
-  bg = loadImage("assets/img/intro-background.svg");
-  box = loadImage("assets/img/intro-box.svg");
-  button = loadImage("assets/img/intro-button.svg");
+  logo = loadImage("assets/img/logo.svg");
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   imageMode(CENTER);
+  angleMode(DEGREES);
+  frameRate(5);
+
+  pix = round(width / 51);
+
+  stellina1 = new Stellina(12, 40, 120);
+  stellina2 = new Stellina(20, 24, 90);
+  stellina3 = new Stellina(35, 40, 60);
+  stelline.push(stellina1, stellina2, stellina3);
+
+  var options = {
+    preventDefault: true
+  };
+
+  //PRESS START
+  linkDom = createA("welcome.html", "PRESS START", "_self");
+  linkDom.position(windowWidth / 2 - 88, windowHeight / 2 +64);
+  linkDom.addClass("welcome-link");
 }
 
 function draw() {
-  var intro = "Take part in the race to conquer the throne!\n\nDraw the sword from the rock and defeat your rivals to become King of Mi Ami 2020 for a day!";
+  background(12,18,28);
 
-  //BACKGROUND
-  backgroundImage(bg);
+  //LOGO
+  logo.resize(window.innerWidth - 48, 0);
+  image(logo, windowWidth / 2, windowHeight / 2.4);
 
-  //BOX
-  box.resize(0, window.innerHeight - 48);
-  image(box, windowWidth / 2, windowHeight / 2);
-
-  //TITLE
-  push();
-  fill(255);
-  textSize(20);
-  textFont("PressStart2P");
-  textAlign(CENTER,CENTER);
-  translate(windowWidth/2,windowHeight/5);
-  text("WELLCOME", 0, 0);
-  pop();
-
-  //TEXT
-  push();
-  fill(255);
-  textSize(20);
-  textLeading(24);
-  textFont("VT323");
-  textAlign(LEFT,CENTER);
-  translate(windowWidth/2-(windowWidth-180)/2,0);
-  text(intro, 0, -24, windowWidth-180, windowHeight);
-  pop();
-
-  //BUTTON
-  buttonDom = createImg("assets/img/intro-button.svg");
-  buttonDom.position((windowWidth - box.width) / 2 + 60, (windowHeight + box.height) / 2.5);
-  buttonDom.style("width", box.width - 120 + "px");
-  buttonDom.mousePressed(changePage);
+  for (var i = 0; i < stelline.length; i++) {
+    stelline[i].display();
+    stelline[i].animate();
+  }
 }
 
-function changePage() {
-  window.open('instructions.html', '_self');
-}
+function Stellina(_x, _y, _opacity) {
 
-function backgroundImage(img) {
-  push();
-  translate(width / 2, height / 2);
-  imageMode(CENTER);
-  let scale = Math.max(width / img.width, height / img.height);
-  image(img, 0, 0, img.width * scale, img.height * scale);
-  pop();
+  this.x = pix * _x;
+  this.y = pix * _y;
+  this.opacity = _opacity;
+
+  this.animate = function() {
+    this.x = pix * _x + random(1, 6) * pix;
+    this.y = pix * _y + random(1, 6) * pix;
+    this.opacity -= 30;
+    if (this.opacity <= 0) {
+      this.opacity = 120;
+    }
+  }
+
+  this.display = function() {
+    push();
+    noStroke();
+    fill(255, 255, 255, this.opacity);
+    translate(-pix*2,pix *2);
+    rect(this.x, this.y, pix * 5, pix);
+    pop();
+    push();
+    noStroke();
+    fill(255, 255, 255, this.opacity);
+    rect(this.x, this.y, pix, pix * 5);
+    pop();
+  }
 }
 
 function touchMoved() {

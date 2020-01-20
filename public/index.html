@@ -1,15 +1,48 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-    <title>The Sword in the Stone</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="addons/p5.min.js"></script>
-    <script src="addons/p5.sound.min.js"></script>
-    <script src="sketch-index.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
-  </head>
-  <body>
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+  <title>The Sword in the Stone</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="addons/p5.min.js"></script>
+  <script src="addons/p5.sound.min.js"></script>
+  <script src="sketch-index.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <style>
+    a {
+      font-family: "PressStart2P";
+      color: white;
+      text-decoration: none;
+      text-align: center;
+    }
+    
+    /* PRESS START animation */
+    .welcome-link {
+      animation-name: blinker;
+      animation-duration: 1s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+
+    @keyframes blinker {
+      0% {
+        opacity: 1.0;
+      }
+
+      50% {
+        opacity: 0.0;
+      }
+
+      100% {
+        opacity: 1.0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+</body>
+
 </html>
