@@ -1,3 +1,4 @@
+var socket = io();
 var bg, spada, rocciaBottom, rocciaTop;
 var bgImg, spadaImg, rocciaBottomImg, rocciaTopImg;
 var pix;

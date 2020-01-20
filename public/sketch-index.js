@@ -1,3 +1,4 @@
+var socket = io();
 var logo, linkDom;
 var pix;
 var stelline = [];

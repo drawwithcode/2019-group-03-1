@@ -1,3 +1,4 @@
+var socket = io();
 const mappa = new Mappa("Mapbox", "pk.eyJ1IjoiZ2lvdmFubmljb3ZyZSIsImEiOiJjazJ2MWpobHYwMGR4M2JucWxvMmYybnBhIn0.YBqPhOlRb-R9TlQYdkEmqQ");
 
 var zoomLevel = 16;
