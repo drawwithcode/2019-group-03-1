@@ -27,7 +27,7 @@ function draw() {
   textSize(20);
   textFont("PressStart2P");
   textAlign(CENTER,CENTER);
-  translate(windowWidth/2,windowHeight/5);
+  translate(windowWidth/2,windowHeight/5.6);
   textLeading(28);
   text("WELCOME TO\nMI AMI", 0, 0);
   pop();
@@ -40,12 +40,12 @@ function draw() {
   textFont("VT323");
   textAlign(LEFT,CENTER);
   translate(windowWidth/2-(windowWidth-180)/2,0);
-  text(intro, 0, -24, windowWidth-180, windowHeight);
+  text(intro, 0, -10, windowWidth-180, windowHeight);
   pop();
 
   //BUTTON
   buttonDom = createImg("assets/img/intro-button.svg");
-  buttonDom.position((windowWidth - box.width) / 2 + 60, (windowHeight + box.height) / 2.5);
+  buttonDom.position((windowWidth - box.width) / 2 + 60, (windowHeight + box.height) / 2.3);
   buttonDom.style("width", box.width - 120 + "px");
   buttonDom.mousePressed(changePage);
 }

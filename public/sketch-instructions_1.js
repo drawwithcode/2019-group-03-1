@@ -23,7 +23,7 @@ function draw() {
 
   //BUTTON
   buttonDom = createImg("assets/img/continue-button.svg");
-  buttonDom.position((windowWidth - box.width) / 2 + 60, (windowHeight + box.height) / 2.4);
+  buttonDom.position((windowWidth - box.width) / 2 + 60, (windowHeight + box.height) / 2.3);
   buttonDom.style("width", box.width - 120 + "px");
   buttonDom.mousePressed(changePage);
 

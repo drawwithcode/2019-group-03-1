@@ -59,7 +59,7 @@ function draw() {
 
 
   //NOT MOBILE DEVICES
-  if (width > 575) {
+  if (window.innerWidth > 575) {
 
   }
   //MOBILE DEVICES
