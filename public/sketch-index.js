@@ -8,6 +8,11 @@ function preload() {
 }
 
 function setup() {
+  //If the device is not mobile go to the_sword_in_the_stone.html
+  if(windowWidth>575){
+    window.open("the_sword_in_the_stone.html", "_self");
+  }
+
   var buttonDom;
 
   createCanvas(windowWidth, windowHeight);
@@ -56,7 +61,6 @@ function changePage() {
 }
 
 function Stellina(_x, _y, _opacity) {
-
   this.x = pix * _x;
   this.y = pix * _y;
   this.opacity = _opacity;

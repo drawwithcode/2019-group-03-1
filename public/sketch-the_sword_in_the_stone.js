@@ -12,6 +12,7 @@ var lonMiAmi = 9.2858445;
 
 function preload() {
   bgImg = loadImage("assets/the-sword-in-the-stone/spada_roccia-background.png");
+  box = loadImage("assets/img/intro-box.svg");
   spadaImg = loadImage("assets/the-sword-in-the-stone/spada.png");
   rocciaBottomImg = loadImage("assets/the-sword-in-the-stone/roccia_bottom.png");
   rocciaTopImg = loadImage("assets/the-sword-in-the-stone/roccia_top.png");
@@ -48,29 +49,39 @@ function draw() {
   clear();
   translate(-width / 2, -height / 2);
 
-  //Constantly update position
-  navigator.geolocation.getCurrentPosition(changePos);
+  //NOT MOBILE DEVICES
+  if (windowWidth > 575) {
 
-  //Distance between the user and the sword in meters
-  var userswordDistance = calcGeoDistance(userPosition.latitude, userPosition.longitude, latMiAmi, lonMiAmi, "km")*1000;
-
-  //BACKGROUND IMAGE
-  bg = image(bgImg, 0, 0, width, width * 1.78);
-  //TOP AREA OF THE ROCK IMAGE
-  rocciaTop = image(rocciaTopImg, pix * 12, pix * 45, pix * 30, pix * 30 * 1.14);
-  //DISPLAYS THE SWORD
-  spada.display();
-  //BOTTOM AREA OF THE ROCK
-  rocciaBottom = image(rocciaBottomImg, pix * 12, pix * 45, pix * 30, pix * 30 * 1.14);
-  //DISPLAYS ALL THE STARS
-  for (var i = 0; i < stelline.length; i++) {
-    stelline[i].display();
-    stelline[i].animate();
   }
 
-  //User out of the area
-  if(userswordDistance>50){
+  //MOBILE DEVICES
+  else {
+    //Constantly update position
+    navigator.geolocation.getCurrentPosition(changePos);
 
+    //Distance between the user and the sword in meters
+    var userswordDistance = calcGeoDistance(userPosition.latitude, userPosition.longitude, latMiAmi, lonMiAmi, "km") * 1000;
+
+    //Background image
+    bg = image(bgImg, 0, 0, width, width * 1.78);
+    //Top area of the rock
+    rocciaTop = image(rocciaTopImg, pix * 12, pix * 45, pix * 30, pix * 30 * 1.14);
+    //Display sword
+    spada.display();
+    //Bottom area of the rock
+    rocciaBottom = image(rocciaBottomImg, pix * 12, pix * 45, pix * 30, pix * 30 * 1.14);
+    //Display stars
+    for (var i = 0; i < stelline.length; i++) {
+      stelline[i].display();
+      stelline[i].animate();
+    }
+
+    //User out of the area
+    if (userswordDistance > 50) {
+      //Boxs
+      box.resize(0, window.innerHeight - 48);
+      image(box, (width - box.width) / 2, (height - box.height) / 2);
+    }
   }
 }
 
@@ -123,7 +134,7 @@ function swiped() {
   socket.emit('swordPull');
 }
 
-//Position update function
+//POSITION UPDATE FUNCTION
 function changePos(position) {
   userPosition.latitude = position.coords.latitude;
   userPosition.longitude = position.coords.longitude;
