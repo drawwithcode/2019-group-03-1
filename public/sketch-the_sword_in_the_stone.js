@@ -64,6 +64,7 @@ function draw() {
   }
 
   //MOBILE DEVICES
+  if (windowWidth < 576){
     //Constantly update position
     navigator.geolocation.getCurrentPosition(changePos);
 
@@ -112,6 +113,7 @@ function draw() {
       text(warning, 0, 0, windowWidth-180, windowHeight);
       pop();
     }
+  }
 }
 
 //STAR OBJECT
