@@ -64,7 +64,7 @@ function draw() {
   }
 
   //MOBILE DEVICES
-  if (windowWidth < 576){
+  if (windowWidth < 576) {
     //Constantly update position
     navigator.geolocation.getCurrentPosition(changePos);
 
@@ -96,8 +96,8 @@ function draw() {
       fill(255);
       textSize(20);
       textFont(pressStart2P);
-      textAlign(CENTER,CENTER);
-      translate(windowWidth/2,windowHeight/5);
+      textAlign(CENTER, CENTER);
+      translate(windowWidth / 2, windowHeight / 5);
       textLeading(28);
       text("ATTENTION!", 0, 0);
       pop();
@@ -108,9 +108,9 @@ function draw() {
       textSize(20);
       textLeading(24);
       textFont(vt323);
-      textAlign(LEFT,CENTER);
-      translate(windowWidth/2, windowHeight/2.2);
-      text(warning, 0, 0, windowWidth-180, windowHeight);
+      textAlign(LEFT, CENTER);
+      translate(windowWidth / 2, windowHeight / 2.2);
+      text(warning, 0, 0, windowWidth - 180, windowHeight);
       pop();
     }
   }
