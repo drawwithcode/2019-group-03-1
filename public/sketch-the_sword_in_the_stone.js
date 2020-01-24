@@ -7,6 +7,8 @@ var hammer;
 
 let userPosition;
 
+let pressStart2P, vt323;
+
 var latMiAmi = 45.4637478;
 var lonMiAmi = 9.2858445;
 
@@ -16,6 +18,10 @@ function preload() {
   spadaImg = loadImage("assets/the-sword-in-the-stone/spada.png");
   rocciaBottomImg = loadImage("assets/the-sword-in-the-stone/roccia_bottom.png");
   rocciaTopImg = loadImage("assets/the-sword-in-the-stone/roccia_top.png");
+
+  //WEBGL requires loadFont
+  pressStart2P = loadFont("font/PressStart2P-Regular.ttf");
+  vt323 = loadFont("font/VT323-Regular.ttf");
 }
 
 function setup() {
@@ -49,13 +55,15 @@ function draw() {
   clear();
   translate(-width / 2, -height / 2);
 
+  var warning = "Ops...\nYou crossed the border of the Reign!\n\nIf you still desire to be the King, please return to the magic spot!";
+
+
   //NOT MOBILE DEVICES
   if (windowWidth > 575) {
 
   }
 
   //MOBILE DEVICES
-  else {
     //Constantly update position
     navigator.geolocation.getCurrentPosition(changePos);
 
@@ -78,11 +86,32 @@ function draw() {
 
     //User out of the area
     if (userswordDistance > 50) {
-      //Boxs
+      //Box
       box.resize(0, window.innerHeight - 48);
       image(box, (width - box.width) / 2, (height - box.height) / 2);
+
+      //Title
+      push();
+      fill(255);
+      textSize(20);
+      textFont(pressStart2P);
+      textAlign(CENTER,CENTER);
+      translate(windowWidth/2,windowHeight/5);
+      textLeading(28);
+      text("ATTENTION!", 0, 0);
+      pop();
+
+      //TEXT
+      push();
+      fill(255);
+      textSize(20);
+      textLeading(24);
+      textFont(vt323);
+      textAlign(LEFT,CENTER);
+      translate(windowWidth/2, windowHeight/2.2);
+      text(warning, 0, 0, windowWidth-180, windowHeight);
+      pop();
     }
-  }
 }
 
 //STAR OBJECT
