@@ -62,9 +62,8 @@ function draw() {
   if (windowWidth > 575) {
 
   }
-
   //MOBILE DEVICES
-  if (windowWidth < 576) {
+  else {
     //Constantly update position
     navigator.geolocation.getCurrentPosition(changePos);
 
