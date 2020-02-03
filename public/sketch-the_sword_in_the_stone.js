@@ -7,6 +7,7 @@ var hammer;
 var pullsCount;
 
 let userPosition;
+var userswordDistance;
 
 let pressStart2P, vt323;
 
@@ -69,7 +70,7 @@ function draw() {
     navigator.geolocation.getCurrentPosition(changePos);
 
     //Distance between the user and the sword in meters
-    var userswordDistance = calcGeoDistance(userPosition.latitude, userPosition.longitude, latMiAmi, lonMiAmi, "km") * 1000;
+    userswordDistance = calcGeoDistance(userPosition.latitude, userPosition.longitude, latMiAmi, lonMiAmi, "km") * 1000;
 
     //Background image
     bg = image(bgImg, 0, 0, width, width * 1.78);
