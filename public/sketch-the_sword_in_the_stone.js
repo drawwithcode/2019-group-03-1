@@ -9,6 +9,7 @@ var pullsCount;
 var bar;
 var barCursor;
 var personalCountDown = 300;
+var timer;
 
 let userPosition;
 var userswordDistance;
@@ -92,11 +93,21 @@ function draw() {
       stelline[i].animate();
     }
 
+    bar.displayWhite();
     if (personalCountDown <= 0){
     bar.display();
     barCursor.display();
     barCursor.animate();
   } else {
+    if (personalCountDown > 15){
+      timer = Math.round(personalCountDown / 30);
+      bar.width = 5 * pix;
+    } else {bar.width = 32 * pix; timer = 'TRY TO WIN!';}
+    textAlign(CENTER,CENTER);
+    fill("black");
+    textSize(50);
+    textFont(vt323);
+    text(timer, bar.x, bar.y - pix);
     personalCountDown -= 1;
   }
 
@@ -172,12 +183,6 @@ function Bar(_x, _y, _width){
 
   this.display = function() {
     noStroke();
-    //WHITE BOX 1
-    push();
-    fill(231, 234, 225);
-    rect(this.x, this.y, this.width + 6*pix, pix * 5);
-    rect(this.x, this.y, this.width + 4*pix, pix * 7);
-    pop();
     //RED BAR
     push();
     fill(179, 40, 30);
@@ -193,6 +198,14 @@ function Bar(_x, _y, _width){
     fill(75, 224, 70);
     rect(this.x, this.y, this.width / 5, pix);
     pop();
+  }
+
+  this.displayWhite = function() {
+    noStroke();
+    //WHITE BOX
+    fill(231, 234, 225);
+    rect(this.x, this.y, this.width + 6*pix, pix * 5);
+    rect(this.x, this.y, this.width + 4*pix, pix * 7);
   }
 }
 
