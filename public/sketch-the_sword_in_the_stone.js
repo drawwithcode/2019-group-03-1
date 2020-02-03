@@ -162,7 +162,9 @@ function Spada(_x, _y) {
 //HANDLES THE USER'S SWIPE
 function swiped() {
   // spada.lift();
+  if (userswordDistance <= 50) {
   socket.emit('swordPull');
+}
 }
 
 socket.on('pullsCountFromServer', function(data){
