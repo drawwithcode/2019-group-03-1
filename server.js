@@ -5,6 +5,7 @@ var http = require('http').createServer(app);
 var port = process.env.PORT || 3000;
 var server = app.listen(port);
 var io = require("socket.io")(server);
+var maxPullsCount = 10;
 
 //ENABLES THE APP TO ACCESS THE "PUBLIC" FOLDER
 app.use(express.static("public"));
@@ -57,8 +58,14 @@ function newConnection(socket) {
   console.log("a new connection");
   // getPullsCount();
   socket.on("swordPull", function() {
-    updatedPulls += 1;
-    io.emit('pullsCountFromServer', updatedPulls);
+    if (updatedPulls === maxPullsCount - 1) {
+      updatedPulls += 1;
+      socket.emit('winner');
+      socket.broadcast.emit('loser');
+    } else {
+      updatedPulls += 1;
+      io.emit('pullsCountFromServer', updatedPulls);
+    }
   });
   io.emit('pullsCountFromServer', updatedPulls);
 }

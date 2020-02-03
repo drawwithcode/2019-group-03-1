@@ -154,24 +154,27 @@ function Spada(_x, _y) {
   this.display = function() {
     image(spadaImg, this.x, this.y - (pix * pullsCount), pix * 19, pix * 19 * 2.3);
   };
-
-  this.lift = function() {
-    this.y -= pix * 1;
-  };
 }
 
 //HANDLES THE USER'S SWIPE
 function swiped() {
-  // spada.lift();
   if (userswordDistance <= 50) {
   socket.emit('swordPull');
 }
 }
-
+//UPDATES PULL COUNT USING DATA FROM THE SERVER
 socket.on('pullsCountFromServer', function(data){
   pullsCount = data;
   console.log(pullsCount);
-})
+});
+socket.on('winner', function(){
+  pullsCount += 5;
+  console.log('winner!!');
+});
+socket.on('loser', function(){
+  pullsCount += 50;
+  console.log('loser!!');
+});
 
 //POSITION UPDATE FUNCTION
 function changePos(position) {
