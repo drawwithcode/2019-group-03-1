@@ -4,6 +4,7 @@ var pix;
 var stelline = [];
 var stellina1, stellina2, stellina3;
 var hammer;
+var pullsCount;
 
 let userPosition;
 
@@ -150,7 +151,7 @@ function Spada(_x, _y) {
   this.y = pix * _y;
 
   this.display = function() {
-    image(spadaImg, this.x, this.y, pix * 19, pix * 19 * 2.3);
+    image(spadaImg, this.x, this.y - (pix * pullsCount), pix * 19, pix * 19 * 2.3);
   };
 
   this.lift = function() {
@@ -160,9 +161,14 @@ function Spada(_x, _y) {
 
 //HANDLES THE USER'S SWIPE
 function swiped() {
-  spada.lift();
+  // spada.lift();
   socket.emit('swordPull');
 }
+
+socket.on('pullsCountFromServer', function(data){
+  pullsCount = data;
+  console.log(pullsCount);
+})
 
 //POSITION UPDATE FUNCTION
 function changePos(position) {
