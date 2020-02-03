@@ -162,19 +162,27 @@ function swiped() {
   socket.emit('swordPull');
 }
 }
-//UPDATES PULL COUNT USING DATA FROM THE SERVER
+
+//UPDATES PULL COUNT USING DATA FROM THE SERVER EVERY TIME THE SWORD IS PULLED
 socket.on('pullsCountFromServer', function(data){
   pullsCount = data;
   console.log(pullsCount);
 });
-socket.on('winner', function(){
+
+//LISTEN FOR WIN OR LOSE EVENTS FROM SERVER
+socket.on('winner', youWon);
+socket.on('loser', youLose);
+
+//FUNCTION CALLED WHEN YOU WIN
+function youWon(){
   pullsCount += 5;
   console.log('winner!!');
-});
-socket.on('loser', function(){
+};
+//FUNCTION CALLED WHEN SOMEONE ELSE WINS
+function youLose(){
   pullsCount += 50;
   console.log('loser!!');
-});
+};
 
 //POSITION UPDATE FUNCTION
 function changePos(position) {
