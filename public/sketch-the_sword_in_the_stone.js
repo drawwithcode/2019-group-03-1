@@ -45,8 +45,8 @@ function setup() {
   stellina3 = new Stellina(35, 45, 60);
   stelline.push(stellina1, stellina2, stellina3);
   spada = new Spada(18, 30);
-  bar = new Bar(26, 70, 32);
-  barCursor = new BarCursor(26, 70);
+  bar = new Bar(26, 60, 32);
+  barCursor = new BarCursor(26, 60);
 
   var options = {
     preventDefault: true
@@ -186,12 +186,12 @@ function Bar(_x, _y, _width){
     //ORANGE BAR
     push();
     fill(255, 112, 70);
-    rect(this.x, this.y, this.width / 2, pix);
+    rect(this.x, this.y, this.width / 1.8, pix);
     pop();
     //GREEN BAR
     push();
     fill(75, 224, 70);
-    rect(this.x, this.y, this.width / 6, pix);
+    rect(this.x, this.y, this.width / 5, pix);
     pop();
   }
 }
@@ -199,7 +199,7 @@ function Bar(_x, _y, _width){
 function BarCursor(_x, _y){
   this.x = pix * _x;
   this.y = pix * _y;
-  this.direction = 1.5;
+  this.direction = 1;
 
   this.display = function() {
     translate(this.x,this.y)
@@ -232,7 +232,7 @@ function Spada(_x, _y) {
 function swiped() {
   if (userswordDistance <= 50000 && personalCountDown <= 0) {
   personalCountDown = 300;
-  if (barCursor.x >= bar.x - bar.width/12 && barCursor.x <= bar.x + bar.width/12) {
+  if (barCursor.x >= bar.x - bar.width/10 && barCursor.x <= bar.x + bar.width/10) {
   socket.emit('swordPull');
   }
  }
