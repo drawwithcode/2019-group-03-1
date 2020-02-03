@@ -6,6 +6,10 @@ var stellina1, stellina2, stellina3;
 var hammer;
 var pullsCount;
 
+var bar;
+var barCursor;
+var personalCountDown = 300;
+
 let userPosition;
 var userswordDistance;
 
@@ -32,7 +36,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
   rectMode(CENTER);
   angleMode(DEGREES);
-  frameRate(5);
+  frameRate(30);
 
   pix = round(width / 51);
 
@@ -40,7 +44,9 @@ function setup() {
   stellina2 = new Stellina(25, 25, 90);
   stellina3 = new Stellina(35, 45, 60);
   stelline.push(stellina1, stellina2, stellina3);
-  spada = new Spada(19, 30);
+  spada = new Spada(18, 30);
+  bar = new Bar(26, 70, 32);
+  barCursor = new BarCursor(26, 70);
 
   var options = {
     preventDefault: true
@@ -75,19 +81,27 @@ function draw() {
     //Background image
     bg = image(bgImg, 0, 0, width, width * 1.78);
     //Top area of the rock
-    rocciaTop = image(rocciaTopImg, pix * 12, pix * 45, pix * 30, pix * 30 * 1.14);
+    rocciaTop = image(rocciaTopImg, pix * 11, pix * 45, pix * 30, pix * 30 * 1.14);
     //Display sword
     spada.display();
     //Bottom area of the rock
-    rocciaBottom = image(rocciaBottomImg, pix * 12, pix * 45, pix * 30, pix * 30 * 1.14);
+    rocciaBottom = image(rocciaBottomImg, pix * 11, pix * 45, pix * 30, pix * 30 * 1.14);
     //Display stars
     for (var i = 0; i < stelline.length; i++) {
       stelline[i].display();
       stelline[i].animate();
     }
 
+    if (personalCountDown <= 0){
+    bar.display();
+    barCursor.display();
+    barCursor.animate();
+  } else {
+    personalCountDown -= 1;
+  }
+
     //User out of the area
-    if (userswordDistance > 50) {
+    if (userswordDistance > 50000) {
       //Box
       box.resize(0, window.innerHeight - 48);
       image(box, (width - box.width) / 2, (height - box.height) / 2);
@@ -122,11 +136,16 @@ function Stellina(_x, _y, _opacity) {
   this.x = pix * _x;
   this.y = pix * _y;
   this.opacity = _opacity;
+  this.moveTime = this.opacity / 12;
 
   this.animate = function() {
+    this.moveTime -= 1;
+    if (this.moveTime <= 0){
     this.x = pix * _x + random(1, 6) * pix;
     this.y = pix * _y + random(1, 6) * pix;
-    this.opacity -= 30;
+    this.moveTime = 10;
+    }
+    this.opacity -= 10;
     if (this.opacity <= 0) {
       this.opacity = 120;
     }
@@ -146,6 +165,59 @@ function Stellina(_x, _y, _opacity) {
   };
 }
 
+function Bar(_x, _y, _width){
+  this.x = pix * _x;
+  this.y = pix * _y;
+  this.width = pix * _width;
+
+  this.display = function() {
+    noStroke();
+    //WHITE BOX 1
+    push();
+    fill(231, 234, 225);
+    rect(this.x, this.y, this.width + 6*pix, pix * 5);
+    rect(this.x, this.y, this.width + 4*pix, pix * 7);
+    pop();
+    //RED BAR
+    push();
+    fill(179, 40, 30);
+    rect(this.x, this.y, this.width, pix);
+    pop();
+    //ORANGE BAR
+    push();
+    fill(255, 112, 70);
+    rect(this.x, this.y, this.width / 2, pix);
+    pop();
+    //GREEN BAR
+    push();
+    fill(75, 224, 70);
+    rect(this.x, this.y, this.width / 6, pix);
+    pop();
+  }
+}
+
+function BarCursor(_x, _y){
+  this.x = pix * _x;
+  this.y = pix * _y;
+  this.direction = 1.5;
+
+  this.display = function() {
+    translate(this.x,this.y)
+    rotate(45);
+    noFill();
+    strokeWeight(pix);
+    stroke(43, 115, 137);
+    rect(0, 0, 2*pix, 2*pix);
+  }
+
+  this.animate = function() {
+    this.x += this.direction * pix;
+    if (this.x >= bar.x + bar.width/2 || this.x <= bar.x - bar.width/2){
+      this.direction *= -1;
+    }
+  }
+}
+
 //SWORD OBJECT
 function Spada(_x, _y) {
   this.x = pix * _x;
@@ -158,9 +230,12 @@ function Spada(_x, _y) {
 
 //HANDLES THE USER'S SWIPE
 function swiped() {
-  if (userswordDistance <= 50) {
+  if (userswordDistance <= 50000 && personalCountDown <= 0) {
+  personalCountDown = 300;
+  if (barCursor.x >= bar.x - bar.width/12 && barCursor.x <= bar.x + bar.width/12) {
   socket.emit('swordPull');
-}
+  }
+ }
 }
 
 //UPDATES PULL COUNT USING DATA FROM THE SERVER EVERY TIME THE SWORD IS PULLED
