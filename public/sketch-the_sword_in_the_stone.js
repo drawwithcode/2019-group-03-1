@@ -93,28 +93,36 @@ function draw() {
       stelline[i].animate();
     }
 
-    bar.displayWhite();
-    var timerText;
-
-    if (personalCountDown <= 0){
     bar.display();
-    barCursor.display();
-    barCursor.animate();
-  } else {
-    if (personalCountDown >= 15){
-      timer = Math.round(personalCountDown / 30);
-      timerText = timer.toString();
-      bar.width = 5 * pix;
-    } else {bar.width = 32 * pix; timerText = 'TRY TO WIN!';};
-    push();
-    textAlign(CENTER,CENTER);
-    fill("black");
-    textSize(50);
-    textFont(vt323);
-    text(timerText, bar.x, bar.y - pix);
-    pop();
-    personalCountDown -= 1;
-  }
+    if (personalCountDown <= 0) {
+      barCursor.display();
+      barCursor.animate();
+    } else {
+      personalCountDown -= 1;
+    }
+
+  //   bar.displayWhite();
+  //   var timerText;
+  //
+  //   if (personalCountDown <= 0){
+  //   bar.display();
+  //   barCursor.display();
+  //   barCursor.animate();
+  // } else {
+  //   if (personalCountDown >= 15){
+  //     timer = Math.round(personalCountDown / 30);
+  //     timerText = timer.toString();
+  //     bar.width = 5 * pix;
+  //   } else {bar.width = 32 * pix; timerText = 'TRY TO WIN!';};
+  //   push();
+  //   textAlign(CENTER,CENTER);
+  //   fill("black");
+  //   textSize(50);
+  //   textFont(vt323);
+  //   text(timerText, bar.x, bar.y - pix);
+  //   pop();
+  //   personalCountDown -= 1;
+  // }
 
     //User out of the area
     if (userswordDistance > 50000) {
@@ -186,18 +194,22 @@ function Bar(_x, _y, _width){
   this.y = pix * _y;
   this.width = pix * _width;
 
-  this.displayWhite = function() {
-    push();
+  // this.displayWhite = function() {
+  //   push();
+  //   noStroke();
+  //   //WHITE BOX
+  //   fill(231, 234, 225);
+  //   rect(this.x, this.y, this.width + 6*pix, pix * 5);
+  //   rect(this.x, this.y, this.width + 4*pix, pix * 7);
+  //   pop();
+  // };
+
+  this.display = function() {
     noStroke();
     //WHITE BOX
     fill(231, 234, 225);
     rect(this.x, this.y, this.width + 6*pix, pix * 5);
     rect(this.x, this.y, this.width + 4*pix, pix * 7);
-    pop();
-  };
-
-  this.display = function() {
-    noStroke();
     //RED BAR
     push();
     fill(179, 40, 30);
