@@ -264,12 +264,12 @@ function Spada(_x, _y) {
 
 //HANDLES THE USER'S SWIPE
 function swiped() {
-  personalCountDown = 300;
   if (personalCountDown == 0) {
   if (barCursor.x >= bar.x - bar.width/10 && barCursor.x <= bar.x + bar.width/10) {
   socket.emit('swordPull');
   }
- }
+ };
+ personalCountDown = 300;
 }
 
 //UPDATES PULL COUNT USING DATA FROM THE SERVER EVERY TIME THE SWORD IS PULLED
