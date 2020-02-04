@@ -104,7 +104,7 @@ function draw() {
       textSize(50);
       textFont(vt323);
       textAlign(CENTER, CENTER);
-      translate(bar.x, bar.y);
+      translate(width/2, height/2);
       text('TIMER', 0, 0);
       pop();
     }
