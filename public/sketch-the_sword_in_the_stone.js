@@ -104,7 +104,7 @@ function draw() {
       textSize(50);
       textFont(vt323);
       textAlign(CENTER, CENTER);
-      translate(width/2, height/2);
+      translate(26 * pix, 60 * pix);
       text('TIMER', 0, 0);
       pop();
     }
