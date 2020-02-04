@@ -264,8 +264,8 @@ function Spada(_x, _y) {
 
 //HANDLES THE USER'S SWIPE
 function swiped() {
-  if (userswordDistance <= 50000 && personalCountDown <= 0) {
   personalCountDown = 300;
+  if (userswordDistance <= 50000 && personalCountDown <= 0) {
   if (barCursor.x >= bar.x - bar.width/10 && barCursor.x <= bar.x + bar.width/10) {
   socket.emit('swordPull');
   }
