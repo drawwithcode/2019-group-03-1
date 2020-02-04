@@ -101,6 +101,16 @@ function draw() {
       personalCountDown -= 1;
     }
 
+    push();
+    fill(255);
+    textSize(20);
+    textLeading(24);
+    textFont(vt323);
+    textAlign(LEFT, CENTER);
+    translate(windowWidth / 2, windowHeight / 2.2);
+    text(warning, 0, 0, windowWidth - 180, windowHeight);
+    pop();
+
   //   bar.displayWhite();
   //   var timerText;
   //
