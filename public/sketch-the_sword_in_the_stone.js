@@ -99,17 +99,15 @@ function draw() {
       barCursor.animate();
     } else if (personalCountDown > 0) {
       personalCountDown -= 1;
+      push();
+      fill(20);
+      textSize(50);
+      textFont(vt323);
+      textAlign(CENTER, CENTER);
+      translate(bar.x, bar.y);
+      text('TIMER', 0, 0);
+      pop();
     }
-
-    push();
-    fill(255);
-    textSize(20);
-    textLeading(24);
-    textFont(vt323);
-    textAlign(LEFT, CENTER);
-    translate(windowWidth / 2, windowHeight / 2.2);
-    text(warning, 0, 0, windowWidth - 180, windowHeight);
-    pop();
 
   //   bar.displayWhite();
   //   var timerText;
