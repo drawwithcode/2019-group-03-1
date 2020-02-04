@@ -99,14 +99,11 @@ function draw() {
       barCursor.animate();
     } else if (personalCountDown > 0) {
       personalCountDown -= 1;
-      push();
       fill(20);
       textSize(50);
       textFont(vt323);
       textAlign(CENTER, CENTER);
-      translate(26 * pix, 60 * pix);
-      text('TIMER', 0, 0);
-      pop();
+      text('TIMER', 26 * pix, 60 * pix);
     }
 
   //   bar.displayWhite();
