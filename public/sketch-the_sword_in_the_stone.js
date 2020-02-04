@@ -94,10 +94,10 @@ function draw() {
     }
 
     bar.display();
-    if (personalCountDown <= 0) {
+    if (personalCountDown == 0) {
       barCursor.display();
       barCursor.animate();
-    } else {
+    } else if (personalCountDown > 0) {
       personalCountDown -= 1;
     }
 
@@ -173,7 +173,7 @@ function Stellina(_x, _y, _opacity) {
     if (this.opacity <= 0) {
       this.opacity = 120;
     }
-  };
+  }
 
   this.display = function() {
     push();
@@ -186,7 +186,7 @@ function Stellina(_x, _y, _opacity) {
     fill(255, 255, 255, this.opacity);
     rect(this.x, this.y, pix, pix * 5);
     pop();
-  };
+  }
 }
 
 function Bar(_x, _y, _width){
@@ -265,11 +265,11 @@ function Spada(_x, _y) {
 //HANDLES THE USER'S SWIPE
 function swiped() {
   personalCountDown = 300;
-  if (userswordDistance <= 50000 && personalCountDown <= 0) {
+  if (personalCountDown == 0) {
   if (barCursor.x >= bar.x - bar.width/10 && barCursor.x <= bar.x + bar.width/10) {
   socket.emit('swordPull');
   }
- };
+ }
 }
 
 //UPDATES PULL COUNT USING DATA FROM THE SERVER EVERY TIME THE SWORD IS PULLED
