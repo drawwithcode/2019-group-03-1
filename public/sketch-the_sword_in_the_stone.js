@@ -106,11 +106,13 @@ function draw() {
       timerText = timer.toString();
       bar.width = 5 * pix;
     } else {bar.width = 32 * pix; timerText = 'TRY TO WIN!';};
+    push();
     textAlign(CENTER,CENTER);
     fill("black");
     textSize(50);
     textFont(vt323);
     text(timerText, bar.x, bar.y - pix);
+    pop();
     personalCountDown -= 1;
   }
 
@@ -185,11 +187,13 @@ function Bar(_x, _y, _width){
   this.width = pix * _width;
 
   this.displayWhite = function() {
+    push();
     noStroke();
     //WHITE BOX
     fill(231, 234, 225);
     rect(this.x, this.y, this.width + 6*pix, pix * 5);
     rect(this.x, this.y, this.width + 4*pix, pix * 7);
+    pop();
   };
 
   this.display = function() {
@@ -218,12 +222,14 @@ function BarCursor(_x, _y){
   this.direction = 1;
 
   this.display = function() {
+    push();
     translate(this.x,this.y)
     rotate(45);
     noFill();
     strokeWeight(pix);
     stroke(43, 115, 137);
     rect(0, 0, 2*pix, 2*pix);
+    pop();
   };
 
   this.animate = function() {
