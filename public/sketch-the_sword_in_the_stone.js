@@ -2,13 +2,12 @@ var bg, spada, rocciaBottom, rocciaTop;
 var bgImg, spadaImg, rocciaBottomImg, rocciaTopImg;
 var pix;
 var stelline = [];
-var stellina1, stellina2, stellina3;
 var hammer;
 var pullsCount;
 
 var bar;
 var barCursor;
-var personalCountDown = 300;
+var personalCountDown;
 var timer;
 
 let userPosition;
@@ -40,10 +39,11 @@ function setup() {
   frameRate(30);
 
   pix = round(width / 51);
+  personalCountDown = 300;
 
-  stellina1 = new Stellina(15, 35, 120);
-  stellina2 = new Stellina(25, 25, 90);
-  stellina3 = new Stellina(35, 45, 60);
+  var stellina1 = new Stellina(15, 35, 120);
+  var stellina2 = new Stellina(25, 25, 90);
+  var stellina3 = new Stellina(35, 45, 60);
   stelline.push(stellina1, stellina2, stellina3);
   spada = new Spada(18, 30);
   bar = new Bar(26, 60, 32);
@@ -94,20 +94,23 @@ function draw() {
     }
 
     bar.displayWhite();
+    var timerText;
+
     if (personalCountDown <= 0){
     bar.display();
     barCursor.display();
     barCursor.animate();
   } else {
-    if (personalCountDown > 15){
+    if (personalCountDown >= 15){
       timer = Math.round(personalCountDown / 30);
+      timerText = timer.toString();
       bar.width = 5 * pix;
-    } else {bar.width = 32 * pix; timer = 'TRY TO WIN!';}
+    } else {bar.width = 32 * pix; timerText = 'TRY TO WIN!';};
     textAlign(CENTER,CENTER);
     fill("black");
     textSize(50);
     textFont(vt323);
-    text(timer, bar.x, bar.y - pix);
+    text(timerText, bar.x, bar.y - pix);
     personalCountDown -= 1;
   }
 
@@ -181,6 +184,14 @@ function Bar(_x, _y, _width){
   this.y = pix * _y;
   this.width = pix * _width;
 
+  this.displayWhite = function() {
+    noStroke();
+    //WHITE BOX
+    fill(231, 234, 225);
+    rect(this.x, this.y, this.width + 6*pix, pix * 5);
+    rect(this.x, this.y, this.width + 4*pix, pix * 7);
+  };
+
   this.display = function() {
     noStroke();
     //RED BAR
@@ -198,15 +209,7 @@ function Bar(_x, _y, _width){
     fill(75, 224, 70);
     rect(this.x, this.y, this.width / 5, pix);
     pop();
-  }
-
-  this.displayWhite = function() {
-    noStroke();
-    //WHITE BOX
-    fill(231, 234, 225);
-    rect(this.x, this.y, this.width + 6*pix, pix * 5);
-    rect(this.x, this.y, this.width + 4*pix, pix * 7);
-  }
+  };
 }
 
 function BarCursor(_x, _y){
@@ -221,14 +224,14 @@ function BarCursor(_x, _y){
     strokeWeight(pix);
     stroke(43, 115, 137);
     rect(0, 0, 2*pix, 2*pix);
-  }
+  };
 
   this.animate = function() {
     this.x += this.direction * pix;
     if (this.x >= bar.x + bar.width/2 || this.x <= bar.x - bar.width/2){
       this.direction *= -1;
     }
-  }
+  };
 }
 
 //SWORD OBJECT
@@ -248,7 +251,7 @@ function swiped() {
   if (barCursor.x >= bar.x - bar.width/10 && barCursor.x <= bar.x + bar.width/10) {
   socket.emit('swordPull');
   }
- }
+ };
 }
 
 //UPDATES PULL COUNT USING DATA FROM THE SERVER EVERY TIME THE SWORD IS PULLED
@@ -276,4 +279,4 @@ function youLose(){
 function changePos(position) {
   userPosition.latitude = position.coords.latitude;
   userPosition.longitude = position.coords.longitude;
-}
+};
