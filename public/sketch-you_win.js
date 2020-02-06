@@ -35,6 +35,12 @@ function draw() {
   } else if (animationCount > 1) {
     backgroundImage(winImg);
     changePage();
+    //You win text
+    textFont("PressStart2P");
+    textSize(36);
+    textAlign(CENTER, CENTER);
+    fill(255);
+    text("YOU WIN", width/2, height/2);
   }
 }
 
