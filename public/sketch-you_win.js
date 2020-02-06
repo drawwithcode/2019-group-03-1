@@ -19,6 +19,7 @@ function setup() {
   divDom = createDiv("PRESS HERE");
   divDom.position(windowWidth / 2 - 78, windowHeight / 2 + 74 + windowHeight / 6);
   divDom.addClass("blinker-text");
+  divDom.mousePressed(startAnimation);
 }
 
 function draw() {
