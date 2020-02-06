@@ -35,12 +35,12 @@ function setup() {
   buttonDom = createImg("assets/img/index-button.svg");
   buttonDom.position(windowWidth / 2 - 112, windowHeight / 2 + 20 + windowHeight / 6);
   buttonDom.size(224, 124);
-  buttonDom.addClass("welcome-link");
+  buttonDom.addClass("blinker-box");
   buttonDom.mousePressed(changePage);
 
   linkDom = createA("welcome.html", "PRESS START", "_self");
   linkDom.position(windowWidth / 2 - 88, windowHeight / 2 + 74 + windowHeight / 6);
-  linkDom.addClass("welcome-link");
+  linkDom.addClass("blinker-text");
 }
 
 function draw() {

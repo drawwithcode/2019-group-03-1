@@ -11,3 +11,37 @@ body {
   padding: 0px;
   margin: 0px;
 }
+
+/* PRESS START animation */
+.blinker-box {
+  animation-name: blinker;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.blinker-text {
+  font-family: "PressStart2P";
+  color: white;
+  text-decoration: none;
+  text-align: center;
+
+  animation-name: blinker;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes blinker {
+  0% {
+    opacity: 1.0;
+  }
+
+  50% {
+    opacity: 0.0;
+  }
+
+  100% {
+    opacity: 1.0;
+  }
+}
