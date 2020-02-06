@@ -4,6 +4,7 @@ let soundCount = 0;
 function preload() {
   winAnimation = loadImage("assets/animation/you_win-animation.gif");
   winSound = loadSound("assets/sound/you_win-sound.mp3");
+  winImg = loadImage("assets/img/you_win-img.png");
 }
 
 function setup() {
@@ -25,12 +26,15 @@ function setup() {
 function draw() {
   if (animationCount == 1) {
     removeElements();
-    setTimeout(changePage,5500);
+    setTimeout(changeBackground, 6000);
     if (soundCount == 1) {
       winSound.play();
       soundCount++;
     }
     backgroundImage(winAnimation);
+  } else if (animationCount > 1) {
+    backgroundImage(winImg);
+    changePage();
   }
 }
 
@@ -46,6 +50,10 @@ function backgroundImage(img) {
   let scale = Math.max(width / img.width, height / img.height);
   image(img, 0, 0, img.width * scale, img.height * scale)
   pop();
+}
+
+function changeBackground() {
+  animationCount++;
 }
 
 function changePage() {
