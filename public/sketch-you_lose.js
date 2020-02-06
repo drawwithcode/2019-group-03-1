@@ -2,8 +2,9 @@ let animationCount = 0;
 let soundCount = 0;
 
 function preload() {
-  winAnimation = loadImage("assets/animation/you_win-animation.gif");
-  winSound = loadSound("assets/sound/you_win-sound.mp3");
+  loseAnimation = loadImage("assets/animation/you_lose-animation.gif");
+  loseSound = loadSound("assets/sound/you_lose-sound.mp3");
+  loseImg = loadImage("assets/img/you_lose-img.png");
 }
 
 function setup() {
@@ -26,11 +27,14 @@ function draw() {
   if (animationCount == 1) {
     removeElements();
     if (soundCount == 1) {
-      winSound.play();
+      loseSound.play();
       soundCount++;
     }
-    backgroundImage(winAnimation);
-    setTimeout(changePage,6000);
+    backgroundImage(loseAnimation);
+    setTimeout(changeBackground, 5000);
+  } else if (animationCount > 1) {
+    backgroundImage(loseImg);
+
   }
 }
 
@@ -48,7 +52,6 @@ function backgroundImage(img) {
   pop();
 }
 
-function changePage() {
-  //PAGINA CHE STA FACENDO LA FRA
-  window.open("index.html", "_self");
+function changeBackground() {
+  animationCount++;
 }

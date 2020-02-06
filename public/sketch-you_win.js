@@ -25,12 +25,12 @@ function setup() {
 function draw() {
   if (animationCount == 1) {
     removeElements();
+    setTimeout(changePage,6000);
     if (soundCount == 1) {
       winSound.play();
       soundCount++;
     }
     backgroundImage(winAnimation);
-    setTimeout(changePage,6000);
   }
 }
 
