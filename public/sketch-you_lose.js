@@ -25,16 +25,25 @@ function setup() {
 
 function draw() {
   if (animationCount == 1) {
+    //Remove Dom Elements
     removeElements();
+    //Play the sounds
     if (soundCount == 1) {
       loseSound.play();
       soundCount++;
     }
+    //Start the animation
     backgroundImage(loseAnimation);
+    //Stop the animation
     setTimeout(changeBackground, 5000);
   } else if (animationCount > 1) {
     backgroundImage(loseImg);
-
+    //You lose text
+    textFont("PressStart2P");
+    textSize(36);
+    textAlign(CENTER, CENTER);
+    fill(255);
+    text("YOU LOSE", width/2, height/2);
   }
 }
 
