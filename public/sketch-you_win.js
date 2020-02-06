@@ -40,7 +40,7 @@ function draw() {
     textSize(36);
     textAlign(CENTER, CENTER);
     fill(255);
-    text("YOU WIN", width/2, height/2);
+    text("YOU  WIN", width/2, height/2);
   }
 }
 
