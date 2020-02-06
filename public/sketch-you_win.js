@@ -25,7 +25,7 @@ function setup() {
 function draw() {
   if (animationCount == 1) {
     removeElements();
-    setTimeout(changePage,6000);
+    setTimeout(changePage,5500);
     if (soundCount == 1) {
       winSound.play();
       soundCount++;
