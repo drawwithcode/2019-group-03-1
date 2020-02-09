@@ -162,6 +162,7 @@ function draw() {
     }
 
     swipeBar.display();
+
     if (personalCountDown == 0) {
       barCursor.display();
       barCursor.animate();
@@ -173,7 +174,7 @@ function draw() {
       textSize(50);
       textFont(vt323);
       textAlign(CENTER);
-      text(timerText, swipeBar.x, swipeBar.y + height * 0.02);
+      text(timerText, width / 2, height / 1.17);
     }
 
     //   bar.displayWhite();
