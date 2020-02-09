@@ -44,7 +44,7 @@ function preload() {
 function setup() {
   userPosition = getCurrentPosition();
 
-  createCanvas(windowWidth, windowHeight, WEBGL);
+  createCanvas(windowWidth, windowHeight);
   imageMode(CENTER);
   rectMode(CENTER);
   angleMode(DEGREES);
@@ -78,7 +78,6 @@ function setup() {
 
 function draw() {
   clear();
-  translate(-width / 2, -height / 2);
 
   var warning =
     "Ops...\nYou crossed the border of the Reign!\n\nIf you still desire to be the King, please return to the magic spot!";
