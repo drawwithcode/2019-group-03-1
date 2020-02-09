@@ -109,15 +109,15 @@ function draw() {
     //WHITE BOX
     push();
     fill(231, 234, 225);
-    rect(width / 2, height / 1.1, width / 2 + 6 * pix, pix * 5);
-    rect(width / 2, height / 1.1, width / 2 + 4 * pix, pix * 7);
+    rect(width / 2, height / 1.1, width / 4 + 6 * pix, pix * 5);
+    rect(width / 2, height / 1.1, width / 4 + 4 * pix, pix * 7);
     pop();
     push();
     fill(20);
     textSize(50);
     textFont(vt323);
     textAlign(CENTER);
-    text("CONNECTED USERS: " + usersCount, width / 2, height / 1.08);
+    text("KNIGHTS: " + usersCount, width / 2, height / 1.08);
     pop();
   }
   //MOBILE DEVICES
@@ -387,13 +387,13 @@ socket.on("loser", youLose);
 
 //FUNCTION CALLED WHEN YOU WIN
 function youWon() {
-  pullsCount += 5;
   console.log("winner!!");
+  window.open("you_win.html", "_self");
 }
 //FUNCTION CALLED WHEN SOMEONE ELSE WINS
 function youLose() {
-  pullsCount += 50;
   console.log("loser!!");
+  window.open("you_lose.html", "_self");
 }
 
 //POSITION UPDATE FUNCTION
