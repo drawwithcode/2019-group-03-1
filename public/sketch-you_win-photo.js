@@ -38,8 +38,8 @@ function setup() {
 
   //INPUT NAME
   casellaNome = createInput('');
-  casellaNome.position((windowWidth - box.width) / 2 + 75, (windowHeight + box.height) / 2.55);
-  casellaNome.style("width", box.width - 150 + "px");
+  casellaNome.position((windowWidth/2)-(box.width / 4), (windowHeight/2)+(box.width/2));
+  casellaNome.style("width", (box.width / 2) + "px");
   casellaNome.style("height", "30px");
   casellaNome.style("color", "FFFFFF");
   casellaNome.style("z-index", 999);
@@ -83,19 +83,19 @@ function draw() {
   //CORONA
   push();
   imageMode(CENTER);
-  crown.resize(0, window.innerHeight - 500);
-  image(crown, windowWidth / 2, windowHeight / 3);
+  crown.resize(box.width/2, 0);
+  image(crown, windowWidth / 2, (windowHeight/2)-(box.width/3));
   pop();
 
   //IMAGE "TYPE YOUR NAME"
   typeY = createImg("assets/img/type.svg");
-  typeY.position((windowWidth - box.width) / 2 + 60, (windowHeight + box.height) / 2.8);
-  typeY.style("width", box.width - 120 + "px");
+  typeY.position((windowWidth/2)-(box.width / 3), (windowHeight/2)+(box.width/2.6));
+  typeY.style("width", (box.width / 1.5) + "px");
 
   //BUTTON TO SAVE SCREEN
   snap = createImg("assets/img/snap-button.svg");
-  snap.position((windowWidth - box.width) / 2 + 60, (windowHeight + box.height) / 2.3);
-  snap.style("width", box.width - 120 + "px");
+  snap.position((windowWidth/2)-(box.width / 3), (windowHeight/2)+(box.width/1.6));
+  snap.style("width", (box.width / 1.5) + "px");
   snap.mousePressed(savePhoto);
 }
 
@@ -141,8 +141,8 @@ function myInputEvent() {
 function savePhoto() {
   //COMPARE LOGO
   imageMode(CENTER);
-  logo1.resize(0, window.innerHeight - 560);
-  image(logo1, windowWidth / 2, (windowHeight + box.height) / 2.5);
+  logo1.resize(box.width/1.6, 0);
+  image(logo1, windowWidth / 2, (windowHeight/2)+(box.width/1.8));
   //SALVATAGGIO IMMAGINE
   saveCanvas('king', 'jpg');
 }
