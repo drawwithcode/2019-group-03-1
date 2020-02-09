@@ -17,8 +17,8 @@ function preload() {
   bg = loadImage("assets/img/intro-background.svg");
   box = loadImage("assets/img/winner-box.svg");
   snap = loadImage("assets/img/snap-button.svg");
-  logo = loadImage("assets/img/logo.png");
-  crown = loadImage("assets/img/crown.svg");
+  logo1 = loadImage("assets/img/logo1.png");
+  crown = loadImage("assets/img/crown1.svg");
   typeY = loadImage("assets/img/type.svg");
 }
 
@@ -143,8 +143,8 @@ function myInputEvent() {
 function savePhoto() {
   //COMPARE LOGO
   imageMode(CENTER);
-  logo.resize(0, window.innerHeight - 560);
-  image(logo, windowWidth / 2, (windowHeight + box.height) / 2.5);
+  logo1.resize(0, window.innerHeight - 560);
+  image(logo1, windowWidth / 2, (windowHeight + box.height) / 2.5);
   //SALVATAGGIO IMMAGINE
   saveCanvas('King', 'jpg');
 }
