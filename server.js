@@ -1,18 +1,17 @@
 //SETTING UP THE SERVER AND THE SOCKET
 var express = require("express");
 var app = express();
-var http = require('http').createServer(app);
+var http = require("http").createServer(app);
 var port = process.env.PORT || 3000;
 var server = app.listen(port);
 var io = require("socket.io")(server);
 var maxPullsCount = 10;
+var updatedUsers = 0;
 
 //ENABLES THE APP TO ACCESS THE "PUBLIC" FOLDER
 app.use(express.static("public"));
 //SETTING UP THE GOOGLE API AND PROVIDING CREDENTIALS TO ACCESS THE DATA
-var {
-  google
-} = require("googleapis");
+var { google } = require("googleapis");
 var credentials = require("./spreadsheet-credentials.json");
 var auth = new google.auth.JWT(
   credentials.client_email,
@@ -29,22 +28,19 @@ var sheets = google.sheets("v4");
 var spreadsheetId = "1Q25gnGC5R3uE4qQHON8njArLOeIcu0IvrbT1jTqy5QQ";
 
 //GLOBAL VARIABLES TO STORE AND UPDATE THE NUMBER OF PULLS RECEIVED FROM USERS AND DATABASE
-var pulls = [
-  []
-];
+var pulls = [[]];
 var updatedPulls = 0;
 var updater;
 
 //GETS THE CURRENT NUMBER OF PULLS FROM THE DATABASE
 function getPullsCount() {
-  sheets.spreadsheets.values.get({
+  sheets.spreadsheets.values.get(
+    {
       spreadsheetId,
       range: "swordInStoneData!B1"
     },
     (err, result) => {
-      pulls = [
-        [Number(result.data.values[0][0])]
-      ];
+      pulls = [[Number(result.data.values[0][0])]];
       console.log(pulls);
     }
   );
@@ -55,19 +51,26 @@ io.on("connection", newConnection);
 
 function newConnection(socket) {
   //socket code here
-  console.log("a new connection");
+  updatedUsers++;
+  console.log(updatedUsers);
   // getPullsCount();
   socket.on("swordPull", function() {
     if (updatedPulls === maxPullsCount - 1) {
-      updatedPulls += 1;
-      socket.emit('winner');
-      socket.broadcast.emit('loser');
+      updatedPulls += 1000;
+      socket.emit("winner");
+      socket.broadcast.emit("loser");
     } else {
       updatedPulls += 1;
-      io.emit('pullsCountFromServer', updatedPulls);
+      io.emit("pullsCountFromServer", updatedPulls);
     }
   });
-  io.emit('pullsCountFromServer', updatedPulls);
+  io.emit("pullsCountFromServer", updatedPulls);
+  socket.on("disconnect", function() {
+    updatedUsers--;
+    io.emit("usersCountFromServer", updatedUsers);
+    console.log(updatedUsers);
+  });
+  io.emit("usersCountFromServer", updatedUsers);
 }
 
 //UPDATES THE DATABASE WITH THE NEW PULLS COUNT
