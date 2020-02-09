@@ -38,7 +38,7 @@ function setup() {
 
   //INPUT NAME
   casellaNome = createInput('');
-  casellaNome.position((windowWidth/2)-(box.width / 4), (windowHeight/2)+(box.width/2));
+  casellaNome.position((windowWidth/2)-(box.width / 4), (windowHeight/2)+(box.width/2.1));
   casellaNome.style("width", (box.width / 2) + "px");
   casellaNome.style("height", "30px");
   casellaNome.style("color", "FFFFFF");
@@ -89,13 +89,13 @@ function draw() {
 
   //IMAGE "TYPE YOUR NAME"
   typeY = createImg("assets/img/type.svg");
-  typeY.position((windowWidth/2)-(box.width / 2.5), (windowHeight/2)+(box.width/2.8));
-  typeY.style("width", (box.width / 1.25) + "px");
+  typeY.position((windowWidth/2)-(box.width / 3.2), (windowHeight/2)+(box.width/3.2));
+  typeY.style("width", (box.width / 1.6) + "px");
 
   //BUTTON TO SAVE SCREEN
   snap = createImg("assets/img/snap-button.svg");
-  snap.position((windowWidth/2)-(box.width / 2.5), (windowHeight/2)+(box.width/1.6));
-  snap.style("width", (box.width / 1.25) + "px");
+  snap.position((windowWidth/2)-(box.width / 3.2), (windowHeight/2)+(box.width/1.6));
+  snap.style("width", (box.width / 1.6) + "px");
   snap.mousePressed(savePhoto);
 }
 
