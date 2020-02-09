@@ -165,7 +165,7 @@ function draw() {
     if (personalCountDown == 0) {
       barCursor.display();
       barCursor.animate();
-    } else if (personalCountDown > 0) {
+    } else if (personalCountDown > 0 && pullsCount < 1000) {
       timer = Math.round(personalCountDown / 30);
       var timerText = timer.toString();
       personalCountDown -= 1;
@@ -280,26 +280,28 @@ function Bar(_x, _y, _width) {
   // };
 
   this.display = function() {
-    noStroke();
-    //WHITE BOX
-    fill(231, 234, 225);
-    rect(this.x, this.y, this.width + 6 * pix, pix * 5);
-    rect(this.x, this.y, this.width + 4 * pix, pix * 7);
-    //RED BAR
-    push();
-    fill(179, 40, 30);
-    rect(this.x, this.y, this.width, pix);
-    pop();
-    //ORANGE BAR
-    push();
-    fill(255, 112, 70);
-    rect(this.x, this.y, this.width / 1.8, pix);
-    pop();
-    //GREEN BAR
-    push();
-    fill(75, 224, 70);
-    rect(this.x, this.y, this.width / 5, pix);
-    pop();
+    if (pullsCount < 1000) {
+      noStroke();
+      //WHITE BOX
+      fill(231, 234, 225);
+      rect(this.x, this.y, this.width + 6 * pix, pix * 5);
+      rect(this.x, this.y, this.width + 4 * pix, pix * 7);
+      //RED BAR
+      push();
+      fill(179, 40, 30);
+      rect(this.x, this.y, this.width, pix);
+      pop();
+      //ORANGE BAR
+      push();
+      fill(255, 112, 70);
+      rect(this.x, this.y, this.width / 1.8, pix);
+      pop();
+      //GREEN BAR
+      push();
+      fill(75, 224, 70);
+      rect(this.x, this.y, this.width / 5, pix);
+      pop();
+    }
   };
 }
 
@@ -309,14 +311,16 @@ function BarCursor(_x, _y) {
   this.direction = 1;
 
   this.display = function() {
-    push();
-    translate(this.x, this.y);
-    rotate(45);
-    noFill();
-    strokeWeight(pix);
-    stroke(43, 115, 137);
-    rect(0, 0, 2 * pix, 2 * pix);
-    pop();
+    if (pullsCount < 1000) {
+      push();
+      translate(this.x, this.y);
+      rotate(45);
+      noFill();
+      strokeWeight(pix);
+      stroke(43, 115, 137);
+      rect(0, 0, 2 * pix, 2 * pix);
+      pop();
+    }
   };
 
   this.animate = function() {
