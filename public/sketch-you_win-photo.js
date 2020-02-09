@@ -12,16 +12,14 @@ var xFin;
 var yStart;
 var yFin;
 
-
 function preload() {
   bg = loadImage("assets/img/intro-background.svg");
   box = loadImage("assets/img/winner-box.svg");
   snap = loadImage("assets/img/snap-button.svg");
-  logo1 = loadImage("assets/img/logo1.png");
-  crown = loadImage("assets/img/crown1.svg");
+  logo1 = loadImage("assets/img/logo.png");
+  crown = loadImage("assets/img/crown.svg");
   typeY = loadImage("assets/img/type.svg");
 }
-
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -30,13 +28,13 @@ function setup() {
 
   //WEBCAM
   capture = createCapture(VIDEO);
-  capture.size(320-(320/4), 260-(260/4));
+  capture.size(320 - (320 / 4), 260 - (260 / 4));
   capture.hide();
   //set the points of the capture rectangle
   xStart = (windowWidth / 2) - (capture.width / 2);
-  yStart = (windowHeight / 2) - capture.height + (capture.height/2);
+  yStart = (windowHeight / 2) - capture.height + (capture.height / 2);
   xFin = (windowWidth / 2) + (capture.width / 2);
-  yFin = (windowHeight / 2) + (capture.height/2);
+  yFin = (windowHeight / 2) + (capture.height / 2);
 
   //INPUT NAME
   casellaNome = createInput('');
@@ -146,7 +144,7 @@ function savePhoto() {
   logo1.resize(0, window.innerHeight - 560);
   image(logo1, windowWidth / 2, (windowHeight + box.height) / 2.5);
   //SALVATAGGIO IMMAGINE
-  saveCanvas('King', 'jpg');
+  saveCanvas('king', 'jpg');
 }
 
 
