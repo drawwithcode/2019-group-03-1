@@ -63,6 +63,5 @@ function changeBackground() {
 }
 
 function changePage() {
-  //PAGINA CHE STA FACENDO LA FRA
-  window.open("index.html", "_self");
+  window.open("you_win-photo.html", "_self");
 }
