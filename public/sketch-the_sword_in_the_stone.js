@@ -200,7 +200,7 @@ function draw() {
     // }
 
     //User out of the area
-    if (userswordDistance > 50000) {
+    if (userswordDistance > 500000) {
       //Box
       box.resize(0, window.innerHeight - 48);
       image(box, (width - box.width) / 2, (height - box.height) / 2);
