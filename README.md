@@ -39,6 +39,8 @@ SCRIVI FRA
 ###### MI AMI FESTIVAL
 [MI AMI Festival](https://www.miamifestival.it/2020/) Musica Importante A Milano is a music festival organized by Rockit.it since 2005. It takes place every year in a park, currently the Idroscalo of Milan, during the last weekend of May. It hosts Italian artists from a predominantly independent area, alternative, without distinction of musical genre but with a careful musical-cultural selection. MI AMI is the most known summer festival of Milano, and it has an indie vibe and style that aligns perfectly with the mood of our site.
 
+<p align="center"> <img src="images-readme/miami_festival.jpg" style="height:300px"></p>
+
 At the beginning the project was designed to be placed at PolEATecnico Bistò (ex Bar La Rossa), creating a more local and restricted experience, but something was missing: it's a common game but the common game atmosphere was not really present. The decision was to move to a larger and more populated environment where you can have a large screen to view and play in the community, but without forgetting about the sectorialization: the game brings together people who are already interested in participating in the same experience.
 
 ###### THE BIG SCREEN
@@ -65,6 +67,8 @@ Hence three very important choices:
 ###### ARCADE STYLE GRAPHICS
 Everything aims to the facility of the gameplay, that has to be intuitive and really easy to follow, in order to make a lot of people play toghether without impediments. This includes the stylistic choice of an arcade game, very easy to follow and with graphics that allows you to play it even in a distracted way.
 
+<p align="center"> <img src="images-readme/arcade.gif" style="height:300px"></p>
+
 ###### VISUAL DESIGN
 We choose a Pixel Art style, that is almost entirely based on a 51 width pixels grid.
 The palette tries to evoque a magic ambience, set into the woods, where the magic sword is stuck. The principal colour is green, that is then declined in shades of the same green, along with some brown shades. 
@@ -72,7 +76,13 @@ The palette tries to evoque a magic ambience, set into the woods, where the magi
 As for the info and the structure of the game, we used an off-white colour.
 
 Smooth animations ???????
+
+<p align="center"> <img src="images-readme/the_legend_of_zelda-a_link_to_the_past.gif" style="height:300px"></p>
+<p align="center">
+    <em >The Legend of Zelda</em>
+</p>
 <br>
+
 
 ## Code Challanges
 
