@@ -136,19 +136,16 @@ To overcome the limitations of p5.js in using text animations, we used the css f
 ```
 
 ## Website experience
-
-In order to do so we divided the experience in different steps:
+The intent is to create an app accessible to all, fast to use even in times of high turnout. To achieve this speed of play, we decided to divide the app into a few short introduction screens, to leave space and time for the action.
 
 ###### STEP #1
-Two screens of brief introduction to the realm and to the rules and instructions to follow in order to play the game
+After the loading screen, it will appear two following screens of brief introduction to the realm and to the rules and guidance in order to play the game.
 
 <p align="center">
     <img src="images-readme/iphone-mockup-index.png" width="400">
 </p>
 <p align="center">
     <img src="images-readme/iphone-mockup-instructions_1.png" width="400">
-</p>
-<p align="center">
     <img src="images-readme/iphone-mockup-instructions_2.png" width="400">
 </p>
 
@@ -159,30 +156,29 @@ Two possibilities:<br>
 
 <p align="center">
     <img src="images-readme/iphone-mockup-map.png" width="400">
-</p>
-<p align="center">
-    <img src="" width="400">
+    <img src="images-readme/iphone-mockup-the_sword_in_the_stone.png" width="400">
 </p>
 
 ###### STEP #3
 The game begins. In between each swipe you will have to wait some seconds, and there will be a timer to indicate this. Also, you will be able to see the other pulling the sword (little craving, huh?). Be careful because if the sword is not touched for some other seconds it will go down completely.
 
 <p align="center">
-    <img src="" width="400">
+    <img src="images-readme/iphone-mockup-the_sword_in_the_stone.png" width="400">
 </p>
 
 ###### STEP #4
 If you lose there will be a very sad animation, where everything goes dark and the leaves will star to fall, like recreating a sad autumn atmosphere. After the animation you will just see the empty rock, but don't lose your hopes: you can always try to win the day after!
 
 <p align="center">
-    <img src="" width="400">
+    <img src="images-readme/iphone-mockup-you_lose.png" width="400">
 </p>
 
 ###### STEP #4
 If you win it will appear a glorious animation, with a cheerful song. After this, you will be able to take a picture with the crown that you had well deserved, and then also save that victorious picture. There will then be a screen with the actual prize that will be agreed with the sponsor.
 
 <p align="center">
-    <img src="" width="400">
+    <img src="images-readme/iphone-mockup-you_win.png" width="400">
+    <img src="images-readme/iphone-mockup-you_win-photo.png" width="400">
 </p>
 <br>
 
