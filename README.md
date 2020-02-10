@@ -29,7 +29,7 @@ Whoever extracts the sword becomes king for a day. This project is designed to b
 **References to the real legend**<br>
 SCRIVI FRA
 
-<p align="center"> <img src="images-readme/La_spada_nella_roccia.png" style="height:100px"></p>
+<p align="center"> <img src="images-readme/La_spada_nella_roccia.jpg" style="height:100px"></p>
 <p align="center">
     <em >The Sword in the Stone</em>
 </p>
