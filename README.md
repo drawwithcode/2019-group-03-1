@@ -148,7 +148,7 @@ Two screens of brief introduction to the realm and to the rules and instructions
 
 ###### STEP #2
 Two possibilities:<br>
-- if the player is not in the area of "Mi Ami Festival Reign" will appear a map indicating the distance from the area;<br>
+- if the player is not in the area of "Mi Ami Festival Reign" it will appear a map indicating the distance from the area;<br>
 - if the player is in the area on the contrary the game screen will appear, and you can start to play. Here two situations can happen: one where the sword has already been drawn, which will mean that you can try to play again the next day, and one where the sword is still stuck in the rock. You can play in the latter case by swipe.
 
 <p align="center">
@@ -166,13 +166,15 @@ The game begins. In between each swipe you will have to wait some seconds, and t
 </p>
 
 ###### STEP #4
-If you win
+If you lose there will be a very sad animation, where everything goes dark and the leaves will star to fall, like recreating a sad autumn atmosphere. After the animation you will just see the empty rock, but don't lose your hopes: you can always try to win the day after!
+
 <p align="center">
     <img src="" width="400">
 </p>
 
 ###### STEP #4
-If you lose
+If you win it will appear a glorious animation, with a cheerful song. After this, you will be able to take a picture with the crown that you had well deserved, and then also save that victorious picture. There will then be a screen with the actual prize that will be agreed with the sponsor.
+
 <p align="center">
     <img src="" width="400">
 </p>
