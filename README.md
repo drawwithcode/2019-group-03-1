@@ -59,8 +59,8 @@ but also that would be inclusive for everybody, and in order to achieved that we
 We tried to make the game increasingly less a lottery, and much more a meritocratic system of strategy, where everyone can try to understand when is the best time to try and swipe the sword and ensure victory. 
 Hence three very important choices: 
 1. Insert a precision bar within the game screen. This will create a threshold of difficulty, which will allow only the most precise and valiant to raise the sword.
-2. Present the number of players in the big screen. 
-3. Present a timer in the mobile game screen that allows you to understand how long you have to wait to try and win the sword. 
+2. Show the number of players in the big screen. 
+3. Show a timer in the mobile game screen that allows the gamer to understand how long he has to wait before tapping again. 
 
 ###### ARCADE STYLE GRAPHICS
 Everything aims to the facility of the gameplay, that has to be intuitive and really easy to follow, in order to make a lot of people play toghether without impediments. This includes the stylistic choice of an arcade game, very easy to follow and with graphics that allows you to play it even in a distracted way.
@@ -80,6 +80,7 @@ Smooth animations ???????
 LORENZ
 
 ###### DESKTOP AND MOBILE
+GIOVANNI
 
 ###### PIXEL GRID PHOTO
 FRA
@@ -97,8 +98,9 @@ Two screens of brief introduction to the realm and to the rules and instructions
 <p align="center"> <img src="" style="height:300px"></p>
 
 ###### STEP #2
-Two possibilities: if the player is not in the area of "Mi Ami Festival Reign" will appear a map indicating the distance from the area
-<br> if the player is in the area on the contrary the game screen will appear, and you can start to play. Here two situations can happen: one where the sword has already been drawn, which will mean that you can try to play again the next day, and one where the sword is still stuck in the rock. You can play in the latter case by swipe
+Two possibilities:<br>
+- if the player is not in the area of "Mi Ami Festival Reign" will appear a map indicating the distance from the area;
+<br>- if the player is in the area on the contrary the game screen will appear, and you can start to play. Here two situations can happen: one where the sword has already been drawn, which will mean that you can try to play again the next day, and one where the sword is still stuck in the rock. You can play in the latter case by swipe.
 
 <p align="center"> <img src="" style="height:300px"></p>
 <p align="center"> <img src="" style="height:300px"></p>
