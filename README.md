@@ -1,17 +1,17 @@
 # The King of Mi Ami
 
-Everybody wants to matter. In this mobile game you can win the boredom and a reign both. All you have to do is extract the sword from the stone.
+Everybody wants to matter. In this mobile game you can win the boredom and a reign both. <br>All you have to do is extract the sword from the stone.
 
-<p align="center"> <img src="images-readme/readme-banner-1.png" style="height:200px"></p>
+<p align="center"> <img src="images-readme/readme-banner.jpg" style="height:200px"></p>
 <p align="center">
 <br>
-
 
 
 ## Team Members
 
 Beatrice Bazzan, Giovanni Covre, Francesca Granzotto, Lorenzo Di Leonardo
 <br>
+
 
 ## Course Reference - Academic Year
 
@@ -20,26 +20,30 @@ Politecnico di Milano - Scuola del Design<br>
 Faculty: Michele Mauri, Andrea Benedetti
 <br>
 
+
 ## About the Project
 
-**What is "The King of Mi Ami"** <br>
+###### WHAT IS "KING OF MI AMI"
 The King of Mi Ami is inspired by the legend of “The Sword in the Stone”.
 Whoever extracts the sword becomes king for a day. This project is designed to be an easy way to escape from the boredom of a long wait and to engage a large number of people in a group game. This project is meant to be played in the context of a festival, in this case the Mi Ami Festival of Milan, where there is the need to entertain a large group of fans before the show begins. Everyone who possesses a smartphone and is located inside a defined area can access the game and can conquer to become the daily king by dragging the legendary sword out of the stone. The sword can be touched only every 10 seconds and in the meanwhile the user can see other gamers’ attempts.  If the sword isn’t touched in 15 seconds, it will go back inside the rock. If a user manages to pull out the sword, he/she is named King of Mi Ami for the current day and can access to the concert backstage or win a free beer. The other users will see an animation in which their defeat is declared, the name of the new king is shown with the invitation to try again the following day.
 
-**References to the real legend**<br>
-SCRIVI FRA
+###### REFERENCES TO THE LEGEND
+The project takes inspiration from the well-known story of the sword in the stone, which tells how a young squire became king after extracting the legendary Excalibur sword from a stone altar.
+In the original novel, the main character makes three attempts to extract the sword: this detail inspired us to make the game less based on luck and more based on the cunning of the individual player, who uses the movements made by others to achieve victory.
+The choice of a widely known story was determined by the need to have a game dynamic and a setting immediately recognizable by the majority of the population.
 
-<p align="center"> <img src="images-readme/La_spada_nella_roccia.png" style="height:100px"></p>
+<p align="center"> <img src="images-readme/La_spada_nella_roccia.jpg"></p>
 <p align="center">
     <em >The Sword in the Stone</em>
 </p>
 <br>
 
+
 ## Context
 ###### MI AMI FESTIVAL
 [MI AMI Festival](https://www.miamifestival.it/2020/) Musica Importante A Milano is a music festival organized by Rockit.it since 2005. It takes place every year in a park, currently the Idroscalo of Milan, during the last weekend of May. It hosts Italian artists from a predominantly independent area, alternative, without distinction of musical genre but with a careful musical-cultural selection. MI AMI is the most known summer festival of Milano, and it has an indie vibe and style that aligns perfectly with the mood of our site.
 
-<p align="center"> <img src="images-readme/miami_festival.jpg" style="height:100px"></p>
+<p align="center"> <img src="images-readme/miami_festival.jpg"></p>
 
 At the beginning the project was designed to be placed at PolEATecnico Bistò (ex Bar La Rossa), creating a more local and restricted experience, but something was missing: it's a common game but the common game atmosphere was not really present. The decision was to move to a larger and more populated environment where you can have a large screen to view and play in the community, but without forgetting about the sectorialization: the game brings together people who are already interested in participating in the same experience.
 
@@ -51,6 +55,7 @@ Thanks to this change of location we can take advantage of the big screen projec
 ###### REAL WINNING 
 We tought about a collaboration with MI AMI Festival, and thanks to it there will be a prize that is offered by the sponsor, such as a backstage meeting with the artist, or free beers for the real King of the day. 
 <br>
+
 
 ## Design Challenges
 
@@ -67,7 +72,7 @@ Hence three very important choices:
 ###### ARCADE STYLE GRAPHICS
 Everything aims to the facility of the gameplay, that has to be intuitive and really easy to follow, in order to make a lot of people play toghether without impediments. This includes the stylistic choice of an arcade game, very easy to follow and with graphics that allows you to play it even in a distracted way.
 
-<p align="center"> <img src="images-readme/arcade.gif" style="width:100px"></p>
+<p align="center"> <img src="images-readme/arcade.gif"></p>
 
 ###### VISUAL DESIGN
 We choose a Pixel Art style, that is almost entirely based on a 51 width pixels grid.
@@ -77,7 +82,7 @@ As for the info and the structure of the game, we used an off-white colour.
 
 Smooth animations ???????
 
-<p align="center"> <img src="images-readme/the_legend_of_zelda-a_link_to_the_past.gif" style="height:100px"></p>
+<p align="center"> <img src="images-readme/the_legend_of_zelda-a_link_to_the_past.gif" ></p>
 <p align="center">
     <em >The Legend of Zelda</em>
 </p>
@@ -97,6 +102,7 @@ FRA
 
 ###### TEXT BLINK ANIMATION
 GIOVANNI
+
 
 ## Website experience
 
@@ -129,6 +135,7 @@ The game begins. In between each swipe you will have to wait 30 seconds, and the
 <p align="center"> <img src="" style="height:100px"></p>
 
 <br>
+
 
 ## Inspirations and References
 
