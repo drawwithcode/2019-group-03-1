@@ -136,19 +136,16 @@ To overcome the limitations of p5.js in using text animations, we used the css f
 ```
 
 ## Website experience
-
-In order to do so we divided the experience in different steps:
+The intent is to create an app accessible to all, fast to use even in times of high turnout. To achieve this speed of play, we decided to divide the app into a few short introduction screens, to leave space and time for the action.
 
 ###### STEP #1
-Two screens of brief introduction to the realm and to the rules and instructions to follow in order to play the game
+After the loading screen, it will appear two following screens of brief introduction to the realm and to the rules and guidance in order to play the game.
 
 <p align="center">
     <img src="images-readme/iphone-mockup-index.png" width="400">
 </p>
 <p align="center">
     <img src="images-readme/iphone-mockup-instructions_1.png" width="400">
-</p>
-<p align="center">
     <img src="images-readme/iphone-mockup-instructions_2.png" width="400">
 </p>
 
