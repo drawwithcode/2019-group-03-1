@@ -1,7 +1,7 @@
-//VARIABILI GENERALI
+//GENERAL VAR
 var bg, box, snap, img, casellaNome;
 
-//VARIABILI WEBCAM
+//WEBCAM VAR
 var capture;
 var foto;
 var pixelGrid = []; //contains the grid made from CAPTURE
@@ -30,7 +30,7 @@ function setup() {
   capture = createCapture(VIDEO);
   capture.size(320 - (320 / 4), 260 - (260 / 4));
   capture.hide();
-  //set the points of the capture rectangle
+  //Set the points of the capture rectangle
   xStart = (windowWidth / 2) - (capture.width / 2);
   yStart = (windowHeight / 2) - capture.height + (capture.height / 2);
   xFin = (windowWidth / 2) + (capture.width / 2);
@@ -38,7 +38,7 @@ function setup() {
 
   //INPUT NAME
   casellaNome = createInput('');
-  casellaNome.position((windowWidth/2)-(box.width / 4), (windowHeight/2)+(box.width/2.1));
+  casellaNome.position((windowWidth / 2) - (box.width / 4), (windowHeight / 2) + (box.width / 2.1));
   casellaNome.style("width", (box.width / 2) + "px");
   casellaNome.style("height", "30px");
   casellaNome.style("color", "FFFFFF");
@@ -80,21 +80,21 @@ function draw() {
   text(winner, 0, 0, windowWidth - 170, windowHeight);
   pop();
 
-  //CORONA
+  //CROWN
   push();
   imageMode(CENTER);
-  crown.resize(box.width/2, 0);
-  image(crown, windowWidth / 2, (windowHeight/2)-(box.width/3));
+  crown.resize(box.width / 2, 0);
+  image(crown, windowWidth / 2, (windowHeight / 2) - (box.width / 3));
   pop();
 
   //IMAGE "TYPE YOUR NAME"
   typeY = createImg("assets/img/type.svg");
-  typeY.position((windowWidth/2)-(box.width / 3.2), (windowHeight/2)+(box.width/3.2));
+  typeY.position((windowWidth / 2) - (box.width / 3.2), (windowHeight / 2) + (box.width / 3.2));
   typeY.style("width", (box.width / 1.6) + "px");
 
   //BUTTON TO SAVE SCREEN
   snap = createImg("assets/img/snap-button.svg");
-  snap.position((windowWidth/2)-(box.width / 3.2), (windowHeight/2)+(box.width/1.6));
+  snap.position((windowWidth / 2) - (box.width / 3.2), (windowHeight / 2) + (box.width / 1.6));
   snap.style("width", (box.width / 1.6) + "px");
   snap.mousePressed(savePhoto);
 }
@@ -110,11 +110,10 @@ function gridCreate(_xStart, _xFin, _yStart, _yFin, _dim) {
       var tempPixel = new Pixel(x, y, color, _dim); //create the PIXEL object
 
       pixelGrid[pos] = tempPixel; //put the PIXEL in the PIXELGRID array
-      pos++; //go to the next element in the array
+      pos++; //Go to the next element in the array
     }
   }
 }
-
 
 //PIXEL COLOR
 function Pixel(_x, _y, _color, _dim) {
@@ -130,23 +129,20 @@ function Pixel(_x, _y, _color, _dim) {
   }
 }
 
-
-//CHECK DELL'INPUT
+//INPUT CHECK
 function myInputEvent() {
   console.log('you are typing: ', this.value());
 }
 
-
 //SAVE YOUR WINNING
 function savePhoto() {
-  //COMPARE LOGO
+  //Logo
   imageMode(CENTER);
-  logo1.resize(box.width/1.6, 0);
-  image(logo1, windowWidth / 2, (windowHeight/2)+(box.width/1.8));
-  //SALVATAGGIO IMMAGINE
+  logo1.resize(box.width / 1.6, 0);
+  image(logo1, windowWidth / 2, (windowHeight / 2) + (box.width / 1.8));
+  //Save img
   saveCanvas('king', 'jpg');
 }
-
 
 //BACKGROUND IMAGE
 function backgroundImage(img) {
@@ -158,7 +154,6 @@ function backgroundImage(img) {
   pop();
 }
 
-//DRAG BLOCCATO
 function touchMoved() {
   return false;
 }
