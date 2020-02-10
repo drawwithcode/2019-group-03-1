@@ -113,7 +113,7 @@ function updateKingName(name) {
 }
 
 function swordTimeOut() {
-  if (swordTimerCount == 0) {
+  if (swordTimerCount == 0 && updatedPulls < 1000) {
     updatedPulls = 0;
     io.emit("pullsCountFromServer", updatedPulls);
   }

@@ -47,7 +47,7 @@ function draw() {
   var pointUser = pixelMap.latLngToPixel(userPosition.latitude, userPosition.longitude);
   var pointSword = pixelMap.latLngToPixel(latMiAmi, lonMiAmi);
 
-  if(userswordDistance<50){
+  if(userswordDistance<500000){
     window.location.href = "the_sword_in_the_stone.html";
   }
 
