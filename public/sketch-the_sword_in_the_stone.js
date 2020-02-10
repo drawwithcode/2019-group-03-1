@@ -1,7 +1,10 @@
 var bg, spada, rocciaBottom, rocciaTop;
-var bgImg, spadaImg, rocciaBottomImg, rocciaTopImg;
+var bgImg, spadaImg, rocciaBottomImg, rocciaTopImg, crownImg;
+var rocciaX, rocciaY;
 var pix;
 var stelline = [];
+var ray1, ray2, ray3, ray4;
+var rayColor = "Aquamarine";
 var hammer;
 var pullsCount;
 var usersCount;
@@ -10,6 +13,7 @@ var bar;
 var barCursor;
 var personalCountDown;
 var timer;
+var kingNameBox;
 
 let userPosition;
 var userswordDistance;
@@ -18,6 +22,8 @@ let pressStart2P, vt323;
 
 var latMiAmi = 45.4637478;
 var lonMiAmi = 9.2858445;
+
+var king = "";
 
 function preload() {
   if (window.innerWidth < 575) {
@@ -35,6 +41,8 @@ function preload() {
     "assets/the-sword-in-the-stone/roccia_bottom.png"
   );
   rocciaTopImg = loadImage("assets/the-sword-in-the-stone/roccia_top.png");
+
+  crownImg = loadImage("assets/img/crown.svg");
 
   //WEBGL requires loadFont
   pressStart2P = loadFont("font/PressStart2P-Regular.ttf");
@@ -56,6 +64,8 @@ function setup() {
     pix = round(width / 51);
   }
   personalCountDown = 300;
+  rocciaX = width / 2;
+  rocciaY = height / 1.5;
 
   var stellina1 = new Stellina(15, 35, 120);
   var stellina2 = new Stellina(25, 25, 90);
@@ -64,6 +74,11 @@ function setup() {
   spada = new Spada(27, 30);
   swipeBar = new Bar(26, 60, 32);
   barCursor = new BarCursor(26, 60);
+  ray1 = new Ray(1, 0);
+  ray2 = new Ray(1, 5);
+  ray3 = new Ray(-1, 0);
+  ray4 = new Ray(-1, 5);
+  kingNameBox = new KingName();
 
   var options = {
     preventDefault: true
@@ -74,6 +89,7 @@ function setup() {
   });
 
   hammer.on("swipeup", swiped);
+  socket.emit("requestKingName");
 }
 
 function draw() {
@@ -89,20 +105,20 @@ function draw() {
     //Top area of the rock
     rocciaTop = image(
       rocciaTopImg,
-      width / 2,
-      height / 1.5,
-      height / 3.5,
-      (height / 3.5) * 1.14
+      rocciaX,
+      rocciaY + pix,
+      30 * pix,
+      30 * pix * 1.14
     );
     //Display sword
     spada.display();
     //Bottom area of the rock
     rocciaBottom = image(
       rocciaBottomImg,
-      width / 2,
-      height / 1.5,
-      height / 3.5,
-      (height / 3.5) * 1.14
+      rocciaX,
+      rocciaY,
+      30 * pix,
+      30 * pix * 1.14
     );
     noStroke();
     //WHITE BOX
@@ -116,7 +132,7 @@ function draw() {
     textSize(50);
     textFont(vt323);
     textAlign(CENTER);
-    text("KNIGHTS: " + usersCount, width / 2, height / 1.08);
+    text("KNIGHTS: " + (usersCount - 1), width / 2, height / 1.08);
     pop();
   }
   //MOBILE DEVICES
@@ -139,20 +155,20 @@ function draw() {
     //Top area of the rock
     rocciaTop = image(
       rocciaTopImg,
-      width / 2,
-      height / 1.5,
-      width / 1.8,
-      (width / 1.8) * 1.14
+      rocciaX,
+      rocciaY + pix,
+      30 * pix,
+      30 * pix * 1.14
     );
     //Display sword
     spada.display();
     //Bottom area of the rock
     rocciaBottom = image(
       rocciaBottomImg,
-      width / 2,
-      height / 1.5,
-      width / 1.8,
-      (width / 1.8) * 1.14
+      rocciaX,
+      rocciaY,
+      30 * pix,
+      30 * pix * 1.14
     );
     //Display stars
     for (var i = 0; i < stelline.length; i++) {
@@ -160,14 +176,21 @@ function draw() {
       stelline[i].animate();
     }
 
-    swipeBar.display();
+    swipeBar.displayWhite();
 
     if (personalCountDown == 0) {
+      swipeBar.display();
       barCursor.display();
       barCursor.animate();
     } else if (personalCountDown > 0 && pullsCount < 1000) {
-      timer = Math.round(personalCountDown / 30);
-      var timerText = timer.toString();
+      if (personalCountDown >= 15) {
+        timer = Math.round(personalCountDown / 30);
+        var timerText = timer.toString();
+        swipeBar.width = 5 * pix;
+      } else {
+        var timerText = "TRY TO WIN!";
+        swipeBar.width = width / 1.5;
+      }
       personalCountDown -= 1;
       fill(20);
       textSize(50);
@@ -176,28 +199,10 @@ function draw() {
       text(timerText, width / 2, height / 1.17);
     }
 
-    //   bar.displayWhite();
-    //   var timerText;
-    //
-    //   if (personalCountDown <= 0){
-    //   bar.display();
-    //   barCursor.display();
-    //   barCursor.animate();
-    // } else {
-    //   if (personalCountDown >= 15){
-    //     timer = Math.round(personalCountDown / 30);
-    //     timerText = timer.toString();
-    //     bar.width = 5 * pix;
-    //   } else {bar.width = 32 * pix; timerText = 'TRY TO WIN!';};
-    //   push();
-    //   textAlign(CENTER,CENTER);
-    //   fill("black");
-    //   textSize(50);
-    //   textFont(vt323);
-    //   text(timerText, bar.x, bar.y - pix);
-    //   pop();
-    //   personalCountDown -= 1;
-    // }
+    ray1.display();
+    ray2.display();
+    ray3.display();
+    ray4.display();
 
     //User out of the area
     if (userswordDistance > 500000) {
@@ -228,6 +233,7 @@ function draw() {
       pop();
     }
   }
+  kingNameBox.display();
 }
 
 //STAR OBJECT
@@ -264,28 +270,81 @@ function Stellina(_x, _y, _opacity) {
   };
 }
 
+function Ray(_direction, _yOffset) {
+  this.direction = _direction;
+  this.x = rocciaX + 15 * pix * this.direction;
+  this.y = rocciaY - 10 * pix - _yOffset * pix;
+  this.animationProgress = 10;
+  this.display = function() {
+    noStroke();
+    fill(rayColor);
+    if (this.animationProgress <= 2) {
+      rect(this.x, this.y, pix, pix);
+      rect(this.x + pix * this.direction, this.y, pix, pix);
+      rect(this.x, this.y - pix, pix, pix);
+    } else if (this.animationProgress > 2 && this.animationProgress <= 4) {
+      rect(this.x, this.y, pix, pix);
+      rect(this.x + pix * this.direction, this.y, pix, pix);
+      rect(this.x, this.y - pix, pix, pix);
+      rect(this.x + pix * this.direction, this.y - pix, pix, pix);
+    } else if (this.animationProgress > 4 && this.animationProgress <= 6) {
+      rect(this.x + pix * this.direction, this.y, pix, pix);
+      rect(this.x, this.y - pix, pix);
+      rect(this.x + pix * this.direction, this.y - pix, pix, pix);
+      rect(this.x + 2 * pix * this.direction, this.y - 2 * pix, pix, pix);
+      rect(this.x + 3 * pix * this.direction, this.y - 3 * pix, pix, pix);
+    } else if (this.animationProgress > 6 && this.animationProgress <= 8) {
+      rect(this.x + 3 * pix * this.direction, this.y - 3 * pix, pix, pix);
+    }
+    this.animationProgress++;
+  };
+}
+
+function KingName() {
+  this.width = pix * 30;
+  this.x = width / 10;
+  this.y = height / 10;
+  this.display = function() {
+    push();
+    noStroke();
+    //WHITE BOX
+    fill(231, 234, 225);
+    rect(this.x + this.width / 2, this.y, this.width + 6 * pix, pix * 7);
+    rect(this.x + this.width / 2, this.y, this.width + 4 * pix, pix * 9);
+    pop();
+    image(crownImg, this.x + pix * 3, this.y, pix * 8, pix * 8);
+    push();
+    fill(40);
+    textSize(20);
+    textFont(vt323);
+    textAlign(LEFT, CENTER);
+    translate(pix * 10, 0);
+    textLeading(28);
+    text(king, this.x, this.y);
+    pop();
+  };
+}
+
 function Bar(_x, _y, _width) {
   this.x = width / 2;
   this.y = height / 1.2;
   this.width = width / 1.5;
 
-  // this.displayWhite = function() {
-  //   push();
-  //   noStroke();
-  //   //WHITE BOX
-  //   fill(231, 234, 225);
-  //   rect(this.x, this.y, this.width + 6*pix, pix * 5);
-  //   rect(this.x, this.y, this.width + 4*pix, pix * 7);
-  //   pop();
-  // };
-
-  this.display = function() {
+  this.displayWhite = function() {
     if (pullsCount < 1000) {
+      push();
       noStroke();
       //WHITE BOX
       fill(231, 234, 225);
       rect(this.x, this.y, this.width + 6 * pix, pix * 5);
       rect(this.x, this.y, this.width + 4 * pix, pix * 7);
+      pop();
+    }
+  };
+
+  this.display = function() {
+    if (pullsCount < 1000) {
+      noStroke();
       //RED BAR
       push();
       fill(179, 40, 30);
@@ -336,27 +395,17 @@ function BarCursor(_x, _y) {
 
 //SWORD OBJECT
 function Spada(_x, _y) {
-  this.x = width / 1.95;
-  this.y = height / 1.8;
+  this.x = rocciaX + pix;
+  this.y = rocciaY - 10 * pix;
 
   this.display = function() {
-    if (windowWidth <= windowHeight) {
-      image(
-        spadaImg,
-        this.x,
-        this.y - pix * pullsCount,
-        width / 2.8,
-        (width / 2.8) * 2.3
-      );
-    } else {
-      image(
-        spadaImg,
-        this.x,
-        this.y - pix * pullsCount,
-        height / 5.5,
-        (height / 5.5) * 2.3
-      );
-    }
+    image(
+      spadaImg,
+      this.x,
+      this.y - pix * pullsCount,
+      19 * pix,
+      19 * pix * 2.3
+    );
   };
 }
 
@@ -367,6 +416,11 @@ function swiped() {
       barCursor.x >= swipeBar.x - swipeBar.width / 10 &&
       barCursor.x <= swipeBar.x + swipeBar.width / 10
     ) {
+      rayColor = "Aquamarine";
+      ray1.animationProgress = 0;
+      ray2.animationProgress = 0;
+      ray3.animationProgress = 0;
+      ray4.animationProgress = 0;
       socket.emit("swordPull");
     }
   }
@@ -389,6 +443,13 @@ socket.on("usersCountFromServer", function(data) {
 socket.on("winner", youWon);
 socket.on("loser", youLose);
 
+socket.on("enemyRay", displayEnemyRay);
+
+socket.on("kingNameFromServer", function(name) {
+  king = name;
+  console.log(king);
+});
+
 //FUNCTION CALLED WHEN YOU WIN
 function youWon() {
   console.log("winner!!");
@@ -398,6 +459,14 @@ function youWon() {
 function youLose() {
   console.log("loser!!");
   window.open("you_lose.html", "_self");
+}
+
+function displayEnemyRay() {
+  rayColor = "orange";
+  ray1.animationProgress = 0;
+  ray2.animationProgress = 0;
+  ray3.animationProgress = 0;
+  ray4.animationProgress = 0;
 }
 
 //POSITION UPDATE FUNCTION

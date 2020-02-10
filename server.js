@@ -5,8 +5,9 @@ var http = require("http").createServer(app);
 var port = process.env.PORT || 3000;
 var server = app.listen(port);
 var io = require("socket.io")(server);
-var maxPullsCount = 10;
+var maxPullsCount = 23;
 var updatedUsers = 0;
+var swordTimerCount = 15;
 
 //ENABLES THE APP TO ACCESS THE "PUBLIC" FOLDER
 app.use(express.static("public"));
@@ -31,20 +32,23 @@ var spreadsheetId = "1Q25gnGC5R3uE4qQHON8njArLOeIcu0IvrbT1jTqy5QQ";
 var pulls = [[]];
 var updatedPulls = 0;
 var updater;
+var kingName;
 
 //GETS THE CURRENT NUMBER OF PULLS FROM THE DATABASE
-function getPullsCount() {
+function getKingName() {
   sheets.spreadsheets.values.get(
     {
       spreadsheetId,
       range: "swordInStoneData!B1"
     },
     (err, result) => {
-      pulls = [[Number(result.data.values[0][0])]];
-      console.log(pulls);
+      kingName = result.data.values[0][0];
+      console.log(kingName);
     }
   );
 }
+
+getKingName();
 
 //CALLS THE newConnection FUNCTION FOR EACH NEW CONNECTION
 io.on("connection", newConnection);
@@ -61,8 +65,17 @@ function newConnection(socket) {
       socket.broadcast.emit("loser");
     } else {
       updatedPulls += 1;
+      swordTimerCount = 30;
+      socket.broadcast.emit("enemyRay");
       io.emit("pullsCountFromServer", updatedPulls);
     }
+  });
+  socket.on("requestKingName", function() {
+    socket.emit("kingNameFromServer", kingName);
+  });
+  socket.on("submitName", function(submittedName) {
+    updateKingName(submittedName);
+    kingName = submittedName;
   });
   io.emit("pullsCountFromServer", updatedPulls);
   socket.on("disconnect", function() {
@@ -72,6 +85,8 @@ function newConnection(socket) {
   });
   io.emit("usersCountFromServer", updatedUsers);
 }
+
+swordTimeOut();
 
 //UPDATES THE DATABASE WITH THE NEW PULLS COUNT
 function updatePulls() {
@@ -85,4 +100,25 @@ function updatePulls() {
   //   resource: updater
   // });
   updatedPulls += 1;
+}
+
+function updateKingName(name) {
+  updater = { values: [[name]] };
+  sheets.spreadsheets.values.update({
+    spreadsheetId,
+    range: "swordInStoneData!B1",
+    valueInputOption: "USER_ENTERED",
+    resource: updater
+  });
+}
+
+function swordTimeOut() {
+  if (swordTimerCount == 0) {
+    updatedPulls = 0;
+    io.emit("pullsCountFromServer", updatedPulls);
+  }
+  setTimeout(function() {
+    swordTimerCount--;
+    swordTimeOut();
+  }, 1000);
 }
