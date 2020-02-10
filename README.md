@@ -58,13 +58,13 @@ Thanks to this change of location we can take advantage of the big screen projec
 (There will be also a QR code that will appear on the big screen and it will allow to play only by framing it with the phone.)
 
 ###### REAL WINNING 
-We tought about a collaboration with MI AMI Festival, and thanks to it there will be a prize that is offered by the sponsor, such as a backstage meeting with the artist, or free beers for the real King of the day. 
+We tought about a collaboration with Mi Ami Festival, and thanks to it there will be a prize that is offered by the sponsor, such as a backstage meeting with the artist, or free beers for the real King of the day. 
 <br>
 
 
 ## Design Challenges
 
-Our desire was to make an experience that killed the typical boredom in a queue at the MI AMI Festival
+Our desire was to make an experience that killed the typical boredom in a queue at the Mi Ami Festival
 but also that would be inclusive for everybody, and in order to achieved that we thinked about projecting the challenge in the big screen that the Festival already has.
 
 ###### STRATEGIC GAMEPLAY
