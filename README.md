@@ -67,7 +67,7 @@ Hence three very important choices:
 ###### ARCADE STYLE GRAPHICS
 Everything aims to the facility of the gameplay, that has to be intuitive and really easy to follow, in order to make a lot of people play toghether without impediments. This includes the stylistic choice of an arcade game, very easy to follow and with graphics that allows you to play it even in a distracted way.
 
-<p align="center"> <img src="images-readme/arcade.gif" style="height:100px"></p>
+<p align="center"> <img src="images-readme/arcade.gif" style="width:100px"></p>
 
 ###### VISUAL DESIGN
 We choose a Pixel Art style, that is almost entirely based on a 51 width pixels grid.
