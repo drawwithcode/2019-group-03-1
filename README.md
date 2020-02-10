@@ -144,7 +144,7 @@ Two screens of brief introduction to the realm and to the rules and instructions
 ###### STEP #2
 Two possibilities:<br>
 - if the player is not in the area of "Mi Ami Festival Reign" will appear a map indicating the distance from the area;
-<br>- if the player is in the area on the contrary the game screen will appear, and you can start to play. Here two situations can happen: one where the sword has already been drawn, which will mean that you can try to play again the next day, and one where the sword is still stuck in the rock. You can play in the latter case by swipe.
+- if the player is in the area on the contrary the game screen will appear, and you can start to play. Here two situations can happen: one where the sword has already been drawn, which will mean that you can try to play again the next day, and one where the sword is still stuck in the rock. You can play in the latter case by swipe.
 
 <p align="center">
     <img src="" width="400">
@@ -154,7 +154,7 @@ Two possibilities:<br>
 </p>
 
 ###### STEP #3
-The game begins. In between each swipe you will have to wait 30 seconds, and there will be a timer to indicate this. Also, you will be able to see the other pulling the sword (little craving, huh?). Be careful because if the sword is not touched for 20 seconds it will go down completely.
+The game begins. In between each swipe you will have to wait some seconds, and there will be a timer to indicate this. Also, you will be able to see the other pulling the sword (little craving, huh?). Be careful because if the sword is not touched for some other seconds it will go down completely.
 
 <p align="center">
     <img src="" width="400">
