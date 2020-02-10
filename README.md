@@ -44,10 +44,13 @@ The choice of a widely known story was determined by the need to have a game dyn
 
 ## Context
 ###### MI AMI FESTIVAL
-[MI AMI Festival](https://www.miamifestival.it/2020/) Musica Importante A Milano is a music festival organized by Rockit.it since 2005. It takes place every year in a park, currently the Idroscalo of Milan, during the last weekend of May. It hosts Italian artists from a predominantly independent area, alternative, without distinction of musical genre but with a careful musical-cultural selection. MI AMI is the most known summer festival of Milano, and it has an indie vibe and style that aligns perfectly with the mood of our site.
+[Mi Ami Festival](https://www.miamifestival.it/2020/) Musica Importante A Milano is a music festival organized by Rockit.it since 2005. It takes place every year in a park, currently the Idroscalo of Milan, during the last weekend of May. It hosts Italian artists from a predominantly independent area, alternative, without distinction of musical genre but with a careful musical-cultural selection. MI AMI is the most known summer festival of Milano, and it has an indie vibe and style that aligns perfectly with the mood of our site.
 
 <p align="center">
     <img src="images-readme/miami_festival.jpg" width="400">
+</p>
+<p align="center">
+    <em >Mi Ami Festival</em>
 </p>
 
 At the beginning the project was designed to be placed at PolEATecnico Bistò (ex Bar La Rossa), creating a more local and restricted experience, but something was missing: it's a common game but the common game atmosphere was not really present. The decision was to move to a larger and more populated environment where you can have a large screen to view and play in the community, but without forgetting about the sectorialization: the game brings together people who are already interested in participating in the same experience.
@@ -58,13 +61,13 @@ Thanks to this change of location we can take advantage of the big screen projec
 (There will be also a QR code that will appear on the big screen and it will allow to play only by framing it with the phone.)
 
 ###### REAL WINNING 
-We tought about a collaboration with MI AMI Festival, and thanks to it there will be a prize that is offered by the sponsor, such as a backstage meeting with the artist, or free beers for the real King of the day. 
+We tought about a collaboration with Mi Ami Festival, and thanks to it there will be a prize that is offered by the sponsor, such as a backstage meeting with the artist, or free beers for the real King of the day. 
 <br>
 
 
 ## Design Challenges
 
-Our desire was to make an experience that killed the typical boredom in a queue at the MI AMI Festival
+Our desire was to make an experience that killed the typical boredom in a queue at the Mi Ami Festival
 but also that would be inclusive for everybody, and in order to achieved that we thinked about projecting the challenge in the big screen that the Festival already has.
 
 ###### STRATEGIC GAMEPLAY
@@ -87,8 +90,6 @@ The palette tries to evoque a magic ambience, set into the woods, where the magi
 
 As for the info and the structure of the game, we used an off-white colour.
 
-Smooth animations ???????
-
 <p align="center">
     <img src="images-readme/the_legend_of_zelda-a_link_to_the_past.gif" width="400">
 </p>
@@ -104,7 +105,9 @@ Smooth animations ???????
 LORENZ
 
 ###### DESKTOP AND MOBILE
-
+To understand what kind of device, desktop or mobile, is connected to the game we used if conditions. Through the latter we checked the size of the screen, to then show or hide some elements rather than others or redirect the device to the correct page.
+<br>
+[Bootstrap](https://getbootstrap.com/docs/4.1/layout/overview/) was used as a reference for the screen width of the devices.
 
 ###### PIXEL GRID PHOTO
 FRA
@@ -140,35 +143,43 @@ In order to do so we divided the experience in different steps:
 Two screens of brief introduction to the realm and to the rules and instructions to follow in order to play the game
 
 <p align="center">
-    <img src="" width="400">
+    <img src="images-readme/iphone-mockup-index.png" width="400">
+</p>
+<p align="center">
+    <img src="images-readme/iphone-mockup-instructions_1.png" width="400">
+</p>
+<p align="center">
+    <img src="images-readme/iphone-mockup-instructions_2.png" width="400">
 </p>
 
 ###### STEP #2
 Two possibilities:<br>
-- if the player is not in the area of "Mi Ami Festival Reign" will appear a map indicating the distance from the area;
-<br>- if the player is in the area on the contrary the game screen will appear, and you can start to play. Here two situations can happen: one where the sword has already been drawn, which will mean that you can try to play again the next day, and one where the sword is still stuck in the rock. You can play in the latter case by swipe.
+- if the player is not in the area of "Mi Ami Festival Reign" it will appear a map indicating the distance from the area;<br>
+- if the player is in the area on the contrary the game screen will appear, and you can start to play. Here two situations can happen: one where the sword has already been drawn, which will mean that you can try to play again the next day, and one where the sword is still stuck in the rock. You can play in the latter case by swipe.
 
 <p align="center">
-    <img src="" width="400">
+    <img src="images-readme/iphone-mockup-map.png" width="400">
 </p>
 <p align="center">
     <img src="" width="400">
 </p>
 
 ###### STEP #3
-The game begins. In between each swipe you will have to wait 30 seconds, and there will be a timer to indicate this. Also, you will be able to see the other pulling the sword (little craving, huh?). Be careful because if the sword is not touched for 20 seconds it will go down completely.
+The game begins. In between each swipe you will have to wait some seconds, and there will be a timer to indicate this. Also, you will be able to see the other pulling the sword (little craving, huh?). Be careful because if the sword is not touched for some other seconds it will go down completely.
 
 <p align="center">
     <img src="" width="400">
 </p>
 
 ###### STEP #4
+If you lose there will be a very sad animation, where everything goes dark and the leaves will star to fall, like recreating a sad autumn atmosphere. After the animation you will just see the empty rock, but don't lose your hopes: you can always try to win the day after!
 
 <p align="center">
     <img src="" width="400">
 </p>
 
 ###### STEP #4
+If you win it will appear a glorious animation, with a cheerful song. After this, you will be able to take a picture with the crown that you had well deserved, and then also save that victorious picture. There will then be a screen with the actual prize that will be agreed with the sponsor.
 
 <p align="center">
     <img src="" width="400">
