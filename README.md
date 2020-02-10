@@ -12,12 +12,14 @@ Everybody wants to matter. In this mobile game you can win the boredom and a rei
 Beatrice Bazzan, Giovanni Covre, Francesca Granzotto, Lorenzo Di Leonardo
 <br>
 
+
 ## Course Reference - Academic Year
 
 [Creative Coding 2019/2020](https://drawwithcode.github.io/2019/)<br>
 Politecnico di Milano - Scuola del Design<br>
 Faculty: Michele Mauri, Andrea Benedetti
 <br>
+
 
 ## About the Project
 
@@ -36,6 +38,7 @@ The choice of a widely known story was determined by the need to have a game dyn
 </p>
 <br>
 
+
 ## Context
 ###### MI AMI FESTIVAL
 [MI AMI Festival](https://www.miamifestival.it/2020/) Musica Importante A Milano is a music festival organized by Rockit.it since 2005. It takes place every year in a park, currently the Idroscalo of Milan, during the last weekend of May. It hosts Italian artists from a predominantly independent area, alternative, without distinction of musical genre but with a careful musical-cultural selection. MI AMI is the most known summer festival of Milano, and it has an indie vibe and style that aligns perfectly with the mood of our site.
@@ -52,6 +55,7 @@ Thanks to this change of location we can take advantage of the big screen projec
 ###### REAL WINNING 
 We tought about a collaboration with MI AMI Festival, and thanks to it there will be a prize that is offered by the sponsor, such as a backstage meeting with the artist, or free beers for the real King of the day. 
 <br>
+
 
 ## Design Challenges
 
@@ -99,6 +103,7 @@ FRA
 ###### TEXT BLINK ANIMATION
 GIOVANNI
 
+
 ## Website experience
 
 In order to do so we divided the experience in different steps:
@@ -130,6 +135,7 @@ The game begins. In between each swipe you will have to wait 30 seconds, and the
 <p align="center"> <img src="" style="height:100px"></p>
 
 <br>
+
 
 ## Inspirations and References
 
