@@ -148,7 +148,7 @@ Two screens of brief introduction to the realm and to the rules and instructions
 
 ###### STEP #2
 Two possibilities:<br>
-- if the player is not in the area of "Mi Ami Festival Reign" will appear a map indicating the distance from the area;
+- if the player is not in the area of "Mi Ami Festival Reign" will appear a map indicating the distance from the area;<br>
 - if the player is in the area on the contrary the game screen will appear, and you can start to play. Here two situations can happen: one where the sword has already been drawn, which will mean that you can try to play again the next day, and one where the sword is still stuck in the rock. You can play in the latter case by swipe.
 
 <p align="center">
