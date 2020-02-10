@@ -2,7 +2,7 @@
 
 Everybody wants to matter. In this mobile game you can win the boredom and a reign both. All you have to do is extract the sword from the stone.
 
-<p align="center"> <img src="images/logotheking.png" style="height:200px"></p>
+<p align="center"> <img src="images-readme/logotheking.png" style="height:200px"></p>
 <p align="center">
 <br>
 
@@ -29,7 +29,7 @@ Whoever extracts the sword becomes king for a day. This project is designed to b
 **References to the real legend**<br>
 SCRIVI FRA
 
-<p align="center"> <img src="images/La_spada_nella_roccia.png" style="height:300px"></p>
+<p align="center"> <img src="images-readme/La_spada_nella_roccia.png" style="height:300px"></p>
 <p align="center">
     <em >The Sword in the Stone</em>
 </p>
@@ -95,7 +95,7 @@ In order to do so we divided the experience in different steps:
 ###### STEP #1
 Two screens of brief introduction to the realm and to the rules and instructions to follow in order to play the game
 
-<p align="center"> <img src="" style="height:300px"></p>
+<p align="center"> <img src="images-readme" style="height:300px"></p>
 
 ###### STEP #2
 Two possibilities:<br>
