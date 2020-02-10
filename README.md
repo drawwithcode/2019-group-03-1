@@ -82,9 +82,11 @@ As for the info and the structure of the game, we used an off-white colour.
 
 Smooth animations ???????
 
-<p align="center"> <img src="images-readme/the_legend_of_zelda-a_link_to_the_past.gif" ></p>
 <p align="center">
-    <em >The Legend of Zelda</em>
+    <img src="images-readme/the_legend_of_zelda-a_link_to_the_past.gif">
+</p>
+<p align="center">
+    <em>The Legend of Zelda</em>
 </p>
 <br>
 
@@ -101,6 +103,10 @@ LORENZ
 FRA
 
 ###### TEXT BLINK ANIMATION
+<p align="center">
+    <img src="images-readme/iphone-loading_screen-video_mockup.gif">
+</p>
+
 To overcome the limitations of p5.js in using text animations, we used the css formatting language to create animations that emulate the classic "PRESS START" command found in many arcade games.
 
 ```css
