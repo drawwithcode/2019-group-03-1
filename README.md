@@ -163,7 +163,7 @@ Two possibilities:<br>
 The game begins. In between each swipe you will have to wait some seconds, and there will be a timer to indicate this. Also, you will be able to see the other pulling the sword (little craving, huh?). Be careful because if the sword is not touched for some other seconds it will go down completely.
 
 <p align="center">
-    <img src="images-readme/iphone-mockup-the_sword_in_the_stone.png" width="400">
+    <img src="images-readme/iphone-mockup-the_sword_in_the_stone-timer.png" width="400">
 </p>
 
 ###### STEP #4
