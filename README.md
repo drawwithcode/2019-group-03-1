@@ -77,7 +77,7 @@ As for the info and the structure of the game, we used an off-white colour.
 
 Smooth animations ???????
 
-<p align="center"> <img src="images-readme/the_legend_of_zelda-a_link_to_the_past.gif" style="height:100px"></p>
+<p align="center"> <img src="images-readme/the_legend_of_zelda-a_link_to_the_past.gif" ></p>
 <p align="center">
     <em >The Legend of Zelda</em>
 </p>
