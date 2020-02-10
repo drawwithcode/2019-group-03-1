@@ -102,7 +102,8 @@ As for the info and the structure of the game, we used an off-white colour.
 LORENZ
 
 ###### DESKTOP AND MOBILE
-
+To understand what kind of device, desktop or mobile, is connected to the game we used if conditions. Through the latter we checked the size of the screen, to then show or hide some elements rather than others or redirect the device to the correct page. 
+[Bootstrap](https://getbootstrap.com/docs/4.1/layout/overview/) was used as a reference for the screen width of the devices.
 
 ###### PIXEL GRID PHOTO
 FRA
