@@ -143,7 +143,13 @@ In order to do so we divided the experience in different steps:
 Two screens of brief introduction to the realm and to the rules and instructions to follow in order to play the game
 
 <p align="center">
-    <img src="" width="400">
+    <img src="images-readme/iphone-mockup-index.png" width="400">
+</p>
+<p align="center">
+    <img src="images-readme/iphone-mockup-instructions_1.png" width="400">
+</p>
+<p align="center">
+    <img src="images-readme/iphone-mockup-instructions_2.png" width="400">
 </p>
 
 ###### STEP #2
@@ -152,7 +158,7 @@ Two possibilities:<br>
 - if the player is in the area on the contrary the game screen will appear, and you can start to play. Here two situations can happen: one where the sword has already been drawn, which will mean that you can try to play again the next day, and one where the sword is still stuck in the rock. You can play in the latter case by swipe.
 
 <p align="center">
-    <img src="" width="400">
+    <img src="images-readme/iphone-mockup-map.png" width="400">
 </p>
 <p align="center">
     <img src="" width="400">
