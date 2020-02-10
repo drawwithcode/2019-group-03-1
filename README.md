@@ -2,8 +2,9 @@
 
 Everybody wants to matter. In this mobile game you can win the boredom and a reign both. <br>All you have to do is extract the sword from the stone.
 
-<p align="center"> <img src="images-readme/readme-banner.jpg" style="height:200px"></p>
 <p align="center">
+    <img src="images-readme/readme-banner.jpg">
+</p>
 <br>
 
 
@@ -32,7 +33,9 @@ The project takes inspiration from the well-known story of the sword in the ston
 In the original novel, the main character makes three attempts to extract the sword: this detail inspired us to make the game less based on luck and more based on the cunning of the individual player, who uses the movements made by others to achieve victory.
 The choice of a widely known story was determined by the need to have a game dynamic and a setting immediately recognizable by the majority of the population.
 
-<p align="center"> <img src="images-readme/La_spada_nella_roccia.jpg"></p>
+<p align="center">
+    <img src="images-readme/La_spada_nella_roccia.jpg" width="400">
+</p>
 <p align="center">
     <em >The Sword in the Stone</em>
 </p>
@@ -43,7 +46,9 @@ The choice of a widely known story was determined by the need to have a game dyn
 ###### MI AMI FESTIVAL
 [MI AMI Festival](https://www.miamifestival.it/2020/) Musica Importante A Milano is a music festival organized by Rockit.it since 2005. It takes place every year in a park, currently the Idroscalo of Milan, during the last weekend of May. It hosts Italian artists from a predominantly independent area, alternative, without distinction of musical genre but with a careful musical-cultural selection. MI AMI is the most known summer festival of Milano, and it has an indie vibe and style that aligns perfectly with the mood of our site.
 
-<p align="center"> <img src="images-readme/miami_festival.jpg"></p>
+<p align="center">
+    <img src="images-readme/miami_festival.jpg" width="400">
+</p>
 
 At the beginning the project was designed to be placed at PolEATecnico Bistò (ex Bar La Rossa), creating a more local and restricted experience, but something was missing: it's a common game but the common game atmosphere was not really present. The decision was to move to a larger and more populated environment where you can have a large screen to view and play in the community, but without forgetting about the sectorialization: the game brings together people who are already interested in participating in the same experience.
 
@@ -72,7 +77,9 @@ Hence three very important choices:
 ###### ARCADE STYLE GRAPHICS
 Everything aims to the facility of the gameplay, that has to be intuitive and really easy to follow, in order to make a lot of people play toghether without impediments. This includes the stylistic choice of an arcade game, very easy to follow and with graphics that allows you to play it even in a distracted way.
 
-<p align="center"> <img src="images-readme/arcade.gif"></p>
+<p align="center">
+    <img src="images-readme/arcade.gif" width="400">
+</p>
 
 ###### VISUAL DESIGN
 We choose a Pixel Art style, that is almost entirely based on a 51 width pixels grid.
@@ -83,7 +90,7 @@ As for the info and the structure of the game, we used an off-white colour.
 Smooth animations ???????
 
 <p align="center">
-    <img src="images-readme/the_legend_of_zelda-a_link_to_the_past.gif">
+    <img src="images-readme/the_legend_of_zelda-a_link_to_the_past.gif" width="400">
 </p>
 <p align="center">
     <em>The Legend of Zelda</em>
@@ -104,7 +111,7 @@ FRA
 
 ###### TEXT BLINK ANIMATION
 <p align="center">
-    <img src="images-readme/iphone-loading_screen-video_mockup.gif">
+    <img src="images-readme/iphone-loading_screen-video_mockup.gif" width="400">
 </p>
 
 To overcome the limitations of p5.js in using text animations, we used the css formatting language to create animations that emulate the classic "PRESS START" command found in many arcade games.
@@ -132,30 +139,42 @@ In order to do so we divided the experience in different steps:
 ###### STEP #1
 Two screens of brief introduction to the realm and to the rules and instructions to follow in order to play the game
 
-<p align="center"> <img src="images-readme" style="height:300px"></p>
+<p align="center">
+    <img src="" width="400">
+</p>
 
 ###### STEP #2
 Two possibilities:<br>
 - if the player is not in the area of "Mi Ami Festival Reign" will appear a map indicating the distance from the area;
 <br>- if the player is in the area on the contrary the game screen will appear, and you can start to play. Here two situations can happen: one where the sword has already been drawn, which will mean that you can try to play again the next day, and one where the sword is still stuck in the rock. You can play in the latter case by swipe.
 
-<p align="center"> <img src="" style="height:300px"></p>
-<p align="center"> <img src="" style="height:300px"></p>
+<p align="center">
+    <img src="" width="400">
+</p>
+<p align="center">
+    <img src="" width="400">
+</p>
 
 ###### STEP #3
 The game begins. In between each swipe you will have to wait 30 seconds, and there will be a timer to indicate this. Also, you will be able to see the other pulling the sword (little craving, huh?). Be careful because if the sword is not touched for 20 seconds it will go down completely.
 
-<p align="center"> <img src="" style="height:100px"></p>
+<p align="center">
+    <img src="" width="400">
+</p>
 
-###### STEP #4 - if you win**<br> Winning animation -- sword -- .....
+###### STEP #4
 
-<p align="center"> <img src="" style="height:100px"></p>
+<p align="center">
+    <img src="" width="400">
+</p>
 
-###### STEP #4 - if you lose**<br> Losing animation ????-- try again tomorrow
+###### STEP #4
 
-<p align="center"> <img src="" style="height:100px"></p>
-
+<p align="center">
+    <img src="" width="400">
+</p>
 <br>
+
 
 ## Used Libraries and Technologies
 
@@ -181,6 +200,7 @@ The game begins. In between each swipe you will have to wait 30 seconds, and the
 - [OpenProcessing.org](https://www.openprocessing.org/)
 - [P5JS.org](https://p5js.org/)
 <br>
+
 
 ## References to Theory
 We studied and tried to focus on the legend of The Sword in the Stone, along with some researches about traditional videogame, mass competition, wasting time on a queue. Here two useful links:
