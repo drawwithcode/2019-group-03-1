@@ -44,7 +44,7 @@ The choice of a widely known story was determined by the need to have a game dyn
 
 ## Context
 ###### MI AMI FESTIVAL
-[Mi Ami Festival](https://www.miamifestival.it/2020/) Musica Importante A Milano is a music festival organized by Rockit.it since 2005. It takes place every year in a park, currently the Idroscalo of Milan, during the last weekend of May. It hosts Italian artists from a predominantly independent area, alternative, without distinction of musical genre but with a careful musical-cultural selection. MI AMI is the most known summer festival of Milano, and it has an indie vibe and style that aligns perfectly with the mood of our site.
+[MI AMI Festival](https://www.miamifestival.it/2020/) "Musica Importante A Milano" is a music festival organized by Rockit.it since 2005. It takes place every year in a park, currently the Idroscalo of Milan, during the last weekend of May. It hosts Italian artists from a predominantly independent area, alternative, without distinction of musical genre but with a careful musical-cultural selection. MI AMI is the most known summer festival of Milano, and it has an indie vibe and style that aligns perfectly with the mood of our site.
 
 <p align="center">
     <img src="images-readme/miami_festival.jpg" width="400">
@@ -53,25 +53,24 @@ The choice of a widely known story was determined by the need to have a game dyn
     <em >Mi Ami Festival</em>
 </p>
 
-At the beginning the project was designed to be placed at PolEATecnico Bistò (ex Bar La Rossa), creating a more local and restricted experience, but something was missing: it's a common game but the common game atmosphere was not really present. The decision was to move to a larger and more populated environment where you can have a large screen to view and play in the community, but without forgetting about the sectorialization: the game brings together people who are already interested in participating in the same experience.
+At the beginning the project was designed to be placed at PolEATecnico Bistò (ex Bar La Rossa), creating a more local and restricted experience, but something was missing: it's a community game but the common game atmosphere was not really present. The decision was to move to a larger and more populated environment where you can have a large screen for projecting the live progress of the game, but without forgetting about the sectorialization: this site brings together people who are already interested in participating in the same concert experience.
 
 ###### THE BIG SCREEN
-Thanks to this change of location we can take advantage of the big screen projection of the live game, that will be played in moments of stalemate from the opening of the gates, to the waiting for the singers, allowing everyone to perceive the position of the sword. It became a real group experience, in which the competition is even more present, given that it will appear both the number of the "knight" that are trying to conquer the sword (and the name of the King at the end).
+Thanks to this change of location we can take advantage of the big screen projection of the live game, that will be played in moments of stalemate, like from the opening of the gates and the waiting for the singers, allowing everyone to perceive the position of the sword. It became a real group experience, in which the competition is even more present, given that it will appear both the number of the "knights" that are trying to conquer the sword (and the name of the King at the end ???TRUEFALSE??).
 
 (There will be also a QR code that will appear on the big screen and it will allow to play only by framing it with the phone.)
 
 ###### REAL WINNING 
-We tought about a collaboration with Mi Ami Festival, and thanks to it there will be a prize that is offered by the sponsor, such as a backstage meeting with the artist, or free beers for the real King of the day. 
+We tought about a collaboration with Mi Ami Festival, thanks to which there will be a prize offered, such as a backstage meeting with the artist, or free beers for the real King of the day. 
 <br>
 
 
 ## Design Challenges
-
-Our desire was to make an experience that killed the typical boredom in a queue at the Mi Ami Festival
-but also that would be inclusive for everybody, and in order to achieved that we thinked about projecting the challenge in the big screen that the Festival already has.
+Our desire was to make an experience that killed the typical boredom in a queue at the Mi Ami Festival 
+but also that would be inclusive for everybody, and in order to achieved that we thinked about projecting the challenge in the big screen that the Festival stage already has.
 
 ###### STRATEGIC GAMEPLAY
-We tried to make the game increasingly less a lottery, and much more a meritocratic system of strategy, where everyone can try to understand when is the best time to try and swipe the sword and ensure victory. 
+We tried to make the game increasingly less a lottery, and much more a meritocratic system of strategy, where everyone can try to understand when is the best time to try and swipe the sword and ensure the victory. 
 Hence three very important choices: 
 1. Insert a precision bar within the game screen. This will create a threshold of difficulty, which will allow only the most precise and valiant to raise the sword.
 2. Show the number of players in the big screen. 
@@ -86,8 +85,7 @@ Everything aims to the facility of the gameplay, that has to be intuitive and re
 
 ###### VISUAL DESIGN
 We choose a Pixel Art style, that is almost entirely based on a 51 width pixels grid.
-The palette tries to evoque a magic ambience, set into the woods, where the magic sword is stuck. The principal colour is green, that is then declined in shades of the same green, along with some brown shades. 
-
+The palette tries to evoque a magic ambience, set into the woods, where the magic sword is stuck. The principal colour is green code #8AECA1, that is then declined in shades of the same green, along with some brown shades. Everything recalls the natural world that MI AMI Festival tries introduce in the city of Milan.
 As for the info and the structure of the game, we used an off-white colour.
 
 <p align="center">
@@ -152,7 +150,7 @@ After the loading screen, it will appear two following screens of brief introduc
 ###### STEP #2
 Two possibilities:<br>
 - if the player is not in the area of "Mi Ami Festival Reign" it will appear a map indicating the distance from the area;<br>
-- if the player is in the area on the contrary the game screen will appear, and you can start to play. Here two situations can happen: one where the sword has already been drawn, which will mean that you can try to play again the next day, and one where the sword is still stuck in the rock. You can play in the latter case by swipe.
+- if the player is in the area on the contrary the game screen will appear, and you can start to play. Here two situations can happen: one where the sword has already been drawn, which will mean that you can try to play again the next day, and one where the sword is still stuck in the rock. You can play in the latter case by swiping the sword.
 
 <p align="center">
     <img src="images-readme/iphone-mockup-map.png" width="400">
