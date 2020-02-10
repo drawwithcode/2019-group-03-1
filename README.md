@@ -95,6 +95,12 @@ Smooth animations ???????
 LORENZ
 
 ###### DESKTOP AND MOBILE
+
+
+###### PIXEL GRID PHOTO
+FRA
+
+###### TEXT BLINK ANIMATION
 ```css
 @keyframes blinker {
   0% {
@@ -110,13 +116,6 @@ LORENZ
   }
 }
 ```
-
-###### PIXEL GRID PHOTO
-FRA
-
-###### TEXT BLINK ANIMATION
-GIOVANNI
-
 
 ## Website experience
 
@@ -150,6 +149,16 @@ The game begins. In between each swipe you will have to wait 30 seconds, and the
 
 <br>
 
+## Used Libraries and Technologies
+
+- hammer.min.js
+- mappa.js
+- node.js
+- p5.dom.min.js
+- p5.geolocation.js
+- p5.min.js
+- p5.min.sound.js
+<br>
 
 ## Inspirations and References
 
@@ -163,17 +172,6 @@ The game begins. In between each swipe you will have to wait 30 seconds, and the
 - [Mr. Shiffman's Tutorials](https://shiffman.net/)
 - [OpenProcessing.org](https://www.openprocessing.org/)
 - [P5JS.org](https://p5js.org/)
-<br>
-
-## Used Libraries and Technologies
-
-- hammer.min.js
-- mappa.js
-- node.js
-- p5.dom.min.js
-- p5.geolocation.js
-- p5.min.js
-- p5.min.sound.js
 <br>
 
 ## References to Theory
