@@ -27,7 +27,9 @@ The King of Mi Ami is inspired by the legend of “The Sword in the Stone”.
 Whoever extracts the sword becomes king for a day. This project is designed to be an easy way to escape from the boredom of a long wait and to engage a large number of people in a group game. This project is meant to be played in the context of a festival, in this case the Mi Ami Festival of Milan, where there is the need to entertain a large group of fans before the show begins. Everyone who possesses a smartphone and is located inside a defined area can access the game and can conquer to become the daily king by dragging the legendary sword out of the stone. The sword can be touched only every 10 seconds and in the meanwhile the user can see other gamers’ attempts.  If the sword isn’t touched in 15 seconds, it will go back inside the rock. If a user manages to pull out the sword, he/she is named King of Mi Ami for the current day and can access to the concert backstage or win a free beer. The other users will see an animation in which their defeat is declared, the name of the new king is shown with the invitation to try again the following day.
 
 **References to the real legend**<br>
-SCRIVI FRA
+The project takes inspiration from the well-known story of the sword in the stone, which tells how a young squire became king after extracting the legendary Excalibur sword from a stone altar.
+In the original novel, the main character makes three attempts to extract the sword: this detail inspired us to make the game less based on luck and more based on the cunning of the individual player, who uses the movements made by others to achieve victory.
+The choice of a widely known story was determined by the need to have a game dynamic and a setting immediately recognizable by the majority of the population.
 
 <p align="center"> <img src="images-readme/La_spada_nella_roccia.jpg"></p>
 <p align="center">
