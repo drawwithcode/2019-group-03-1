@@ -1,52 +1,37 @@
-let animationCount = 0;
-let soundCount = 0;
+let bgCounter = 0;
 
 function preload() {
-  winAnimation = loadImage("assets/animation/you_win-animation.gif");
+  winAnimation = loadImage("assets/animation/you_win-animation-desktop.gif");
   winSound = loadSound("assets/sound/you_win-sound.mp3");
-  winImg = loadImage("assets/img/you_win-img.png");
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   background(0);
-
-  buttonDom = createImg("assets/img/index-button.svg");
-  buttonDom.position(windowWidth / 2 - 112, windowHeight / 2 + 20 + windowHeight / 6);
-  buttonDom.size(224, 124);
-  buttonDom.addClass("blinker-box");
-  buttonDom.mousePressed(startAnimation);
-
-  divDom = createDiv("PRESS HERE");
-  divDom.position(windowWidth / 2 - 78, windowHeight / 2 + 74 + windowHeight / 6);
-  divDom.addClass("blinker-text");
-  divDom.mousePressed(startAnimation);
 }
 
 function draw() {
-  if (animationCount == 1) {
-    removeElements();
-    setTimeout(changeBackground, 6000);
-    if (soundCount == 1) {
-      winSound.play();
-      soundCount++;
-    }
+  //If the device is not desktop go to index.html
+  if(windowWidth<576){
+    window.open("index.html", "_self");
+  }
+  setTimeout(changeBackground, 6000);
+  if (bgCounter == 0) {
+    winSound.play();
+    bgCounter++;
+  }
+  if (bgCounter == 1) {
     backgroundImage(winAnimation);
-  } else if (animationCount > 1) {
-    backgroundImage(winImg);
-    changePage();
-    //You win text
+  } else {
+    background(0);
+
+    //New king text
     textFont("PressStart2P");
-    textSize(36);
+    textSize(64);
     textAlign(CENTER, CENTER);
     fill(255);
-    text("YOU WIN", width/2, height/2);
+    text("WE HAVE A NEW KING!", width / 2, height / 2);
   }
-}
-
-function startAnimation() {
-  animationCount++;
-  soundCount++;
 }
 
 function backgroundImage(img) {
@@ -59,9 +44,5 @@ function backgroundImage(img) {
 }
 
 function changeBackground() {
-  animationCount++;
-}
-
-function changePage() {
-  window.open("you_win-photo.html", "_self");
+  bgCounter++;
 }
