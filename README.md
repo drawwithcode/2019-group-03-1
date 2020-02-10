@@ -49,6 +49,9 @@ The choice of a widely known story was determined by the need to have a game dyn
 <p align="center">
     <img src="images-readme/miami_festival.jpg" width="400">
 </p>
+<p align="center">
+    <em >Mi Ami Festival</em>
+</p>
 
 At the beginning the project was designed to be placed at PolEATecnico Bistò (ex Bar La Rossa), creating a more local and restricted experience, but something was missing: it's a common game but the common game atmosphere was not really present. The decision was to move to a larger and more populated environment where you can have a large screen to view and play in the community, but without forgetting about the sectorialization: the game brings together people who are already interested in participating in the same experience.
 
