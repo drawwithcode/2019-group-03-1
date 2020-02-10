@@ -12,7 +12,7 @@ function setup() {
 }
 
 function draw() {
-  var instructions = "From one drag to another you will have 1 minute of long waiting.\n\nOther folks are also trying: make sure to be the first one to extract the sword to be the winner and conqueror of the Reign!";
+  var instructions = "From one drag to another you will have some time of long waiting.\n\nOther folks are also trying: make sure to be the first one to extract the sword to be the winner and conqueror of the Reign!";
 
   //BACKGROUND
   backgroundImage(bg);
