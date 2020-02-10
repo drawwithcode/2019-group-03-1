@@ -2,7 +2,7 @@
 
 Everybody wants to matter. In this mobile game you can win the boredom and a reign both. <br>All you have to do is extract the sword from the stone.
 
-<p align="center"> <img src="images-readme/readme-banner-1.png" style="height:200px"></p>
+<p align="center"> <img src="images-readme/readme-banner.png" style="height:200px"></p>
 <p align="center">
 <br>
 
