@@ -101,6 +101,8 @@ LORENZ
 FRA
 
 ###### TEXT BLINK ANIMATION
+To overcome the limitations of p5.js in using text animations, we used the css formatting language to create animations that emulate the classic "PRESS START" command found in many arcade games.
+
 ```css
 @keyframes blinker {
   0% {
