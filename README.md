@@ -161,13 +161,13 @@ The game begins. In between each swipe you will have to wait some seconds, and t
 </p>
 
 ###### STEP #4
-
+If you win
 <p align="center">
     <img src="" width="400">
 </p>
 
 ###### STEP #4
-
+If you lose
 <p align="center">
     <img src="" width="400">
 </p>
