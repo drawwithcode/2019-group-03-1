@@ -95,7 +95,21 @@ Smooth animations ???????
 LORENZ
 
 ###### DESKTOP AND MOBILE
-GIOVANNI
+```css
+@keyframes blinker {
+  0% {
+    opacity: 1.0;
+  }
+
+  50% {
+    opacity: 0.0;
+  }
+
+  100% {
+    opacity: 1.0;
+  }
+}
+```
 
 ###### PIXEL GRID PHOTO
 FRA
