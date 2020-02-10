@@ -44,7 +44,7 @@ The choice of a widely known story was determined by the need to have a game dyn
 
 ## Context
 ###### MI AMI FESTIVAL
-[MI AMI Festival](https://www.miamifestival.it/2020/) Musica Importante A Milano is a music festival organized by Rockit.it since 2005. It takes place every year in a park, currently the Idroscalo of Milan, during the last weekend of May. It hosts Italian artists from a predominantly independent area, alternative, without distinction of musical genre but with a careful musical-cultural selection. MI AMI is the most known summer festival of Milano, and it has an indie vibe and style that aligns perfectly with the mood of our site.
+[Mi Ami Festival](https://www.miamifestival.it/2020/) Musica Importante A Milano is a music festival organized by Rockit.it since 2005. It takes place every year in a park, currently the Idroscalo of Milan, during the last weekend of May. It hosts Italian artists from a predominantly independent area, alternative, without distinction of musical genre but with a careful musical-cultural selection. MI AMI is the most known summer festival of Milano, and it has an indie vibe and style that aligns perfectly with the mood of our site.
 
 <p align="center">
     <img src="images-readme/miami_festival.jpg" width="400">
@@ -86,8 +86,6 @@ We choose a Pixel Art style, that is almost entirely based on a 51 width pixels 
 The palette tries to evoque a magic ambience, set into the woods, where the magic sword is stuck. The principal colour is green, that is then declined in shades of the same green, along with some brown shades. 
 
 As for the info and the structure of the game, we used an off-white colour.
-
-Smooth animations ???????
 
 <p align="center">
     <img src="images-readme/the_legend_of_zelda-a_link_to_the_past.gif" width="400">
