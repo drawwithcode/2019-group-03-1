@@ -315,9 +315,9 @@ All'interno del draw si carica la webcam
 //WEBCAM VARIABLES
 var capture;
 var foto;
-var pixelGrid = []; //contains the grid made from CAPTURE
-var rec = false; //play and stop the rec
-var pixelColor = 10; //base color of pixels of the PIXELGRID
+var pixelGrid = [];
+var rec = false;
+var pixelColor = 10;
 var xStart;
 var xFin;
 var yStart;
