@@ -97,161 +97,6 @@ As for the info and the structure of the game, we used an off-white colour.
 <br>
 
 
-## Code Challanges
-
-###### BACK-END CODE
-We used the server to handle two kinds of data: the number of times the sword has been pulled and the name of the current king. In the first case, a global variable stored and updated by the server for each new successful swipe
-could serve us well, since heroku's service keeps the server active for 24 hours: exactly the time span we needed for our game, because it would be restarted daily. But the name of the winner of the day should be saved in memory also for the next day, and for this reason we needed a different solution to store that data: we found the way to use a google sheets document as a small, free to use database, using the google APIs package for Node.
-<br>
-To make the experience consistent and continuously shared between the different users, we made the server handle every successful swipe, in order to update the position of the sword for every user at the same time and declare an unique winner when an user makes the decisive swipe. To achieve this last point we used the "broadcast" function from the socket.io package. <br>
-<b>server side:</b>
-```javascript
-var updatedPulls = 0;
-function newConnection(socket) {
- socket.on("swordPull", function() {
-   //CHECKS IF THIS IS THE DECISIVE SWIPE
-   if (updatedPulls === maxPullsCount - 1) {
-     //MAKES THE SWORD "DISAPPEAR" WHEN THE GAME ENDS
-     updatedPulls += 1000;
-     //CALLS DIFFERENT EVENTS FOR THE WINNER AND EVERYONE ELSE
-     socket.emit("winner");
-     socket.broadcast.emit("loser");
-   } else {
-     updatedPulls += 1;
-     swordTimerCount = 30;
-     //TRIGGERS AN ANIMATION SHOWING A PULL FROM ANOTHER USER
-     socket.broadcast.emit("enemyRay");
-     //SENDS THE UPDATED NUMBER OF PULLS TO EACH USER
-     io.emit("pullsCountFromServer", updatedPulls);
-   }
- })
-};
-```
-<b>client-side:</b>
-```javascript
-function swiped() {
-  if (personalCountDown == 0) {
-    //CHECKS IF THE SWIPE WAS SUCCESSFUL
-    if (barCursor.x >= swipeBar.x - swipeBar.width / 10 && barCursor.x <= swipeBar.x + swipeBar.width / 10) {
-      //CALLS THE EVENT swordPull IN THE SERVER TO HANDLE THE SUCCESSFUL SWIPE
-      socket.emit("swordPull");
-    }
-  }
-  //RESTARTS THE PERSONAL TIMER AFTER EACH ATTEMPT
-  personalCountDown = 300;
-}
-//LISTENS FOR UPDATES ON THE NUMBER OF PULLS FROM THE SERVER
-socket.on("pullsCountFromServer", function(data) {
-  //UPDATES THE VARIABLE THAT AFFECTS THE POSITION OF THE SWORD
-  pullsCount = data;
-});
-```
-To update and get the name of the king from our google sheets database, we had to set up and use the Google APIs package.
-<br>
-<b>server side:</b>
-```javascript
-//SETTING UP THE GOOGLE API AND PROVIDING CREDENTIALS TO ACCESS THE DATA
-var { google } = require("googleapis");
-var credentials = require("./spreadsheet-credentials.json");
-var auth = new google.auth.JWT(
-  credentials.client_email,
-  null,
-  credentials.private_key,
-  ["https://www.googleapis.com/auth/spreadsheets"],
-  null
-);
-//PROVIDING THE INFORMATIONS TO ACCESS THE DATABASE SPREADSHEET
-google.options({
-  auth
-});
-var sheets = google.sheets("v4");
-var spreadsheetId = "1Q25gnGC5R3uE4qQHON8njArLOeIcu0IvrbT1jTqy5QQ";
-//GLOBAL VARIABLES TO STORE AND UPDATE THE NAME OF THE KING RECEIVED FROM USERS AND DATABASE
-var updater;
-var kingName;
-//GETS THE CURRENT KING'S NAME FROM THE DATABASE
-function getKingName() {
-  sheets.spreadsheets.values.get(
-    {
-      spreadsheetId,
-      range: "swordInStoneData!B1"
-    },
-    (err, result) => {
-      kingName = result.data.values[0][0];
-      console.log(kingName);
-    }
-  );
-}
-function newConnection(socket) {
-  socket.on("requestKingName", function() {
-    socket.emit("kingNameFromServer", kingName);
-  });
-  socket.on("submitName", function(submittedName) {
-    updateKingName(submittedName);
-    kingName = submittedName;
-  });
-}
-//UPDATES THE CURRENT KING'S NAME IN THE DATABASE USING THE VALUES PROVIDED BY THE WINNER USER
-function updateKingName(name) {
-  updater = { values: [[name]] };
-  sheets.spreadsheets.values.update({
-    spreadsheetId,
-    range: "swordInStoneData!B1",
-    valueInputOption: "USER_ENTERED",
-    resource: updater
-  });
-}
-```
-<b>client side:</b>
-```javascript
-var king = "";
-
-function setup() {
-//MAKES A REQUEST TO THE SERVER FOR THE KING'S NAME IN ORDER TO SHOW IT IN THE USER INTERFACE
-socket.emit("requestKingName");
-}
-//LISTENS FOR THE DATA FROM THE SERVER
-socket.on("kingNameFromServer", function(name) {
-  //UPDATES THE KING'S NAME ACCORDING TO THE DATA PROVIDED BY THE SERVER
-  king = name;
-});
-
-function savePhoto() {
-  //SENDS THE NAME SUBMITTED IN THE FORM TO THE SERVER IN ORDER TO UPDATE THE DATABASE
-  socket.emit("submitName", casellaNome.value());
-}
-```
-###### DESKTOP AND MOBILE
-To understand what kind of device, desktop or mobile, is connected to the game we used if conditions. Through the latter we checked the size of the screen, to then show or hide some elements rather than others or redirect the device to the correct page.
-<br>
-[Bootstrap](https://getbootstrap.com/docs/4.1/layout/overview/) was used as a reference for the screen width of the devices.
-
-###### PIXEL GRID PHOTO
-FRA
-
-###### TEXT BLINK ANIMATION
-<p align="center">
-    <img src="images-readme/iphone-loading_screen-video_mockup.gif" width="400">
-</p>
-
-To overcome the limitations of p5.js in using text animations, we used the css formatting language to create animations that emulate the classic "PRESS START" command found in many arcade games.
-
-```css
-@keyframes blinker {
-  0% {
-    opacity: 1.0;
-  }
-
-  50% {
-    opacity: 0.0;
-  }
-
-  100% {
-    opacity: 1.0;
-  }
-}
-```
-
 ## Website experience
 The intent is to create an app accessible to all, fast to use even in times of high turnout. To achieve this speed of play, we decided to divide the app into a few short introduction screens, to leave space and time for the action.
 
@@ -298,6 +143,180 @@ If you win it will appear a glorious animation, with a cheerful song. After this
     <img src="images-readme/iphone-mockup-you_win-photo.png" width="400">
 </p>
 <br>
+
+
+## Code Challanges
+
+###### BACK-END CODE
+We used the server to handle two kinds of data: the number of times the sword has been pulled and the name of the current king. In the first case, a global variable stored and updated by the server for each new successful swipe
+could serve us well, since heroku's service keeps the server active for 24 hours: exactly the time span we needed for our game, because it would be restarted daily. But the name of the winner of the day should be saved in memory also for the next day, and for this reason we needed a different solution to store that data: we found the way to use a google sheets document as a small, free to use database, using the google APIs package for Node.
+<br>
+To make the experience consistent and continuously shared between the different users, we made the server handle every successful swipe, in order to update the position of the sword for every user at the same time and declare an unique winner when an user makes the decisive swipe. To achieve this last point we used the "broadcast" function from the socket.io package. <br>
+<b>server side:</b>
+```javascript
+var updatedPulls = 0;
+function newConnection(socket) {
+ socket.on("swordPull", function() {
+ 
+   //CHECKS IF THIS IS THE DECISIVE SWIPE
+   if (updatedPulls === maxPullsCount - 1) {
+   
+     //MAKES THE SWORD "DISAPPEAR" WHEN THE GAME ENDS
+     updatedPulls += 1000;
+     //CALLS DIFFERENT EVENTS FOR THE WINNER AND EVERYONE ELSE
+     socket.emit("winner");
+     socket.broadcast.emit("loser");
+   } else {
+     updatedPulls += 1;
+     swordTimerCount = 30;
+     
+     //TRIGGERS AN ANIMATION SHOWING A PULL FROM ANOTHER USER
+     socket.broadcast.emit("enemyRay");
+     
+     //SENDS THE UPDATED NUMBER OF PULLS TO EACH USER
+     io.emit("pullsCountFromServer", updatedPulls);
+   }
+ })
+};
+```
+<b>client-side:</b>
+```javascript
+function swiped() {
+  if (personalCountDown == 0) {
+  
+    //CHECKS IF THE SWIPE WAS SUCCESSFUL
+    if (barCursor.x >= swipeBar.x - swipeBar.width / 10 && barCursor.x <= swipeBar.x + swipeBar.width / 10) {
+    
+      //CALLS THE EVENT swordPull IN THE SERVER TO HANDLE THE SUCCESSFUL SWIPE
+      socket.emit("swordPull");
+    }
+  }
+  
+  //RESTARTS THE PERSONAL TIMER AFTER EACH ATTEMPT
+  personalCountDown = 300;
+}
+
+//LISTENS FOR UPDATES ON THE NUMBER OF PULLS FROM THE SERVER
+socket.on("pullsCountFromServer", function(data) {
+
+  //UPDATES THE VARIABLE THAT AFFECTS THE POSITION OF THE SWORD
+  pullsCount = data;
+});
+```
+To update and get the name of the king from our google sheets database, we had to set up and use the Google APIs package.
+<br>
+<b>server side:</b>
+```javascript
+
+//SETTING UP THE GOOGLE API AND PROVIDING CREDENTIALS TO ACCESS THE DATA
+var { google } = require("googleapis");
+var credentials = require("./spreadsheet-credentials.json");
+var auth = new google.auth.JWT(
+  credentials.client_email,
+  null,
+  credentials.private_key,
+  ["https://www.googleapis.com/auth/spreadsheets"],
+  null
+);
+
+//PROVIDING THE INFORMATIONS TO ACCESS THE DATABASE SPREADSHEET
+google.options({
+  auth
+});
+var sheets = google.sheets("v4");
+var spreadsheetId = "1Q25gnGC5R3uE4qQHON8njArLOeIcu0IvrbT1jTqy5QQ";
+
+//GLOBAL VARIABLES TO STORE AND UPDATE THE NAME OF THE KING RECEIVED FROM USERS AND DATABASE
+var updater;
+var kingName;
+
+//GETS THE CURRENT KING'S NAME FROM THE DATABASE
+function getKingName() {
+  sheets.spreadsheets.values.get(
+    {
+      spreadsheetId,
+      range: "swordInStoneData!B1"
+    },
+    (err, result) => {
+      kingName = result.data.values[0][0];
+      console.log(kingName);
+    }
+  );
+}
+function newConnection(socket) {
+  socket.on("requestKingName", function() {
+    socket.emit("kingNameFromServer", kingName);
+  });
+  socket.on("submitName", function(submittedName) {
+    updateKingName(submittedName);
+    kingName = submittedName;
+  });
+}
+
+//UPDATES THE CURRENT KING'S NAME IN THE DATABASE USING THE VALUES PROVIDED BY THE WINNER USER
+function updateKingName(name) {
+  updater = { values: [[name]] };
+  sheets.spreadsheets.values.update({
+    spreadsheetId,
+    range: "swordInStoneData!B1",
+    valueInputOption: "USER_ENTERED",
+    resource: updater
+  });
+}
+```
+<b>client side:</b>
+```javascript
+var king = "";
+
+function setup() {
+
+//MAKES A REQUEST TO THE SERVER FOR THE KING'S NAME IN ORDER TO SHOW IT IN THE USER INTERFACE
+socket.emit("requestKingName");
+}
+
+//LISTENS FOR THE DATA FROM THE SERVER
+socket.on("kingNameFromServer", function(name) {
+
+  //UPDATES THE KING'S NAME ACCORDING TO THE DATA PROVIDED BY THE SERVER
+  king = name;
+});
+
+function savePhoto() {
+
+  //SENDS THE NAME SUBMITTED IN THE FORM TO THE SERVER IN ORDER TO UPDATE THE DATABASE
+  socket.emit("submitName", casellaNome.value());
+}
+```
+###### DESKTOP AND MOBILE
+To understand what kind of device, desktop or mobile, is connected to the game we used if conditions. Through the latter we checked the size of the screen, to then show or hide some elements rather than others or redirect the device to the correct page.
+<br>
+[Bootstrap](https://getbootstrap.com/docs/4.1/layout/overview/) was used as a reference for the screen width of the devices.
+
+###### PIXEL GRID PHOTO
+FRA
+
+###### TEXT BLINK ANIMATION
+<p align="center">
+    <img src="images-readme/iphone-loading_screen-video_mockup.gif" width="400">
+</p>
+
+To overcome the limitations of p5.js in using text animations, we used the css formatting language to create animations that emulate the classic "PRESS START" command found in many arcade games.
+
+```css
+@keyframes blinker {
+  0% {
+    opacity: 1.0;
+  }
+
+  50% {
+    opacity: 0.0;
+  }
+
+  100% {
+    opacity: 1.0;
+  }
+}
+```
 
 
 ## Used Libraries and Technologies
