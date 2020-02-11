@@ -308,7 +308,76 @@ To understand what kind of device, desktop or mobile, is connected to the game w
 [Bootstrap](https://getbootstrap.com/docs/4.1/layout/overview/) was used as a reference for the screen width of the devices.
 
 ###### PIXEL GRID PHOTO
-FRA
+Lo stile Pixel Art ci portato a sovrapporre una griglia di quadrati tale da semplificare la rete di pixel.
+All'interno del draw si carica la webcam
+
+```
+//WEBCAM VARIABLES
+var capture;
+var foto;
+var pixelGrid = []; //contains the grid made from CAPTURE
+var rec = false; //play and stop the rec
+var pixelColor = 10; //base color of pixels of the PIXELGRID
+var xStart;
+var xFin;
+var yStart;
+var yFin;
+
+function setup() {
+
+  //SET THE WEBCAM
+  capture = createCapture(VIDEO);
+  capture.size(320 - 320 / 4, 260 - 260 / 4);
+  capture.hide();
+  
+  //DEFINE THE POINTS OF THE PIXEL GRID
+  xStart = windowWidth / 2 - capture.width / 2;
+  yStart = windowHeight / 2 - capture.height + capture.height / 2;
+  xFin = windowWidth / 2 + capture.width / 2;
+  yFin = windowHeight / 2 + capture.height / 2;
+}
+
+function draw() {
+
+  //CREATE A PIXEL GRID OVER THE WEBCAM
+  var foto = capture.loadPixels();
+  imageMode(CORNER);
+  image(foto, xStart, yStart, capture.width, capture.height);
+  gridCreate(xStart, xFin, yStart, yFin, 6);
+  for (var i = 0; i < pixelGrid.length; i++) {
+    var p = pixelGrid[i];
+    p.display();
+  }
+} 
+
+//PIXELGRID (ARRAY GETTING THE COLOR OF THE CAPTURE)
+function gridCreate(_xStart, _xFin, _yStart, _yFin, _dim) {
+  var pos = 0;
+  for (var x = _xStart; x < _xFin; x += _dim) {
+    for (var y = _yStart + 1; y < _yFin; y += _dim) {
+      var color = get(x, y); //get the COLOR in the X an Y position
+      var tempPixel = new Pixel(x, y, color, _dim);
+      pixelGrid[pos] = tempPixel; //put the PIXEL in the PIXELGRID array
+      pos++; //Go to the next element in the array
+    }
+  }
+}
+
+//PIXEL COLOR
+function Pixel(_x, _y, _color, _dim) {
+  this.x = _x;
+  this.y = _y;
+  this.color = _color;
+  this.dim = _dim;
+
+  this.display = function() {
+    noStroke();
+    fill(this.color);
+    square(this.x, this.y, this.dim);
+  };
+}
+
+```
 
 ###### TEXT BLINK ANIMATION
 <p align="center">
