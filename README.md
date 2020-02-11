@@ -157,10 +157,10 @@ To make the experience consistent and continuously shared between the different 
 var updatedPulls = 0;
 function newConnection(socket) {
  socket.on("swordPull", function() {
- 
+
    //CHECKS IF THIS IS THE DECISIVE SWIPE
    if (updatedPulls === maxPullsCount - 1) {
-   
+
      //MAKES THE SWORD "DISAPPEAR" WHEN THE GAME ENDS
      updatedPulls += 1000;
      //CALLS DIFFERENT EVENTS FOR THE WINNER AND EVERYONE ELSE
@@ -169,10 +169,10 @@ function newConnection(socket) {
    } else {
      updatedPulls += 1;
      swordTimerCount = 30;
-     
+
      //TRIGGERS AN ANIMATION SHOWING A PULL FROM ANOTHER USER
      socket.broadcast.emit("enemyRay");
-     
+
      //SENDS THE UPDATED NUMBER OF PULLS TO EACH USER
      io.emit("pullsCountFromServer", updatedPulls);
    }
@@ -183,15 +183,15 @@ function newConnection(socket) {
 ```javascript
 function swiped() {
   if (personalCountDown == 0) {
-  
+
     //CHECKS IF THE SWIPE WAS SUCCESSFUL
     if (barCursor.x >= swipeBar.x - swipeBar.width / 10 && barCursor.x <= swipeBar.x + swipeBar.width / 10) {
-    
+
       //CALLS THE EVENT swordPull IN THE SERVER TO HANDLE THE SUCCESSFUL SWIPE
       socket.emit("swordPull");
     }
   }
-  
+
   //RESTARTS THE PERSONAL TIMER AFTER EACH ATTEMPT
   personalCountDown = 300;
 }
@@ -343,6 +343,7 @@ To overcome the limitations of p5.js in using text animations, we used the css f
 - [Mr. Shiffman's Tutorials](https://shiffman.net/)
 - [OpenProcessing.org](https://www.openprocessing.org/)
 - [P5JS.org](https://p5js.org/)
+- [Google APIs tutorial by egghead.io](https://egghead.io/lessons/node-js-use-google-sheets-with-node-and-express-in-fun-side-projects)
 <br>
 
 
