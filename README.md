@@ -311,7 +311,7 @@ To understand what kind of device, desktop or mobile, is connected to the game w
 Lo stile Pixel Art ci portato a sovrapporre una griglia di quadrati tale da semplificare la rete di pixel.
 All'interno del draw si carica la webcam
 
-```
+```javascript
 //WEBCAM VARIABLES
 var capture;
 var foto;
