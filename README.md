@@ -304,7 +304,19 @@ function savePhoto() {
 To understand what kind of device, desktop or mobile, is connected to the game we used if conditions. Through the latter we checked the size of the screen, to then show or hide some elements rather than others or redirect the device to the correct page.
 <br>
 [Bootstrap](https://getbootstrap.com/docs/4.1/layout/overview/) was used as a reference for the screen width of the devices.
-
+```javascript
+if (window.innerWidth < 575) {
+    bgImg = loadImage("assets/the-sword-in-the-stone/spada_roccia-background.png");
+  } else {
+    bgImg = loadImage("assets/the-sword-in-the-stone/spada_roccia-background_desktop.png");
+}
+```
+<br>
+```javascript
+if(windowWidth>575){
+    window.open("the_sword_in_the_stone.html", "_self");
+}
+```
 ###### PIXEL GRID PHOTO
 The Pixel Art style led us to superimpose a grid of squares to simplify the image uploaded from the webcam. To each square of the grid is associated the color of the underlying pixel, creating the classic pixel art effect.
 
