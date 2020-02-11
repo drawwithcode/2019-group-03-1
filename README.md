@@ -100,6 +100,11 @@ As for the info and the structure of the game, we used an off-white colour.
 ## Website experience
 The intent is to create an app accessible to all, fast to use even in times of high turnout. To achieve this speed of play, we decided to divide the app into a few short introduction screens, to leave space and time for the action.
 
+[Mobile Game](https://sword-in-the-stone.herokuapp.com/the_sword_in_the_stone.html)<br>
+[Desktop Game](???)<br>
+
+
+
 ###### STEP #1
 After the loading screen, it will appear two following screens of brief introduction to the realm and to the rules and guidance in order to play the game.
 
@@ -131,12 +136,17 @@ The game begins. In between each swipe you will have to wait some seconds, and t
 ###### STEP #4
 If you lose there will be a very sad animation, where everything goes dark and the leaves will star to fall, like recreating a sad autumn atmosphere. After the animation you will just see the empty rock, but don't lose your hopes: you can always try to win the day after!
 
+[You Lose](https://sword-in-the-stone.herokuapp.com/you_lose.html)<br>
+
+
 <p align="center">
     <img src="images-readme/iphone-mockup-you_lose.png" width="400">
 </p>
 
 ###### STEP #4
 If you win it will appear a glorious animation, with a cheerful song. After this, you will be able to take a picture with the crown that you had well deserved, and then also save that victorious picture. There will then be a screen with the actual prize that will be agreed with the sponsor.
+
+[You Win](https://sword-in-the-stone.herokuapp.com/you_win.html)<br>
 
 <p align="center">
     <img src="images-readme/iphone-mockup-you_win.png" width="400">
