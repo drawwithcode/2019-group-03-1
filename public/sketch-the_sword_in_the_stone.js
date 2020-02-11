@@ -446,7 +446,11 @@ socket.on("loser", youLose);
 socket.on("enemyRay", displayEnemyRay);
 
 socket.on("kingNameFromServer", function(name) {
-  king = name;
+  if (name === null || name === undefined) {
+    king = "";
+  } else {
+    king = name;
+  }
   console.log(king);
 });
 
