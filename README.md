@@ -305,7 +305,7 @@ To understand what kind of device, desktop or mobile, is connected to the game w
 [Bootstrap](https://getbootstrap.com/docs/4.1/layout/overview/) was used as a reference for the screen width of the devices.
 
 ###### PIXEL GRID PHOTO
-Lo stile Pixel Art ci portato a sovrapporre una griglia di quadrati tale da semplificare la rete di pixel.
+The Pixel Art style led us to superimpose a grid of squares to simplify the image uploaded from the webcam. To each square of the grid is associated the color of the underlying pixel, creating the classic pixel art effect.
 
 ```javascript
 //WEBCAM VARIABLES
