@@ -402,7 +402,7 @@ To overcome the limitations of p5.js in using text animations, we used the css f
 ## Used Libraries and Technologies
 
 - express.js
-- google APIs
+- Google APIs
 - hammer.min.js
 - mappa.js
 - node.js
@@ -422,11 +422,11 @@ To overcome the limitations of p5.js in using text animations, we used the css f
 
 ###### REFERENCES
 
+- [Google APIs Tutorial by egghead.io](https://egghead.io/lessons/node-js-use-google-sheets-with-node-and-express-in-fun-side-projects)
 - [Mr. Shiffman's Tutorials](https://shiffman.net/)
 - [OpenProcessing.org](https://www.openprocessing.org/)
 - [P5JS.org](https://p5js.org/)
-- [Google APIs tutorial by egghead.io](https://egghead.io/lessons/node-js-use-google-sheets-with-node-and-express-in-fun-side-projects)
-- [Socket.io official website](https://socket.io/)
+- [Socket.io](https://socket.io/)
 <br>
 
 
