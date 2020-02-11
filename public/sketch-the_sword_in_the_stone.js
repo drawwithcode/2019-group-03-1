@@ -437,7 +437,11 @@ function youWon() {
 //FUNCTION CALLED WHEN SOMEONE ELSE WINS
 function youLose() {
   console.log("loser!!");
-  window.open("you_lose.html", "_self");
+  if (window.innerWidth > 575) {
+    window.open("you_win-desktop.html", "_self");
+  } else {
+    window.open("you_lose.html", "_self");
+  }
 }
 //CHANGES COLOR TO THE RAYS AND STARTS THE ANIMATION
 function displayEnemyRay() {
