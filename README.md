@@ -83,7 +83,7 @@ Everything aims to the facility of the gameplay, that has to be intuitive and re
 
 ###### VISUAL DESIGN
 We choose a Pixel Art style, that is almost entirely based on a 51 width pixels grid.
-The palette tries to evoke a magic ambience, set into the woods, where the magic sword is stuck. The principal colour is green code #8AECA1, that is then declined in shades of the same green, along with some brown shades. Everything recalls the natural world that MI AMI Festival tries introduce in the city of Milan.
+The palette tries to evoke a magic ambience, set into the woods, where the magic sword is stuck. The principal colour is green code #8AECA1, that is then declined in shades of the same green, along with some brown shades. Everything recalls the natural world that Mi Ami Festival tries introduce in the city of Milan.
 As for the info and the structure of the game, we used an off-white colour.
 
 <p align="center">
@@ -156,9 +156,10 @@ If you win it will appear a glorious animation, with a cheerful song. After this
 
 ###### BACK-END CODE
 We used the server to handle two kinds of data: the number of times the sword has been pulled and the name of the current king. In the first case, a global variable stored and updated by the server for each new successful swipe
-could serve us well, since heroku's service keeps the server active for 24 hours: exactly the time span we needed for our game, because it would be restarted daily. But the name of the winner of the day should be saved in memory also for the next day, and for this reason we needed a different solution to store that data: we found the way to use a google sheets document as a small, free to use database, using the google APIs package for Node.
+could serve us well, since Heroku's service keeps the server active for 24 hours: exactly the time span we needed for our game, because it would be restarted daily. But the name of the winner of the day should be saved in memory also for the next day, and for this reason we needed a different solution to store that data: we found the way to use a Google Sheets document as a small, free to use database, using the Google APIs package for Node.
 <br>
-To make the experience consistent and continuously shared between the different users, we made the server handle every successful swipe, in order to update the position of the sword for every user at the same time and declare an unique winner when an user makes the decisive swipe. To achieve this last point we used the "broadcast" function from the socket.io package. <br>
+To make the experience consistent and continuously shared between the different users, we made the server handle every successful swipe, in order to update the position of the sword for every user at the same time and declare an unique winner when an user makes the decisive swipe. To achieve this last point we used the "broadcast" function from the socket.io package. 
+<br>
 <b>server side:</b>
 ```javascript
 var updatedPulls = 0;
@@ -186,7 +187,7 @@ function newConnection(socket) {
  })
 };
 ```
-<b>client-side:</b>
+<b>client side:</b>
 ```javascript
 function swiped() {
   if (personalCountDown == 0) {
@@ -210,7 +211,7 @@ socket.on("pullsCountFromServer", function(data) {
   pullsCount = data;
 });
 ```
-To update and get the name of the king from our google sheets database, we had to set up and use the Google APIs package.
+To update and get the name of the king from our Google Sheets database, we had to set up and use the Google APIs package.
 <br>
 <b>server side:</b>
 ```javascript
@@ -372,7 +373,6 @@ function Pixel(_x, _y, _color, _dim) {
     square(this.x, this.y, this.dim);
   };
 }
-
 ```
 
 ###### TEXT BLINK ANIMATION
