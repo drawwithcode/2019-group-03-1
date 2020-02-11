@@ -56,9 +56,7 @@ The choice of a widely known story was determined by the need to have a game dyn
 At the beginning the project was designed to be placed at PolEATecnico Bistò (ex Bar La Rossa), creating a more local and restricted experience, but something was missing: it's a community game but the common game atmosphere was not really present. The decision was to move to a larger and more populated environment where you can have a large screen for projecting the live progress of the game, but without forgetting about the sectorialization: this site brings together people who are already interested in participating in the same concert experience.
 
 ###### THE BIG SCREEN
-Thanks to this change of location we can take advantage of the big screen projection of the live game, that will be played in moments of stalemate, like from the opening of the gates and the waiting for the singers, allowing everyone to perceive the position of the sword. It became a real group experience, in which the competition is even more present, given that it will appear both the number of the "knights" that are trying to conquer the sword (and the name of the King at the end ???TRUEFALSE??).
-
-(There will be also a QR code that will appear on the big screen and it will allow to play only by framing it with the phone.)
+Thanks to this change of location we can take advantage of the big screen projection of the live game, that will be played in moments of stalemate, like from the opening of the gates and the waiting for the singers, allowing everyone to perceive the position of the sword. It became a real group experience, in which the competition is even more present, given that it will appear both the number of the "knights" that are trying to conquer the sword.
 
 ###### REAL WINNING
 We tought about a collaboration with Mi Ami Festival, thanks to which there will be a prize offered, such as a backstage meeting with the artist, or free beers for the real King of the day.
@@ -100,8 +98,7 @@ As for the info and the structure of the game, we used an off-white colour.
 ## Website experience
 The intent is to create an app accessible to all, fast to use even in times of high turnout. To achieve this speed of play, we decided to divide the app into a few short introduction screens, to leave space and time for the action.
 
-[Mobile Game](https://sword-in-the-stone.herokuapp.com/the_sword_in_the_stone.html)<br>
-[Desktop Game](???)<br>
+[Link to the game](https://sword-in-the-stone.herokuapp.com/the_sword_in_the_stone.html)<br>
 
 
 
