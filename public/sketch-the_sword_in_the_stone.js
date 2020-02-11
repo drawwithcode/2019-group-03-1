@@ -1,7 +1,10 @@
 var bg, spada, rocciaBottom, rocciaTop;
-var bgImg, spadaImg, rocciaBottomImg, rocciaTopImg;
+var bgImg, spadaImg, rocciaBottomImg, rocciaTopImg, crownImg;
+var rocciaX, rocciaY;
 var pix;
 var stelline = [];
+var ray1, ray2, ray3, ray4;
+var rayColor = "Aquamarine";
 var hammer;
 var pullsCount;
 var usersCount;
@@ -10,6 +13,7 @@ var bar;
 var barCursor;
 var personalCountDown;
 var timer;
+var kingNameBox;
 
 let userPosition;
 var userswordDistance;
@@ -19,24 +23,20 @@ let pressStart2P, vt323;
 var latMiAmi = 45.4637478;
 var lonMiAmi = 9.2858445;
 
+var king = "";
+
 function preload() {
   if (window.innerWidth < 575) {
-    bgImg = loadImage(
-      "assets/the-sword-in-the-stone/spada_roccia-background.png"
-    );
+    bgImg = loadImage("assets/the-sword-in-the-stone/spada_roccia-background.png");
   } else {
-    bgImg = loadImage(
-      "assets/the-sword-in-the-stone/spada_roccia-background_desktop.png"
-    );
+    bgImg = loadImage("assets/the-sword-in-the-stone/spada_roccia-background_desktop.png");
   }
   box = loadImage("assets/img/intro-box.svg");
   spadaImg = loadImage("assets/the-sword-in-the-stone/spada.png");
-  rocciaBottomImg = loadImage(
-    "assets/the-sword-in-the-stone/roccia_bottom.png"
-  );
+  rocciaBottomImg = loadImage("assets/the-sword-in-the-stone/roccia_bottom.png");
   rocciaTopImg = loadImage("assets/the-sword-in-the-stone/roccia_top.png");
+  crownImg = loadImage("assets/img/crown.svg");
 
-  //WEBGL requires loadFont
   pressStart2P = loadFont("font/PressStart2P-Regular.ttf");
   vt323 = loadFont("font/VT323-Regular.ttf");
 }
@@ -56,14 +56,21 @@ function setup() {
     pix = round(width / 51);
   }
   personalCountDown = 300;
+  rocciaX = width / 2;
+  rocciaY = height / 1.5;
 
-  var stellina1 = new Stellina(15, 35, 120);
-  var stellina2 = new Stellina(25, 25, 90);
+  var stellina1 = new Stellina(15, 35, 180);
+  var stellina2 = new Stellina(25, 25, 120);
   var stellina3 = new Stellina(35, 45, 60);
   stelline.push(stellina1, stellina2, stellina3);
   spada = new Spada(27, 30);
   swipeBar = new Bar(26, 60, 32);
   barCursor = new BarCursor(26, 60);
+  ray1 = new Ray(1, 0);
+  ray2 = new Ray(1, 6);
+  ray3 = new Ray(-1, 0);
+  ray4 = new Ray(-1, 6);
+  kingNameBox = new KingName();
 
   var options = {
     preventDefault: true
@@ -74,6 +81,7 @@ function setup() {
   });
 
   hammer.on("swipeup", swiped);
+  socket.emit("requestKingName");
 }
 
 function draw() {
@@ -87,22 +95,16 @@ function draw() {
     //Background image
     bg = image(bgImg, width / 2, height / 2, width, width * 0.62);
     //Top area of the rock
-    rocciaTop = image(
-      rocciaTopImg,
-      width / 2,
-      height / 1.5,
-      height / 3.5,
-      (height / 3.5) * 1.14
-    );
+    rocciaTop = image(rocciaTopImg, rocciaX, rocciaY + pix, 30 * pix, 30 * pix * 1.14);
     //Display sword
     spada.display();
     //Bottom area of the rock
     rocciaBottom = image(
       rocciaBottomImg,
-      width / 2,
-      height / 1.5,
-      height / 3.5,
-      (height / 3.5) * 1.14
+      rocciaX,
+      rocciaY,
+      30 * pix,
+      30 * pix * 1.14
     );
     noStroke();
     //WHITE BOX
@@ -116,8 +118,13 @@ function draw() {
     textSize(50);
     textFont(vt323);
     textAlign(CENTER);
-    text("KNIGHTS: " + usersCount, width / 2, height / 1.08);
+    text("KNIGHTS: " + (usersCount - 1), width / 2, height / 1.08);
     pop();
+    //display the animated "rays" that show up at every successful swipe
+    ray1.display();
+    ray2.display();
+    ray3.display();
+    ray4.display();
   }
   //MOBILE DEVICES
   else {
@@ -137,37 +144,33 @@ function draw() {
     //Background image
     bg = image(bgImg, width / 2, height / 2, width, width * 1.78);
     //Top area of the rock
-    rocciaTop = image(
-      rocciaTopImg,
-      width / 2,
-      height / 1.5,
-      width / 1.8,
-      (width / 1.8) * 1.14
-    );
+    rocciaTop = image(rocciaTopImg, rocciaX, rocciaY + pix, 30 * pix, 30 * pix * 1.14);
     //Display sword
     spada.display();
     //Bottom area of the rock
-    rocciaBottom = image(
-      rocciaBottomImg,
-      width / 2,
-      height / 1.5,
-      width / 1.8,
-      (width / 1.8) * 1.14
-    );
+    rocciaBottom = image(rocciaBottomImg, rocciaX, rocciaY, 30 * pix, 30 * pix * 1.14);
     //Display stars
     for (var i = 0; i < stelline.length; i++) {
       stelline[i].display();
       stelline[i].animate();
     }
-
-    swipeBar.display();
-
+    //Display white box of timer and swipe bar
+    swipeBar.displayWhite();
+    //Dysplay and animate the swipe bar when the timer reaches 0
     if (personalCountDown == 0) {
+      swipeBar.display();
       barCursor.display();
       barCursor.animate();
+    //Display the timer during the countdown and a message during the last second of the countdown
     } else if (personalCountDown > 0 && pullsCount < 1000) {
-      timer = Math.round(personalCountDown / 30);
-      var timerText = timer.toString();
+      if (personalCountDown >= 15) {
+        timer = Math.round(personalCountDown / 30);
+        var timerText = timer.toString();
+        swipeBar.width = 5 * pix;
+      } else {
+        var timerText = "TRY TO WIN!";
+        swipeBar.width = width / 1.5;
+      }
       personalCountDown -= 1;
       fill(20);
       textSize(50);
@@ -175,35 +178,17 @@ function draw() {
       textAlign(CENTER);
       text(timerText, width / 2, height / 1.17);
     }
-
-    //   bar.displayWhite();
-    //   var timerText;
-    //
-    //   if (personalCountDown <= 0){
-    //   bar.display();
-    //   barCursor.display();
-    //   barCursor.animate();
-    // } else {
-    //   if (personalCountDown >= 15){
-    //     timer = Math.round(personalCountDown / 30);
-    //     timerText = timer.toString();
-    //     bar.width = 5 * pix;
-    //   } else {bar.width = 32 * pix; timerText = 'TRY TO WIN!';};
-    //   push();
-    //   textAlign(CENTER,CENTER);
-    //   fill("black");
-    //   textSize(50);
-    //   textFont(vt323);
-    //   text(timerText, bar.x, bar.y - pix);
-    //   pop();
-    //   personalCountDown -= 1;
-    // }
+    //display the animated "rays" that show up at every successful swipe
+    ray1.display();
+    ray2.display();
+    ray3.display();
+    ray4.display();
 
     //User out of the area
     if (userswordDistance > 500000) {
       //Box
       box.resize(0, window.innerHeight - 48);
-      image(box, (width - box.width) / 2, (height - box.height) / 2);
+      image(box, width / 2, height / 2);
 
       //Title
       push();
@@ -228,6 +213,7 @@ function draw() {
       pop();
     }
   }
+  kingNameBox.display();
 }
 
 //STAR OBJECT
@@ -235,18 +221,14 @@ function Stellina(_x, _y, _opacity) {
   this.x = pix * _x;
   this.y = pix * _y;
   this.opacity = _opacity;
-  this.moveTime = this.opacity / 12;
 
   this.animate = function() {
-    this.moveTime -= 1;
-    if (this.moveTime <= 0) {
-      this.x = pix * _x + random(1, 6) * pix;
-      this.y = pix * _y + random(1, 6) * pix;
-      this.moveTime = 10;
-    }
     this.opacity -= 10;
     if (this.opacity <= 0) {
-      this.opacity = 120;
+      //randomly change position every time the opacity is 0
+      this.x = pix * _x + random(1, 6) * pix;
+      this.y = pix * _y + random(1, 6) * pix;
+      this.opacity = 180;
     }
   };
 
@@ -264,28 +246,92 @@ function Stellina(_x, _y, _opacity) {
   };
 }
 
+//RAY OBJECT
+function Ray(_direction, _yOffset) {
+  this.direction = _direction;
+  this.x = rocciaX + (_yOffset / 3 * pix * this.direction) + 12 * pix  * this.direction;
+  this.y = rocciaY - 10 * pix - _yOffset * pix;
+  //initial state of the animation: inactive
+  this.animationProgress = 16;
+  this.display = function() {
+    noStroke();
+    fill(rayColor);
+    //animation created with p5 rectanges and if conditions based on the animationProgress value
+    if (this.animationProgress <= 3) {
+      rect(this.x, this.y, pix, pix);
+      rect(this.x + pix * this.direction, this.y, pix, pix);
+      rect(this.x, this.y - pix, pix, pix);
+    } else if (this.animationProgress > 3 && this.animationProgress <= 6) {
+      rect(this.x, this.y, pix, pix);
+      rect(this.x + pix * this.direction, this.y, pix, pix);
+      rect(this.x, this.y - pix, pix, pix);
+      rect(this.x + pix * this.direction, this.y - pix, pix, pix);
+    } else if (this.animationProgress > 6 && this.animationProgress <= 9) {
+      rect(this.x + pix * this.direction, this.y, pix, pix);
+      rect(this.x, this.y - pix, pix);
+      rect(this.x + pix * this.direction, this.y - pix, pix, pix);
+      rect(this.x + 2 * pix * this.direction, this.y - 2 * pix, pix, pix);
+      rect(this.x + 3 * pix * this.direction, this.y - 3 * pix, pix, pix);
+      rect(this.x + 4 * pix * this.direction, this.y - 4 * pix, pix, pix);
+    } else if (this.animationProgress > 9 && this.animationProgress <= 12) {
+      rect(this.x + 3 * pix * this.direction, this.y - 3 * pix, pix, pix);
+      rect(this.x + 4 * pix * this.direction, this.y - 4 * pix, pix, pix);
+    } else if (this.animationProgress > 12 && this.animationProgress <= 15) {
+      rect(this.x + 4 * pix * this.direction, this.y - 4 * pix, pix, pix);
+    }
+    this.animationProgress++;
+  };
+}
+
+//KING NAME BOX OBJECT
+function KingName() {
+  this.width = pix * 30;
+  this.x = width / 10;
+  this.y = height / 10;
+  this.display = function() {
+    push();
+    noStroke();
+    //WHITE BOX
+    fill(231, 234, 225);
+    rect(this.x + this.width / 2, this.y, this.width + 6 * pix, pix * 7);
+    rect(this.x + this.width / 2, this.y, this.width + 4 * pix, pix * 9);
+    pop();
+    //CROWN IMAGE
+    image(crownImg, this.x + pix * 3, this.y, pix * 8, pix * 8);
+    //TEXT SHOWING THE KING'S NAME
+    push();
+    fill(40);
+    textSize(20);
+    textFont(vt323);
+    textAlign(LEFT, CENTER);
+    translate(pix * 10, 0);
+    textLeading(28);
+    text(king, this.x, this.y);
+    pop();
+  };
+}
+
+//SWIPE BAR AND WHITE CONTAINER OBJECT
 function Bar(_x, _y, _width) {
   this.x = width / 2;
   this.y = height / 1.2;
   this.width = width / 1.5;
-
-  // this.displayWhite = function() {
-  //   push();
-  //   noStroke();
-  //   //WHITE BOX
-  //   fill(231, 234, 225);
-  //   rect(this.x, this.y, this.width + 6*pix, pix * 5);
-  //   rect(this.x, this.y, this.width + 4*pix, pix * 7);
-  //   pop();
-  // };
-
-  this.display = function() {
+  //Display the white container
+  this.displayWhite = function() {
     if (pullsCount < 1000) {
+      push();
       noStroke();
       //WHITE BOX
       fill(231, 234, 225);
       rect(this.x, this.y, this.width + 6 * pix, pix * 5);
       rect(this.x, this.y, this.width + 4 * pix, pix * 7);
+      pop();
+    }
+  };
+  //Display the swipe bar
+  this.display = function() {
+    if (pullsCount < 1000) {
+      noStroke();
       //RED BAR
       push();
       fill(179, 40, 30);
@@ -305,11 +351,12 @@ function Bar(_x, _y, _width) {
   };
 }
 
+//BAR CURSOR OBJECT
 function BarCursor(_x, _y) {
   this.x = width / 2;
   this.y = height / 1.2;
   this.direction = 1;
-
+  //Display the cursor as a rotated square
   this.display = function() {
     if (pullsCount < 1000) {
       push();
@@ -318,17 +365,15 @@ function BarCursor(_x, _y) {
       noFill();
       strokeWeight(pix);
       stroke(43, 115, 137);
-      rect(0, 0, 2 * pix, 2 * pix);
+      rect(0, 0, 1.5 * pix, 1.5 * pix);
       pop();
     }
   };
-
+  //Animate the cursor sliding on the bar
   this.animate = function() {
     this.x += this.direction * pix;
     if (
-      this.x >= swipeBar.x + swipeBar.width / 2 ||
-      this.x <= swipeBar.x - swipeBar.width / 2
-    ) {
+      this.x >= swipeBar.x + swipeBar.width / 2 || this.x <= swipeBar.x - swipeBar.width / 2) {
       this.direction *= -1;
     }
   };
@@ -336,40 +381,29 @@ function BarCursor(_x, _y) {
 
 //SWORD OBJECT
 function Spada(_x, _y) {
-  this.x = width / 1.95;
-  this.y = height / 1.8;
+  this.x = rocciaX + pix;
+  this.y = rocciaY - 10 * pix;
 
   this.display = function() {
-    if (windowWidth <= windowHeight) {
-      image(
-        spadaImg,
-        this.x,
-        this.y - pix * pullsCount,
-        width / 2.8,
-        (width / 2.8) * 2.3
-      );
-    } else {
-      image(
-        spadaImg,
-        this.x,
-        this.y - pix * pullsCount,
-        height / 5.5,
-        (height / 5.5) * 2.3
-      );
-    }
+    image(spadaImg, this.x, this.y - pix * pullsCount, 19 * pix, 19 * pix * 2.3);
   };
 }
 
 //HANDLES THE USER'S SWIPE
 function swiped() {
   if (personalCountDown == 0) {
-    if (
-      barCursor.x >= swipeBar.x - swipeBar.width / 10 &&
-      barCursor.x <= swipeBar.x + swipeBar.width / 10
-    ) {
+    if (barCursor.x >= swipeBar.x - swipeBar.width / 10 && barCursor.x <= swipeBar.x + swipeBar.width / 10) {
+      //change the color of the animated rays and starts the animation
+      rayColor = "Aquamarine";
+      ray1.animationProgress = 0;
+      ray2.animationProgress = 0;
+      ray3.animationProgress = 0;
+      ray4.animationProgress = 0;
+      //sends the event to the server
       socket.emit("swordPull");
     }
   }
+  //restart the count down
   personalCountDown = 300;
 }
 
@@ -388,6 +422,17 @@ socket.on("usersCountFromServer", function(data) {
 //LISTEN FOR WIN OR LOSE EVENTS FROM SERVER
 socket.on("winner", youWon);
 socket.on("loser", youLose);
+//LISTENS FOR A SWIPE FROM OTHER USERS
+socket.on("enemyRay", displayEnemyRay);
+//UPDATES THE NAME OF THE KING WITH THE DATA PROVIDED BY THE SERVER
+socket.on("kingNameFromServer", function(name) {
+  if (name === null || name === undefined) {
+    king = "";
+  } else {
+    king = name;
+  }
+  console.log(king);
+});
 
 //FUNCTION CALLED WHEN YOU WIN
 function youWon() {
@@ -397,7 +442,23 @@ function youWon() {
 //FUNCTION CALLED WHEN SOMEONE ELSE WINS
 function youLose() {
   console.log("loser!!");
-  window.open("you_lose.html", "_self");
+  if (window.innerWidth > 575) {
+    window.open("you_win-desktop.html", "_self");
+  } else {
+    window.open("you_lose.html", "_self");
+  }
+}
+//CHANGES COLOR TO THE RAYS AND STARTS THE ANIMATION
+function displayEnemyRay() {
+  if (window.innerWidth > 575) {
+   rayColor = [random(100,250), random(100,250), random(100,250)];
+  } else {
+   rayColor = "orange";
+  }
+  ray1.animationProgress = 0;
+  ray2.animationProgress = 0;
+  ray3.animationProgress = 0;
+  ray4.animationProgress = 0;
 }
 
 //POSITION UPDATE FUNCTION
