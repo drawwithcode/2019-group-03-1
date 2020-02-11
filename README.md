@@ -53,19 +53,19 @@ The choice of a widely known story was determined by the need to have a game dyn
     <em >Mi Ami Festival</em>
 </p>
 
-At the beginning the project was designed to be placed at PolEATecnico Bistò (ex Bar La Rossa), creating a more local and restricted experience, but something was missing: it's a community game but the common game atmosphere was not really present. The decision was to move to a larger and more populated environment where you can have a large screen for projecting the live progress of the game, but without forgetting about the sectorialization: this site brings together people who are already interested in participating in the same concert experience.
+At the beginning the project was designed to be placed at PolEATecnico Bistò (ex Bar La Rossa), creating a more local and restricted experience, but something was missing: it's a community game but the common game atmosphere was not really present. The decision was to move to a larger and more populated environment where you can have a large screen for projecting the live progress of the game, but without forgetting about the sectorization: this site brings together people who are already interested in participating in the same concert experience.
 
 ###### THE BIG SCREEN
 Thanks to this change of location we can take advantage of the big screen projection of the live game, that will be played in moments of stalemate, like from the opening of the gates and the waiting for the singers, allowing everyone to perceive the position of the sword. It became a real group experience, in which the competition is even more present, given that it will appear both the number of the "knights" that are trying to conquer the sword.
 
 ###### REAL WINNING
-We tought about a collaboration with Mi Ami Festival, thanks to which there will be a prize offered, such as a backstage meeting with the artist, or free beers for the real King of the day.
+We thought about a collaboration with Mi Ami Festival, thanks to which there will be a prize offered, such as a backstage meeting with the artist, or free beers for the real King of the day.
 <br>
 
 
 ## Design Challenges
 Our desire was to make an experience that killed the typical boredom in a queue at the Mi Ami Festival
-but also that would be inclusive for everybody, and in order to achieved that we thinked about projecting the challenge in the big screen that the Festival stage already has.
+but also that would be inclusive for everybody, and in order to achieved that we thought about projecting the challenge in the big screen that the Festival stage already has.
 
 ###### STRATEGIC GAMEPLAY
 We tried to make the game increasingly less a lottery, and much more a meritocratic system of strategy, where everyone can try to understand when is the best time to try and swipe the sword and ensure the victory.
@@ -75,7 +75,7 @@ Hence three very important choices:
 3. Show a timer in the mobile game screen that allows the gamer to understand how long he has to wait before tapping again.
 
 ###### ARCADE STYLE GRAPHICS
-Everything aims to the facility of the gameplay, that has to be intuitive and really easy to follow, in order to make a lot of people play toghether without impediments. This includes the stylistic choice of an arcade game, very easy to follow and with graphics that allows you to play it even in a distracted way.
+Everything aims to the facility of the gameplay, that has to be intuitive and really easy to follow, in order to make a lot of people play together without impediments. This includes the stylistic choice of an arcade game, very easy to follow and with graphics that allows you to play it even in a distracted way.
 
 <p align="center">
     <img src="images-readme/arcade.gif" width="400">
@@ -83,7 +83,7 @@ Everything aims to the facility of the gameplay, that has to be intuitive and re
 
 ###### VISUAL DESIGN
 We choose a Pixel Art style, that is almost entirely based on a 51 width pixels grid.
-The palette tries to evoque a magic ambience, set into the woods, where the magic sword is stuck. The principal colour is green code #8AECA1, that is then declined in shades of the same green, along with some brown shades. Everything recalls the natural world that MI AMI Festival tries introduce in the city of Milan.
+The palette tries to evoke a magic ambience, set into the woods, where the magic sword is stuck. The principal colour is green code #8AECA1, that is then declined in shades of the same green, along with some brown shades. Everything recalls the natural world that MI AMI Festival tries introduce in the city of Milan.
 As for the info and the structure of the game, we used an off-white colour.
 
 <p align="center">
@@ -152,7 +152,7 @@ If you win it will appear a glorious animation, with a cheerful song. After this
 <br>
 
 
-## Code Challanges
+## Code Challenges
 
 ###### BACK-END CODE
 We used the server to handle two kinds of data: the number of times the sword has been pulled and the name of the current king. In the first case, a global variable stored and updated by the server for each new successful swipe
