@@ -5,9 +5,13 @@ var http = require("http").createServer(app);
 var port = process.env.PORT || 3000;
 var server = app.listen(port);
 var io = require("socket.io")(server);
+//NUMBER OF TOTAL PULLS THAT ENDS THE GAME
 var maxPullsCount = 23;
+//INITIAL NUMBER OF CONNECTED USERS
 var updatedUsers = 0;
+//INITIAL NUMBER OF TOTAL SWORD PULLS
 var updatedPulls = 0;
+//NUMBER OF SECONDS WITHOUT SUCCESSFUL SWIPES AFTER WHICH THE STATE OF THE SWORD IS REFRESHED
 var swordTimerCount = 15;
 
 //ENABLES THE APP TO ACCESS THE "PUBLIC" FOLDER
@@ -29,7 +33,7 @@ google.options({
 var sheets = google.sheets("v4");
 var spreadsheetId = "1Q25gnGC5R3uE4qQHON8njArLOeIcu0IvrbT1jTqy5QQ";
 
-//GLOBAL VARIABLES TO STORE AND UPDATE THE NAME OF THE KING RECEIVED FROM USERS AND DATABASE
+//GLOBAL VARIABLES USED TO STORE AND UPDATE THE NAME OF THE KING RECEIVED FROM USERS AND DATABASE
 var updater;
 var kingName;
 
@@ -47,46 +51,7 @@ function getKingName() {
   );
 }
 
-getKingName();
-
-//CALLS THE newConnection FUNCTION FOR EACH NEW CONNECTION
-io.on("connection", newConnection);
-
-function newConnection(socket) {
-  //socket code here
-  updatedUsers++;
-  console.log(updatedUsers);
-  // getPullsCount();
-  socket.on("swordPull", function() {
-    if (updatedPulls === maxPullsCount - 1) {
-      updatedPulls += 1000;
-      socket.emit("winner");
-      socket.broadcast.emit("loser");
-    } else {
-      updatedPulls += 1;
-      swordTimerCount = 30;
-      socket.broadcast.emit("enemyRay");
-      io.emit("pullsCountFromServer", updatedPulls);
-    }
-  });
-  socket.on("requestKingName", function() {
-    socket.emit("kingNameFromServer", kingName);
-  });
-  socket.on("submitName", function(submittedName) {
-    updateKingName(submittedName);
-    kingName = submittedName;
-  });
-  io.emit("pullsCountFromServer", updatedPulls);
-  socket.on("disconnect", function() {
-    updatedUsers--;
-    io.emit("usersCountFromServer", updatedUsers);
-    console.log(updatedUsers);
-  });
-  io.emit("usersCountFromServer", updatedUsers);
-}
-
-swordTimeOut();
-
+//UPDATES THE CURRENT KING'S NAME IN THE DATABASE USING THE VALUES PROVIDED BY THE WINNER USER
 function updateKingName(name) {
   updater = { values: [[name]] };
   sheets.spreadsheets.values.update({
@@ -97,11 +62,69 @@ function updateKingName(name) {
   });
 }
 
+//CALLS THE newConnection FUNCTION FOR EACH NEW CONNECTION
+io.on("connection", newConnection);
+
+function newConnection(socket) {
+  //UPDATES THE NUMBER OF USERS FOR EACH NEW CONNECTION
+  updatedUsers++;
+  console.log(updatedUsers);
+  //LISTENS FOR NEW SUCCESSFUL SWORD PULLS
+  socket.on("swordPull", function() {
+    //CHECKS IF THIS IS THE DECISIVE SWIPE
+    if (updatedPulls === maxPullsCount - 1) {
+      //MAKES THE SWORD "DISAPPEAR" WHEN THE GAME ENDS
+      updatedPulls += 1000;
+      //CALLS DIFFERENT EVENTS FOR THE WINNER AND EVERYONE ELSE
+      socket.emit("winner");
+      socket.broadcast.emit("loser");
+    } else {
+      //INCREASES THE TOTAL NUMBER OF PULLS BY 1
+      updatedPulls += 1;
+      swordTimerCount = 30;
+      //TRIGGERS AN ANIMATION SHOWING A PULL FROM ANOTHER USER
+      socket.broadcast.emit("enemyRay");
+      //SENDS THE UPDATED NUMBER OF PULLS TO EACH USER
+      io.emit("pullsCountFromServer", updatedPulls);
+    }
+  });
+  //LISTENS FOR A REQUEST OF THE KING'S NAME BY THE CLIENT
+  socket.on("requestKingName", function() {
+    //SENDS THE KING'S NAME TO THE CLIENT
+    socket.emit("kingNameFromServer", kingName);
+  });
+  //LISTENS FOR THE SUBMITION OF A NEW KING'S NAME FROM THE WINNER'S SOCKET
+  socket.on("submitName", function(submittedName) {
+    //UPDATES THE NAME BOTH IN THE DATABASE AND THE SERVER
+    updateKingName(submittedName);
+    kingName = submittedName;
+  });
+  //SENDS THE UPDATED TOTAL NUMBER OF PULLS TO ALL CLIENTS FOR EVERY NEW CONNECTION
+  io.emit("pullsCountFromServer", updatedPulls);
+  socket.on("disconnect", function() {
+    //UPDATES THE NUMBER OF CONNECTED USERS FOR EACH NEW DISCONNECTION
+    updatedUsers--;
+    //SENDS THE NUMBER OF CONNECTED USERS TO ALL CLIENTS
+    io.emit("usersCountFromServer", updatedUsers);
+    console.log(updatedUsers);
+  });
+  //SENDS THE NUMBER OF CONNECTED USERS TO ALL CLIENTS
+  io.emit("usersCountFromServer", updatedUsers);
+}
+
+//CALLING THE getKingName AND swordTimeOut FUNCTIONS WHEN THE SERVER GETS STARTED
+getKingName();
+swordTimeOut();
+
+//MAKES THE SWORD GET BACK TO THE INITIAL POSITION AFTER 15 SECONDS WITHOUT ANY SUCCESSFUL SWIPE
 function swordTimeOut() {
   if (swordTimerCount == 0 && updatedPulls < 1000) {
+    //RESTORES THE INITIAL STATE OF THE SWORD
     updatedPulls = 0;
+    //SENDS THE UPDATED STATE OF THE SWORD TO CLIENTS
     io.emit("pullsCountFromServer", updatedPulls);
   }
+  // DECREASES THE COUNTDOWN BY 1 AND REPEATS THE WHOLE PROCESS EVERY SECOND
   setTimeout(function() {
     swordTimerCount--;
     swordTimeOut();

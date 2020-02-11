@@ -226,7 +226,7 @@ google.options({
 var sheets = google.sheets("v4");
 var spreadsheetId = "1Q25gnGC5R3uE4qQHON8njArLOeIcu0IvrbT1jTqy5QQ";
 
-//GLOBAL VARIABLES TO STORE AND UPDATE THE NAME OF THE KING RECEIVED FROM USERS AND DATABASE
+//GLOBAL VARIABLES USED TO STORE AND UPDATE THE NAME OF THE KING RECEIVED FROM USERS AND DATABASE
 var updater;
 var kingName;
 
@@ -243,15 +243,6 @@ function getKingName() {
     }
   );
 }
-function newConnection(socket) {
-  socket.on("requestKingName", function() {
-    socket.emit("kingNameFromServer", kingName);
-  });
-  socket.on("submitName", function(submittedName) {
-    updateKingName(submittedName);
-    kingName = submittedName;
-  });
-}
 
 //UPDATES THE CURRENT KING'S NAME IN THE DATABASE USING THE VALUES PROVIDED BY THE WINNER USER
 function updateKingName(name) {
@@ -261,6 +252,20 @@ function updateKingName(name) {
     range: "swordInStoneData!B1",
     valueInputOption: "USER_ENTERED",
     resource: updater
+  });
+}
+
+function newConnection(socket) {
+  //LISTENS FOR A REQUEST OF THE KING'S NAME BY THE CLIENT
+  socket.on("requestKingName", function() {
+    //SENDS THE KING'S NAME TO THE CLIENT
+    socket.emit("kingNameFromServer", kingName);
+  });
+  //LISTENS FOR THE SUBMITION OF A NEW KING'S NAME FROM THE WINNER'S SOCKET
+  socket.on("submitName", function(submittedName) {
+    //UPDATES THE NAME BOTH IN THE DATABASE AND THE SERVER
+    updateKingName(submittedName);
+    kingName = submittedName;
   });
 }
 ```
@@ -321,6 +326,7 @@ To overcome the limitations of p5.js in using text animations, we used the css f
 
 ## Used Libraries and Technologies
 
+- google APIs
 - hammer.min.js
 - mappa.js
 - node.js
@@ -328,7 +334,6 @@ To overcome the limitations of p5.js in using text animations, we used the css f
 - p5.geolocation.js
 - p5.min.js
 - p5.min.sound.js
-- google APIs
 <br>
 
 ## Inspirations and References
