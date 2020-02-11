@@ -35,10 +35,8 @@ function preload() {
   spadaImg = loadImage("assets/the-sword-in-the-stone/spada.png");
   rocciaBottomImg = loadImage("assets/the-sword-in-the-stone/roccia_bottom.png");
   rocciaTopImg = loadImage("assets/the-sword-in-the-stone/roccia_top.png");
-
   crownImg = loadImage("assets/img/crown.svg");
 
-  //WEBGL requires loadFont
   pressStart2P = loadFont("font/PressStart2P-Regular.ttf");
   vt323 = loadFont("font/VT323-Regular.ttf");
 }
@@ -69,9 +67,9 @@ function setup() {
   swipeBar = new Bar(26, 60, 32);
   barCursor = new BarCursor(26, 60);
   ray1 = new Ray(1, 0);
-  ray2 = new Ray(1, 5);
+  ray2 = new Ray(1, 6);
   ray3 = new Ray(-1, 0);
-  ray4 = new Ray(-1, 5);
+  ray4 = new Ray(-1, 6);
   kingNameBox = new KingName();
 
   var options = {
@@ -246,31 +244,35 @@ function Stellina(_x, _y, _opacity) {
 //RAY OBJECT
 function Ray(_direction, _yOffset) {
   this.direction = _direction;
-  this.x = rocciaX + 15 * pix * this.direction;
+  this.x = rocciaX + (_yOffset / 3 * pix * this.direction) + 12 * pix  * this.direction;
   this.y = rocciaY - 10 * pix - _yOffset * pix;
   //initial state of the animation: inactive
-  this.animationProgress = 10;
+  this.animationProgress = 16;
   this.display = function() {
     noStroke();
     fill(rayColor);
     //animation created with p5 rectanges and if conditions based on the animationProgress value
-    if (this.animationProgress <= 2) {
+    if (this.animationProgress <= 3) {
       rect(this.x, this.y, pix, pix);
       rect(this.x + pix * this.direction, this.y, pix, pix);
       rect(this.x, this.y - pix, pix, pix);
-    } else if (this.animationProgress > 2 && this.animationProgress <= 4) {
+    } else if (this.animationProgress > 3 && this.animationProgress <= 6) {
       rect(this.x, this.y, pix, pix);
       rect(this.x + pix * this.direction, this.y, pix, pix);
       rect(this.x, this.y - pix, pix, pix);
       rect(this.x + pix * this.direction, this.y - pix, pix, pix);
-    } else if (this.animationProgress > 4 && this.animationProgress <= 6) {
+    } else if (this.animationProgress > 6 && this.animationProgress <= 9) {
       rect(this.x + pix * this.direction, this.y, pix, pix);
       rect(this.x, this.y - pix, pix);
       rect(this.x + pix * this.direction, this.y - pix, pix, pix);
       rect(this.x + 2 * pix * this.direction, this.y - 2 * pix, pix, pix);
       rect(this.x + 3 * pix * this.direction, this.y - 3 * pix, pix, pix);
-    } else if (this.animationProgress > 6 && this.animationProgress <= 8) {
+      rect(this.x + 4 * pix * this.direction, this.y - 4 * pix, pix, pix);
+    } else if (this.animationProgress > 9 && this.animationProgress <= 12) {
       rect(this.x + 3 * pix * this.direction, this.y - 3 * pix, pix, pix);
+      rect(this.x + 4 * pix * this.direction, this.y - 4 * pix, pix, pix);
+    } else if (this.animationProgress > 12 && this.animationProgress <= 15) {
+      rect(this.x + 4 * pix * this.direction, this.y - 4 * pix, pix, pix);
     }
     this.animationProgress++;
   };
