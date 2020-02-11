@@ -304,6 +304,8 @@ function savePhoto() {
 To understand what kind of device, desktop or mobile, is connected to the game we used if conditions. Through the latter we checked the size of the screen, to then show or hide some elements rather than others or redirect the device to the correct page.
 <br>
 [Bootstrap](https://getbootstrap.com/docs/4.1/layout/overview/) was used as a reference for the screen width of the devices.
+<br>
+<b>show/hide:</b>
 ```javascript
 if (window.innerWidth < 575) {
     bgImg = loadImage("assets/the-sword-in-the-stone/spada_roccia-background.png");
@@ -311,7 +313,7 @@ if (window.innerWidth < 575) {
     bgImg = loadImage("assets/the-sword-in-the-stone/spada_roccia-background_desktop.png");
 }
 ```
-<br>
+<b>redirect:</b>
 ```javascript
 if(windowWidth>575){
     window.open("the_sword_in_the_stone.html", "_self");
