@@ -450,6 +450,7 @@ We studied and tried to focus on the legend of The Sword in the Stone, along wit
 - <a href="https://www.imdb.com/title/tt0057546/">The Sword in the Stone, Film of Wolfgang Reitherman, 1963</a>
 - <a href="https://queue-it.com/blog/psychology-of-queuing/">The 6 Revealing Rules of Queue Psychology</a>
 
+<br>
 
 <p align="center">
     <img src="images-readme/qr-code-game.jpg" width="400">
