@@ -26,7 +26,7 @@ Faculty: Michele Mauri, Andrea Benedetti
 
 ###### WHAT IS "KING OF MI AMI"
 The King of Mi Ami is inspired by the legend of “The Sword in the Stone”.
-Whoever extracts the sword becomes king for a day. This project is designed to be an easy way to escape from the boredom of a long wait and to engage a large number of people in a group game. The King of Mi Ami is meant to be played in the context of a festival, that in this case is the Mi Ami Festival of Milan, where there is need to entertain a large group of fans before the show begins. Everyone who possesses a smartphone and is located inside a defined area can access the game and can conquer to become the daily king by dragging the legendary sword out of the stone. The sword can be touched only every 10 seconds and in the meanwhile the user can see other gamers’ attempts. If the sword isn’t touched in 15 seconds, it will go back inside the rock. If a user manages to pull out the sword, he/she is named King of Mi Ami for the current day and can access to the concert backstage or win a free beer. The other users will see an animation in which their defeat is declared, the name of the new king is shown with the invitation to try again the following day.
+Whoever extracts the sword becomes king for a day. This project is designed to be an easy way to escape from the boredom of a long wait and to engage a large number of people in a group game. The King of Mi Ami is meant to be played in the context of a festival, that in this case is the Mi Ami Festival of Milan, where there is need to entertain a large group of fans before the show begins. Everyone who possesses a smartphone and is located inside a defined area can access the game and can conquer to become the daily king by dragging the legendary sword out of the stone. The sword can be touched only every 10 seconds and in the meanwhile the user can see other gamers’ attempts. If the sword isn’t touched in 15 seconds, it will go back inside the rock. If a user manages to pull out the sword, he/she is named King of Mi Ami for the current day and can access to the concert backstage or win a free beer. The other users will see an animation in which their defeat is declared.
 
 ###### REFERENCES TO THE LEGEND
 The project takes inspiration from the well-known story of the sword in the stone, which tells how a young squire became king after extracting the legendary Excalibur sword from a stone altar.
@@ -59,7 +59,7 @@ At the beginning the project was designed to be placed at PolEATecnico Bistò (e
 Thanks to this change of location we can take advantage of the big screen projection of the live game, that will be played in moments of stalemate, like from the opening of the gates and the waiting for the singers, allowing everyone to perceive the position of the sword. It became a real group experience, in which the competition is even more present, given that it will appear both the number of the "knights" that are trying to conquer the sword.
 
 ###### REAL WINNING
-We thought about a collaboration with Mi Ami Festival, thanks to which there will be a prize offered, such as a backstage meeting with the artist, or free beers for the real King of the day.
+We thought about a collaboration with Mi Ami Festival, thanks to which there will be a prize offered, such as a backstage meeting with the artist, or free beers for the real king of the day.
 <br>
 
 
