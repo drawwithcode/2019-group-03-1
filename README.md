@@ -103,48 +103,124 @@ As for the info and the structure of the game, we used an off-white colour.
 We used the server to handle two kinds of data: the number of times the sword has been pulled and the name of the current king. In the first case, a global variable stored and updated by the server for each new successful swipe
 could serve us well, since heroku's service keeps the server active for 24 hours: exactly the time span we needed for our game, because it would be restarted daily. But the name of the winner of the day should be saved in memory also for the next day, and for this reason we needed a different solution to store that data: we found the way to use a google sheets document as a small, free to use database, using the google APIs package for Node.
 <br>
-To make the experience consistent and continuously shared between the different users, we made the server handle every successful swipe, in order to update the position of the sword for every user at the same time and declare an unique winner when an user makes the decisive swipe. To achieve this last point we used the "broadcast" function from the socket.io package.
-server side:
+To make the experience consistent and continuously shared between the different users, we made the server handle every successful swipe, in order to update the position of the sword for every user at the same time and declare an unique winner when an user makes the decisive swipe. To achieve this last point we used the "broadcast" function from the socket.io package. <br>
+<b>server side:</b>
 ```javascript
 var updatedPulls = 0;
-socket.on("swordPull", function() {
-  if (updatedPulls === maxPullsCount - 1) {
-    //makes the sword "dissapear" when the game ends
-    updatedPulls += 1000;
-    //calls different events for the winner and everyone else
-    socket.emit("winner");
-    socket.broadcast.emit("loser");
-  } else {
-    updatedPulls += 1;
-    swordTimerCount = 30;
-    //triggers an animation showing a pull from another user
-    socket.broadcast.emit("enemyRay");
-    //sends the updated number of pulls to each user
-    io.emit("pullsCountFromServer", updatedPulls);
-  }
-});
+function newConnection(socket) {
+ socket.on("swordPull", function() {
+   //CHECKS IF THIS IS THE DECISIVE SWIPE
+   if (updatedPulls === maxPullsCount - 1) {
+     //MAKES THE SWORD "DISAPPEAR" WHEN THE GAME ENDS
+     updatedPulls += 1000;
+     //CALLS DIFFERENT EVENTS FOR THE WINNER AND EVERYONE ELSE
+     socket.emit("winner");
+     socket.broadcast.emit("loser");
+   } else {
+     updatedPulls += 1;
+     swordTimerCount = 30;
+     //TRIGGERS AN ANIMATION SHOWING A PULL FROM ANOTHER USER
+     socket.broadcast.emit("enemyRay");
+     //SENDS THE UPDATED NUMBER OF PULLS TO EACH USER
+     io.emit("pullsCountFromServer", updatedPulls);
+   }
+ })
+};
 ```
-client-side:
+<b>client-side:</b>
 ```javascript
 function swiped() {
   if (personalCountDown == 0) {
-    //checks if the swipe was successfull
+    //CHECKS IF THE SWIPE WAS SUCCESSFUL
     if (barCursor.x >= swipeBar.x - swipeBar.width / 10 && barCursor.x <= swipeBar.x + swipeBar.width / 10) {
-      //calls the event swordPull in the server to handle the successfull swipe
+      //CALLS THE EVENT swordPull IN THE SERVER TO HANDLE THE SUCCESSFUL SWIPE
       socket.emit("swordPull");
     }
   }
-  //restarts the personal timer after every attempt
+  //RESTARTS THE PERSONAL TIMER AFTER EACH ATTEMPT
   personalCountDown = 300;
 }
-//listens for an update of the number of pulls from the server
+//LISTENS FOR UPDATES ON THE NUMBER OF PULLS FROM THE SERVER
 socket.on("pullsCountFromServer", function(data) {
-  //updates the variable that affects the position of the sword
+  //UPDATES THE VARIABLE THAT AFFECTS THE POSITION OF THE SWORD
   pullsCount = data;
 });
 ```
+To update and get the name of the king from our google sheets database, we had to set up and use the Google APIs package.
+<br>
+<b>server side:</b>
+```javascript
+//SETTING UP THE GOOGLE API AND PROVIDING CREDENTIALS TO ACCESS THE DATA
+var { google } = require("googleapis");
+var credentials = require("./spreadsheet-credentials.json");
+var auth = new google.auth.JWT(
+  credentials.client_email,
+  null,
+  credentials.private_key,
+  ["https://www.googleapis.com/auth/spreadsheets"],
+  null
+);
+//PROVIDING THE INFORMATIONS TO ACCESS THE DATABASE SPREADSHEET
+google.options({
+  auth
+});
+var sheets = google.sheets("v4");
+var spreadsheetId = "1Q25gnGC5R3uE4qQHON8njArLOeIcu0IvrbT1jTqy5QQ";
+//GLOBAL VARIABLES TO STORE AND UPDATE THE NAME OF THE KING RECEIVED FROM USERS AND DATABASE
+var updater;
+var kingName;
+//GETS THE CURRENT KING'S NAME FROM THE DATABASE
+function getKingName() {
+  sheets.spreadsheets.values.get(
+    {
+      spreadsheetId,
+      range: "swordInStoneData!B1"
+    },
+    (err, result) => {
+      kingName = result.data.values[0][0];
+      console.log(kingName);
+    }
+  );
+}
+function newConnection(socket) {
+  socket.on("requestKingName", function() {
+    socket.emit("kingNameFromServer", kingName);
+  });
+  socket.on("submitName", function(submittedName) {
+    updateKingName(submittedName);
+    kingName = submittedName;
+  });
+}
+//UPDATES THE CURRENT KING'S NAME IN THE DATABASE USING THE VALUES PROVIDED BY THE WINNER USER
+function updateKingName(name) {
+  updater = { values: [[name]] };
+  sheets.spreadsheets.values.update({
+    spreadsheetId,
+    range: "swordInStoneData!B1",
+    valueInputOption: "USER_ENTERED",
+    resource: updater
+  });
+}
+```
+<b>client side:</b>
+```javascript
+var king = "";
 
+function setup() {
+//MAKES A REQUEST TO THE SERVER FOR THE KING'S NAME IN ORDER TO SHOW IT IN THE USER INTERFACE
+socket.emit("requestKingName");
+}
+//LISTENS FOR THE DATA FROM THE SERVER
+socket.on("kingNameFromServer", function(name) {
+  //UPDATES THE KING'S NAME ACCORDING TO THE DATA PROVIDED BY THE SERVER
+  king = name;
+});
 
+function savePhoto() {
+  //SENDS THE NAME SUBMITTED IN THE FORM TO THE SERVER IN ORDER TO UPDATE THE DATABASE
+  socket.emit("submitName", casellaNome.value());
+}
+```
 ###### DESKTOP AND MOBILE
 To understand what kind of device, desktop or mobile, is connected to the game we used if conditions. Through the latter we checked the size of the screen, to then show or hide some elements rather than others or redirect the device to the correct page.
 <br>
