@@ -23,7 +23,6 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  backgroundImage(bg);
   box.resize(0, window.innerHeight - 48);
 
   //WEBCAM
@@ -51,8 +50,7 @@ function setup() {
 
 function draw() {
   var winner = "CONGRATULATIONS!\nYou are the KING";
-
-  clear();
+  backgroundImage(bg);
 
   //WEBCAM
   push();

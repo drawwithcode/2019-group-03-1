@@ -120,6 +120,11 @@ function draw() {
     textAlign(CENTER);
     text("KNIGHTS: " + (usersCount - 1), width / 2, height / 1.08);
     pop();
+    //display the animated "rays" that show up at every successful swipe
+    ray1.display();
+    ray2.display();
+    ray3.display();
+    ray4.display();
   }
   //MOBILE DEVICES
   else {
@@ -445,7 +450,11 @@ function youLose() {
 }
 //CHANGES COLOR TO THE RAYS AND STARTS THE ANIMATION
 function displayEnemyRay() {
-  rayColor = "orange";
+  if (window.innerWidth > 575) {
+   rayColor = [random(100,250), random(100,250), random(100,250)];
+  } else {
+   rayColor = "orange";
+  }
   ray1.animationProgress = 0;
   ray2.animationProgress = 0;
   ray3.animationProgress = 0;
