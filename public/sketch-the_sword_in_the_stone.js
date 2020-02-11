@@ -67,8 +67,8 @@ function setup() {
   rocciaX = width / 2;
   rocciaY = height / 1.5;
 
-  var stellina1 = new Stellina(15, 35, 120);
-  var stellina2 = new Stellina(25, 25, 90);
+  var stellina1 = new Stellina(15, 35, 180);
+  var stellina2 = new Stellina(25, 25, 120);
   var stellina3 = new Stellina(35, 45, 60);
   stelline.push(stellina1, stellina2, stellina3);
   spada = new Spada(27, 30);
@@ -208,7 +208,7 @@ function draw() {
     if (userswordDistance > 500000) {
       //Box
       box.resize(0, window.innerHeight - 48);
-      image(box, (width - box.width) / 2, (height - box.height) / 2);
+      image(box, width / 2, height / 2);
 
       //Title
       push();
@@ -241,18 +241,13 @@ function Stellina(_x, _y, _opacity) {
   this.x = pix * _x;
   this.y = pix * _y;
   this.opacity = _opacity;
-  this.moveTime = this.opacity / 12;
 
   this.animate = function() {
-    this.moveTime -= 1;
-    if (this.moveTime <= 0) {
-      this.x = pix * _x + random(1, 6) * pix;
-      this.y = pix * _y + random(1, 6) * pix;
-      this.moveTime = 10;
-    }
     this.opacity -= 10;
     if (this.opacity <= 0) {
-      this.opacity = 120;
+      this.x = pix * _x + random(1, 6) * pix;
+      this.y = pix * _y + random(1, 6) * pix;
+      this.opacity = 180;
     }
   };
 
