@@ -326,6 +326,7 @@ To overcome the limitations of p5.js in using text animations, we used the css f
 
 ## Used Libraries and Technologies
 
+- express.js
 - google APIs
 - hammer.min.js
 - mappa.js
@@ -334,6 +335,7 @@ To overcome the limitations of p5.js in using text animations, we used the css f
 - p5.geolocation.js
 - p5.min.js
 - p5.min.sound.js
+- socket.io
 <br>
 
 ## Inspirations and References
@@ -349,6 +351,7 @@ To overcome the limitations of p5.js in using text animations, we used the css f
 - [OpenProcessing.org](https://www.openprocessing.org/)
 - [P5JS.org](https://p5js.org/)
 - [Google APIs tutorial by egghead.io](https://egghead.io/lessons/node-js-use-google-sheets-with-node-and-express-in-fun-side-projects)
+- [Socket.io official website](https://socket.io/)
 <br>
 
 

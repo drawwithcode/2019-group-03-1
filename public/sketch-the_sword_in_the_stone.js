@@ -27,19 +27,13 @@ var king = "";
 
 function preload() {
   if (window.innerWidth < 575) {
-    bgImg = loadImage(
-      "assets/the-sword-in-the-stone/spada_roccia-background.png"
-    );
+    bgImg = loadImage("assets/the-sword-in-the-stone/spada_roccia-background.png");
   } else {
-    bgImg = loadImage(
-      "assets/the-sword-in-the-stone/spada_roccia-background_desktop.png"
-    );
+    bgImg = loadImage("assets/the-sword-in-the-stone/spada_roccia-background_desktop.png");
   }
   box = loadImage("assets/img/intro-box.svg");
   spadaImg = loadImage("assets/the-sword-in-the-stone/spada.png");
-  rocciaBottomImg = loadImage(
-    "assets/the-sword-in-the-stone/roccia_bottom.png"
-  );
+  rocciaBottomImg = loadImage("assets/the-sword-in-the-stone/roccia_bottom.png");
   rocciaTopImg = loadImage("assets/the-sword-in-the-stone/roccia_top.png");
 
   crownImg = loadImage("assets/img/crown.svg");
@@ -103,13 +97,7 @@ function draw() {
     //Background image
     bg = image(bgImg, width / 2, height / 2, width, width * 0.62);
     //Top area of the rock
-    rocciaTop = image(
-      rocciaTopImg,
-      rocciaX,
-      rocciaY + pix,
-      30 * pix,
-      30 * pix * 1.14
-    );
+    rocciaTop = image(rocciaTopImg, rocciaX, rocciaY + pix, 30 * pix, 30 * pix * 1.14);
     //Display sword
     spada.display();
     //Bottom area of the rock
@@ -153,35 +141,24 @@ function draw() {
     //Background image
     bg = image(bgImg, width / 2, height / 2, width, width * 1.78);
     //Top area of the rock
-    rocciaTop = image(
-      rocciaTopImg,
-      rocciaX,
-      rocciaY + pix,
-      30 * pix,
-      30 * pix * 1.14
-    );
+    rocciaTop = image(rocciaTopImg, rocciaX, rocciaY + pix, 30 * pix, 30 * pix * 1.14);
     //Display sword
     spada.display();
     //Bottom area of the rock
-    rocciaBottom = image(
-      rocciaBottomImg,
-      rocciaX,
-      rocciaY,
-      30 * pix,
-      30 * pix * 1.14
-    );
+    rocciaBottom = image(rocciaBottomImg, rocciaX, rocciaY, 30 * pix, 30 * pix * 1.14);
     //Display stars
     for (var i = 0; i < stelline.length; i++) {
       stelline[i].display();
       stelline[i].animate();
     }
-
+    //Display white box of timer and swipe bar
     swipeBar.displayWhite();
-
+    //Dysplay and animate the swipe bar when the timer reaches 0
     if (personalCountDown == 0) {
       swipeBar.display();
       barCursor.display();
       barCursor.animate();
+    //Display the timer during the countdown and a message during the last second of the countdown
     } else if (personalCountDown > 0 && pullsCount < 1000) {
       if (personalCountDown >= 15) {
         timer = Math.round(personalCountDown / 30);
@@ -198,7 +175,7 @@ function draw() {
       textAlign(CENTER);
       text(timerText, width / 2, height / 1.17);
     }
-
+    //display the animated "rays" that show up at every successful swipe
     ray1.display();
     ray2.display();
     ray3.display();
@@ -245,6 +222,7 @@ function Stellina(_x, _y, _opacity) {
   this.animate = function() {
     this.opacity -= 10;
     if (this.opacity <= 0) {
+      //randomly change position every time the opacity is 0
       this.x = pix * _x + random(1, 6) * pix;
       this.y = pix * _y + random(1, 6) * pix;
       this.opacity = 180;
@@ -265,14 +243,17 @@ function Stellina(_x, _y, _opacity) {
   };
 }
 
+//RAY OBJECT
 function Ray(_direction, _yOffset) {
   this.direction = _direction;
   this.x = rocciaX + 15 * pix * this.direction;
   this.y = rocciaY - 10 * pix - _yOffset * pix;
+  //initial state of the animation: inactive
   this.animationProgress = 10;
   this.display = function() {
     noStroke();
     fill(rayColor);
+    //animation created with p5 rectanges and if conditions based on the animationProgress value
     if (this.animationProgress <= 2) {
       rect(this.x, this.y, pix, pix);
       rect(this.x + pix * this.direction, this.y, pix, pix);
@@ -295,6 +276,7 @@ function Ray(_direction, _yOffset) {
   };
 }
 
+//KING NAME BOX OBJECT
 function KingName() {
   this.width = pix * 30;
   this.x = width / 10;
@@ -307,7 +289,9 @@ function KingName() {
     rect(this.x + this.width / 2, this.y, this.width + 6 * pix, pix * 7);
     rect(this.x + this.width / 2, this.y, this.width + 4 * pix, pix * 9);
     pop();
+    //CROWN IMAGE
     image(crownImg, this.x + pix * 3, this.y, pix * 8, pix * 8);
+    //TEXT SHOWING THE KING'S NAME
     push();
     fill(40);
     textSize(20);
@@ -320,11 +304,12 @@ function KingName() {
   };
 }
 
+//SWIPE BAR AND WHITE CONTAINER OBJECT
 function Bar(_x, _y, _width) {
   this.x = width / 2;
   this.y = height / 1.2;
   this.width = width / 1.5;
-
+  //Display the white container
   this.displayWhite = function() {
     if (pullsCount < 1000) {
       push();
@@ -336,7 +321,7 @@ function Bar(_x, _y, _width) {
       pop();
     }
   };
-
+  //Display the swipe bar
   this.display = function() {
     if (pullsCount < 1000) {
       noStroke();
@@ -359,11 +344,12 @@ function Bar(_x, _y, _width) {
   };
 }
 
+//BAR CURSOR OBJECT
 function BarCursor(_x, _y) {
   this.x = width / 2;
   this.y = height / 1.2;
   this.direction = 1;
-
+  //Display the cursor as a rotated square
   this.display = function() {
     if (pullsCount < 1000) {
       push();
@@ -372,17 +358,15 @@ function BarCursor(_x, _y) {
       noFill();
       strokeWeight(pix);
       stroke(43, 115, 137);
-      rect(0, 0, 2 * pix, 2 * pix);
+      rect(0, 0, 1.5 * pix, 1.5 * pix);
       pop();
     }
   };
-
+  //Animate the cursor sliding on the bar
   this.animate = function() {
     this.x += this.direction * pix;
     if (
-      this.x >= swipeBar.x + swipeBar.width / 2 ||
-      this.x <= swipeBar.x - swipeBar.width / 2
-    ) {
+      this.x >= swipeBar.x + swipeBar.width / 2 || this.x <= swipeBar.x - swipeBar.width / 2) {
       this.direction *= -1;
     }
   };
@@ -394,31 +378,25 @@ function Spada(_x, _y) {
   this.y = rocciaY - 10 * pix;
 
   this.display = function() {
-    image(
-      spadaImg,
-      this.x,
-      this.y - pix * pullsCount,
-      19 * pix,
-      19 * pix * 2.3
-    );
+    image(spadaImg, this.x, this.y - pix * pullsCount, 19 * pix, 19 * pix * 2.3);
   };
 }
 
 //HANDLES THE USER'S SWIPE
 function swiped() {
   if (personalCountDown == 0) {
-    if (
-      barCursor.x >= swipeBar.x - swipeBar.width / 10 &&
-      barCursor.x <= swipeBar.x + swipeBar.width / 10
-    ) {
+    if (barCursor.x >= swipeBar.x - swipeBar.width / 10 && barCursor.x <= swipeBar.x + swipeBar.width / 10) {
+      //change the color of the animated rays and starts the animation
       rayColor = "Aquamarine";
       ray1.animationProgress = 0;
       ray2.animationProgress = 0;
       ray3.animationProgress = 0;
       ray4.animationProgress = 0;
+      //sends the event to the server
       socket.emit("swordPull");
     }
   }
+  //restart the count down
   personalCountDown = 300;
 }
 
@@ -437,9 +415,9 @@ socket.on("usersCountFromServer", function(data) {
 //LISTEN FOR WIN OR LOSE EVENTS FROM SERVER
 socket.on("winner", youWon);
 socket.on("loser", youLose);
-
+//LISTENS FOR A SWIPE FROM OTHER USERS
 socket.on("enemyRay", displayEnemyRay);
-
+//UPDATES THE NAME OF THE KING WITH THE DATA PROVIDED BY THE SERVER
 socket.on("kingNameFromServer", function(name) {
   if (name === null || name === undefined) {
     king = "";
@@ -459,7 +437,7 @@ function youLose() {
   console.log("loser!!");
   window.open("you_lose.html", "_self");
 }
-
+//CHANGES COLOR TO THE RAYS AND STARTS THE ANIMATION
 function displayEnemyRay() {
   rayColor = "orange";
   ray1.animationProgress = 0;
