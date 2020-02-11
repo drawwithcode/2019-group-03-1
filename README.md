@@ -157,8 +157,10 @@ To make the experience consistent and continuously shared between the different 
 var updatedPulls = 0;
 function newConnection(socket) {
  socket.on("swordPull", function() {
+ 
    //CHECKS IF THIS IS THE DECISIVE SWIPE
    if (updatedPulls === maxPullsCount - 1) {
+   
      //MAKES THE SWORD "DISAPPEAR" WHEN THE GAME ENDS
      updatedPulls += 1000;
      //CALLS DIFFERENT EVENTS FOR THE WINNER AND EVERYONE ELSE
@@ -167,8 +169,10 @@ function newConnection(socket) {
    } else {
      updatedPulls += 1;
      swordTimerCount = 30;
+     
      //TRIGGERS AN ANIMATION SHOWING A PULL FROM ANOTHER USER
      socket.broadcast.emit("enemyRay");
+     
      //SENDS THE UPDATED NUMBER OF PULLS TO EACH USER
      io.emit("pullsCountFromServer", updatedPulls);
    }
@@ -179,17 +183,22 @@ function newConnection(socket) {
 ```javascript
 function swiped() {
   if (personalCountDown == 0) {
+  
     //CHECKS IF THE SWIPE WAS SUCCESSFUL
     if (barCursor.x >= swipeBar.x - swipeBar.width / 10 && barCursor.x <= swipeBar.x + swipeBar.width / 10) {
+    
       //CALLS THE EVENT swordPull IN THE SERVER TO HANDLE THE SUCCESSFUL SWIPE
       socket.emit("swordPull");
     }
   }
+  
   //RESTARTS THE PERSONAL TIMER AFTER EACH ATTEMPT
   personalCountDown = 300;
 }
+
 //LISTENS FOR UPDATES ON THE NUMBER OF PULLS FROM THE SERVER
 socket.on("pullsCountFromServer", function(data) {
+
   //UPDATES THE VARIABLE THAT AFFECTS THE POSITION OF THE SWORD
   pullsCount = data;
 });
@@ -198,6 +207,7 @@ To update and get the name of the king from our google sheets database, we had t
 <br>
 <b>server side:</b>
 ```javascript
+
 //SETTING UP THE GOOGLE API AND PROVIDING CREDENTIALS TO ACCESS THE DATA
 var { google } = require("googleapis");
 var credentials = require("./spreadsheet-credentials.json");
@@ -208,15 +218,18 @@ var auth = new google.auth.JWT(
   ["https://www.googleapis.com/auth/spreadsheets"],
   null
 );
+
 //PROVIDING THE INFORMATIONS TO ACCESS THE DATABASE SPREADSHEET
 google.options({
   auth
 });
 var sheets = google.sheets("v4");
 var spreadsheetId = "1Q25gnGC5R3uE4qQHON8njArLOeIcu0IvrbT1jTqy5QQ";
+
 //GLOBAL VARIABLES TO STORE AND UPDATE THE NAME OF THE KING RECEIVED FROM USERS AND DATABASE
 var updater;
 var kingName;
+
 //GETS THE CURRENT KING'S NAME FROM THE DATABASE
 function getKingName() {
   sheets.spreadsheets.values.get(
@@ -239,6 +252,7 @@ function newConnection(socket) {
     kingName = submittedName;
   });
 }
+
 //UPDATES THE CURRENT KING'S NAME IN THE DATABASE USING THE VALUES PROVIDED BY THE WINNER USER
 function updateKingName(name) {
   updater = { values: [[name]] };
@@ -255,16 +269,20 @@ function updateKingName(name) {
 var king = "";
 
 function setup() {
+
 //MAKES A REQUEST TO THE SERVER FOR THE KING'S NAME IN ORDER TO SHOW IT IN THE USER INTERFACE
 socket.emit("requestKingName");
 }
+
 //LISTENS FOR THE DATA FROM THE SERVER
 socket.on("kingNameFromServer", function(name) {
+
   //UPDATES THE KING'S NAME ACCORDING TO THE DATA PROVIDED BY THE SERVER
   king = name;
 });
 
 function savePhoto() {
+
   //SENDS THE NAME SUBMITTED IN THE FORM TO THE SERVER IN ORDER TO UPDATE THE DATABASE
   socket.emit("submitName", casellaNome.value());
 }
