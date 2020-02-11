@@ -7,6 +7,7 @@ var server = app.listen(port);
 var io = require("socket.io")(server);
 var maxPullsCount = 23;
 var updatedUsers = 0;
+var updatedPulls = 0;
 var swordTimerCount = 15;
 
 //ENABLES THE APP TO ACCESS THE "PUBLIC" FOLDER
@@ -29,8 +30,6 @@ var sheets = google.sheets("v4");
 var spreadsheetId = "1Q25gnGC5R3uE4qQHON8njArLOeIcu0IvrbT1jTqy5QQ";
 
 //GLOBAL VARIABLES TO STORE AND UPDATE THE NUMBER OF PULLS RECEIVED FROM USERS AND DATABASE
-var pulls = [[]];
-var updatedPulls = 0;
 var updater;
 var kingName;
 
@@ -87,20 +86,6 @@ function newConnection(socket) {
 }
 
 swordTimeOut();
-
-//UPDATES THE DATABASE WITH THE NEW PULLS COUNT
-function updatePulls() {
-  // updatedPulls = [[1 + pulls[0][0]]];
-  // pulls = updatedPulls;
-  // updater = { values: updatedPulls };
-  // sheets.spreadsheets.values.update({
-  //   spreadsheetId,
-  //   range: "swordInStoneData!B1",
-  //   valueInputOption: "USER_ENTERED",
-  //   resource: updater
-  // });
-  updatedPulls += 1;
-}
 
 function updateKingName(name) {
   updater = { values: [[name]] };

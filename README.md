@@ -60,21 +60,21 @@ Thanks to this change of location we can take advantage of the big screen projec
 
 (There will be also a QR code that will appear on the big screen and it will allow to play only by framing it with the phone.)
 
-###### REAL WINNING 
-We tought about a collaboration with Mi Ami Festival, thanks to which there will be a prize offered, such as a backstage meeting with the artist, or free beers for the real King of the day. 
+###### REAL WINNING
+We tought about a collaboration with Mi Ami Festival, thanks to which there will be a prize offered, such as a backstage meeting with the artist, or free beers for the real King of the day.
 <br>
 
 
 ## Design Challenges
-Our desire was to make an experience that killed the typical boredom in a queue at the Mi Ami Festival 
+Our desire was to make an experience that killed the typical boredom in a queue at the Mi Ami Festival
 but also that would be inclusive for everybody, and in order to achieved that we thinked about projecting the challenge in the big screen that the Festival stage already has.
 
 ###### STRATEGIC GAMEPLAY
-We tried to make the game increasingly less a lottery, and much more a meritocratic system of strategy, where everyone can try to understand when is the best time to try and swipe the sword and ensure the victory. 
-Hence three very important choices: 
+We tried to make the game increasingly less a lottery, and much more a meritocratic system of strategy, where everyone can try to understand when is the best time to try and swipe the sword and ensure the victory.
+Hence three very important choices:
 1. Insert a precision bar within the game screen. This will create a threshold of difficulty, which will allow only the most precise and valiant to raise the sword.
-2. Show the number of players in the big screen. 
-3. Show a timer in the mobile game screen that allows the gamer to understand how long he has to wait before tapping again. 
+2. Show the number of players in the big screen.
+3. Show a timer in the mobile game screen that allows the gamer to understand how long he has to wait before tapping again.
 
 ###### ARCADE STYLE GRAPHICS
 Everything aims to the facility of the gameplay, that has to be intuitive and really easy to follow, in order to make a lot of people play toghether without impediments. This includes the stylistic choice of an arcade game, very easy to follow and with graphics that allows you to play it even in a distracted way.
@@ -99,8 +99,51 @@ As for the info and the structure of the game, we used an off-white colour.
 
 ## Code Challanges
 
-###### DATABASE
-LORENZ
+###### BACK-END CODE
+We used the server to handle two kinds of data: the number of times the sword has been pulled and the name of the current king. In the first case, a global variable stored and updated by the server for each new successful swipe
+could serve us well, since heroku's service keeps the server active for 24 hours: exactly the time span we needed for our game, because it would be restarted daily. But the name of the winner of the day should be saved in memory also for the next day, and for this reason we needed a different solution to store that data: we found the way to use a google sheets document as a small, free to use database, using the google APIs package for Node.
+<br>
+To make the experience consistent and continuously shared between the different users, we made the server handle every successful swipe, in order to update the position of the sword for every user at the same time and declare an unique winner when an user makes the decisive swipe. To achieve this last point we used the "broadcast" function from the socket.io package.
+server side:
+```javascript
+var updatedPulls = 0;
+socket.on("swordPull", function() {
+  if (updatedPulls === maxPullsCount - 1) {
+    //makes the sword "dissapear" when the game ends
+    updatedPulls += 1000;
+    //calls different events for the winner and everyone else
+    socket.emit("winner");
+    socket.broadcast.emit("loser");
+  } else {
+    updatedPulls += 1;
+    swordTimerCount = 30;
+    //triggers an animation showing a pull from another user
+    socket.broadcast.emit("enemyRay");
+    //sends the updated number of pulls to each user
+    io.emit("pullsCountFromServer", updatedPulls);
+  }
+});
+```
+client-side:
+```javascript
+function swiped() {
+  if (personalCountDown == 0) {
+    //checks if the swipe was successfull
+    if (barCursor.x >= swipeBar.x - swipeBar.width / 10 && barCursor.x <= swipeBar.x + swipeBar.width / 10) {
+      //calls the event swordPull in the server to handle the successfull swipe
+      socket.emit("swordPull");
+    }
+  }
+  //restarts the personal timer after every attempt
+  personalCountDown = 300;
+}
+//listens for an update of the number of pulls from the server
+socket.on("pullsCountFromServer", function(data) {
+  //updates the variable that affects the position of the sword
+  pullsCount = data;
+});
+```
+
 
 ###### DESKTOP AND MOBILE
 To understand what kind of device, desktop or mobile, is connected to the game we used if conditions. Through the latter we checked the size of the screen, to then show or hide some elements rather than others or redirect the device to the correct page.
@@ -190,6 +233,7 @@ If you win it will appear a glorious animation, with a cheerful song. After this
 - p5.geolocation.js
 - p5.min.js
 - p5.min.sound.js
+- google APIs
 <br>
 
 ## Inspirations and References
