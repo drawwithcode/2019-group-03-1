@@ -185,7 +185,7 @@ function draw() {
     ray4.display();
 
     //User out of the area
-    if (userswordDistance > 500000) {
+    if (userswordDistance > 5000000) {
       //Box
       box.resize(0, window.innerHeight - 48);
       image(box, width / 2, height / 2);
